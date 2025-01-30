@@ -74,6 +74,8 @@ class EmailHandler {
     }
     
     private function getEmailTemplate($userData, $statusMessage) {
+        $loginUrl = 'https://gs1oman.com/user/';  // The portal login URL
+        
         return '
         <!DOCTYPE html>
         <html>
@@ -84,6 +86,18 @@ class EmailHandler {
                 .header { text-align: center; padding: 20px; }
                 .content { padding: 20px; background-color: #f9f9f9; }
                 .footer { text-align: center; padding: 20px; color: #666; }
+                .login-button { 
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #007bff;
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    margin: 20px 0;
+                }
+                .login-button:hover {
+                    background-color: #0056b3;
+                }
             </style>
         </head>
         <body>
@@ -100,6 +114,14 @@ class EmailHandler {
                         <li>Email: ' . htmlspecialchars($userData['user_email']) . '</li>
                         <li>Password: ' . htmlspecialchars($userData['password']) . '</li>
                     </ul>
+                    <div style="text-align: center;">
+                        <a href="' . $loginUrl . '" class="login-button" style="color: white;">
+                            Click here to login to your account
+                        </a>
+                    </div>
+                    <p style="margin-top: 20px;">
+                        <strong>Login URL:</strong> <a href="' . $loginUrl . '">' . $loginUrl . '</a>
+                    </p>
                 </div>
                 <div class="footer">
                     <p>This is an automated message, please do not reply.</p>

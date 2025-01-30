@@ -1,9 +1,11 @@
 	<?php
-	error_reporting(0);
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 	include("include/function.php");
 	if(!isset($_SESSION['user_email']))
 	{
-		header('location:login.php');
+		header('Location: login.php');
+		exit();
 	}
 	?>
 	<!doctype html>
