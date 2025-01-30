@@ -43,7 +43,7 @@ config.php
 
 # Test files
 /test-files/
-*.test.js.working_backup
+*.test.js
 
 # Build files
 /dist/
