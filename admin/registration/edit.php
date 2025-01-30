@@ -29,30 +29,30 @@ if(isset($_POST['submit']))
 
 //COMPANY DETAILS START
 
-$name=$_POST['name'];
-$name_ar=$_POST['name_ar'];
-$pobox=$_POST['pobox'];
-$zipcode=$_POST['zipcode'];
-$address=$_POST['address'];
-$address_ar=$_POST['address_ar'];
-$country=$_POST['country'];
-$city=$_POST['city'];
-$mobile_number=$_POST['mobile_number'];
-$phone_number=$_POST['phone_number'];
-$fax_number=$_POST['fax_number'];
-$website_address=$_POST['website_address'];
-$promo_code=$_POST['promo_code'];
-$healthcare_status=$_POST['healthcare_status'];
-$main_contact_status=$_POST['main_contact_status'];
-$status=$_POST['status'];
+$name = isset($_POST['name']) ? $_POST['name'] : '';
+$name_ar = isset($_POST['name_ar']) ? $_POST['name_ar'] : '';
+$pobox = isset($_POST['pobox']) ? $_POST['pobox'] : '';
+$zipcode = isset($_POST['zipcode']) ? $_POST['zipcode'] : '';
+$address = isset($_POST['address']) ? $_POST['address'] : '';
+$address_ar = isset($_POST['address_ar']) ? $_POST['address_ar'] : '';
+$country = isset($_POST['country']) ? $_POST['country'] : '';
+$city = isset($_POST['city']) ? $_POST['city'] : '';
+$mobile_number = isset($_POST['mobile_number']) ? $_POST['mobile_number'] : '';
+$phone_number = isset($_POST['phone_number']) ? $_POST['phone_number'] : '';
+$fax_number = isset($_POST['fax_number']) ? $_POST['fax_number'] : '';
+$website_address = isset($_POST['website_address']) ? $_POST['website_address'] : '';
+$promo_code = isset($_POST['promo_code']) ? $_POST['promo_code'] : '';
+$healthcare_status = isset($_POST['healthcare_status']) ? $_POST['healthcare_status'] : '';
+$main_contact_status = isset($_POST['main_contact_status']) ? $_POST['main_contact_status'] : '';
+$status = isset($_POST['status']) ? $_POST['status'] : '0';
 //COMPANY DETAILS WRAP
 //OTHER Details
-	$tax_reg_no=$_POST['tax_reg_no'];
+	$tax_reg_no = isset($_POST['tax_reg_no']) ? $_POST['tax_reg_no'] : '';
 	
-	$riyada_certificate=$_POST['riyada_certificate'];
-	$issue_date=$_POST['issue_date'];
-	$exp_date=$_POST['exp_date'];
-	$documents_req=$_POST['documents_req'];
+	$riyada_certificate = isset($_POST['riyada_certificate']) ? $_POST['riyada_certificate'] : '';
+	$issue_date = isset($_POST['issue_date']) ? $_POST['issue_date'] : '';
+	$exp_date = isset($_POST['exp_date']) ? $_POST['exp_date'] : '';
+	$documents_req = isset($_POST['documents_req']) ? $_POST['documents_req'] : '';
 
 //CR DETAILS START 
 $cr_number=$_POST['cr_number'];
@@ -111,7 +111,7 @@ $doc_tmp_name3 = $_FILES['upload_document3']['tmp_name'];
 $doc_name4 = $_FILES['documents_req']['name'];
 $doc_tmp_name4 = $_FILES['documents_req']['tmp_name'];
 
-require_once('../includes/email_handler.php');
+require_once(__DIR__ . '/../includes/email_handler.php');
 
 // Inside your form submission handling:
 if(isset($_POST['submit'])) {
