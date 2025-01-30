@@ -1,1 +1,0 @@
-<footer class="main-footer">© WebsUtility <?php echo date("Y"); ?></footer>

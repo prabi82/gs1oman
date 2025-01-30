@@ -1,6 +1,0 @@
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home2/websutil/public_html/client-projects/vstore/admin/include/config.php on line 6
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, bool given in /home2/websutil/public_html/client-projects/vstore/admin/include/config.php on line 7
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in /home2/websutil/public_html/client-projects/vstore/admin/include/config.php on line 14
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home2/websutil/public_html/client-projects/vstore/admin/include/function.php on line 4
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home2/websutil/public_html/client-projects/vstore/admin/include/function.php on line 5
-[10-Jun-2022 09:19:49 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in /home2/websutil/public_html/client-projects/vstore/admin/include/session_destroy.php on line 3

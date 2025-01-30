@@ -1,2 +1,0 @@
-[30-Mar-2022 07:54:20 UTC] PHP Warning:  move_uploaded_file(): The second argument to copy() function cannot be a directory in /home2/websutil/public_html/client-projects/mobil-1/admin/manage_user/add_admin_form.php on line 199
-[30-Mar-2022 07:54:20 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpfTkwzu' to '../' in /home2/websutil/public_html/client-projects/mobil-1/admin/manage_user/add_admin_form.php on line 199
