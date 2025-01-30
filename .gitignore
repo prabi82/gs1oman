@@ -64,3 +64,6 @@ PublishScripts/
 [Rr]elease/
 [Bb]in/
 [Oo]bj/
+
+# Large files
+public_html/arabic_old.zip
