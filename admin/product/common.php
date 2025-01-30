@@ -382,19 +382,19 @@ else{
 
   if($num>"0"){
   if(($renew_status==1) && ($renew_date=='0000-00-00') ){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
   else{
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 
 }
 elseif($num=="0"){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 elseif($num<"0"){
 if(($renew_status==1) && ($renew_date=='0000-00-00') ){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 }
 
@@ -1016,19 +1016,19 @@ else{
 
   if($num>"0"){
   if(($renew_status==1) && ($renew_date=='0000-00-00') ){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
   else{
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 
 }
 elseif($num=="0"){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 elseif($num<"0"){
 if(($renew_status==1) && ($renew_date=='0000-00-00') ){
-echo"<span class='badge badge-success'>Verified</span>";
+echo"<span class='badge badge-success'>Active</span>";
 }
 }
 

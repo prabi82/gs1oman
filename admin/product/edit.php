@@ -19,194 +19,200 @@ require 'PHPMailer/src/SMTP.php';
 
 if(isset($_POST['submit']))
 {
-$product_name=$_POST['product_name'];
-$prefix_num=$_POST['prefix_num'];
-$gln_number=$_POST['gln_number'];
-$gtins_name=$_POST['gtins_name'];
-$annual_subscription_fee=$_POST['annual_subscription_fee'];
-$annual_total_price=$_POST['annual_total_price'];
-$longitude=$_POST['longitude'];
-$latitude=$_POST['latitude'];
-$status=$_POST['status'];
+    // Check if GD library is installed
+    if (!extension_loaded('gd')) {
+        echo "<script>alert('PHP GD library is not installed. Please contact your system administrator.');</script>";
+        exit;
+    }
+    
+    $product_name=$_POST['product_name'];
+    $prefix_num=$_POST['prefix_num'];
+    $gln_number=$_POST['gln_number'];
+    $gtins_name=$_POST['gtins_name'];
+    $annual_subscription_fee=$_POST['annual_subscription_fee'];
+    $annual_total_price=$_POST['annual_total_price'];
+    $longitude=$_POST['longitude'];
+    $latitude=$_POST['latitude'];
+    $status=$_POST['status'];
 
-// Form Submit Start 
-$cumpany_sql1=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='".$view_id."' AND id='".$id."'");
-$company_row1=mysqli_fetch_assoc($cumpany_sql1);
-//$order_date=$company_row1['order_date'];
-	$orderdate=$company_row1['order_date'];
-		$issue_date=strtotime($orderdate);
-		$order_date=date("d-m-Y",$issue_date);
+    // Form Submit Start 
+    $cumpany_sql1=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='".$view_id."' AND id='".$id."'");
+    $company_row1=mysqli_fetch_assoc($cumpany_sql1);
+    //$order_date=$company_row1['order_date'];
+    $orderdate=$company_row1['order_date'];
+    $issue_date=strtotime($orderdate);
+    $order_date=date("d-m-Y",$issue_date);
 
-//$expired_date="31-12-2022";
-$expired_date="31-12-2024";
+    //$expired_date="31-12-2022";
+    $expired_date="31-12-2024";
 
-$user_sql=mysqli_query($conn,"SELECT * FROM company_tbl WHERE id='".$view_id."'");
-$user_row=mysqli_fetch_assoc($user_sql);
-$company_name=$user_row['name'];
-$company_address=$user_row['address'];
-$pobox=$user_row['pobox'];
-$zipcode=$user_row['zipcode'];
-$city=$user_row['city'];
-$country=$user_row['country'];
+    $user_sql=mysqli_query($conn,"SELECT * FROM company_tbl WHERE id='".$view_id."'");
+    $user_row=mysqli_fetch_assoc($user_sql);
+    $company_name=$user_row['name'];
+    $company_address=$user_row['address'];
+    $pobox=$user_row['pobox'];
+    $zipcode=$user_row['zipcode'];
+    $city=$user_row['city'];
+    $country=$user_row['country'];
 
-$email_temp='<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0;">
-   <meta name="format-detection" content="telephone=no"/>
+    $email_temp='<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+       <meta http-equiv="content-type" content="text/html; charset=utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0;">
+       <meta name="format-detection" content="telephone=no"/>
 
-   <!-- Responsive Mobile-First Email Template by Konstantin Savchenko, 2015.
-   https://github.com/konsav/email-templates/  -->
+       <!-- Responsive Mobile-First Email Template by Konstantin Savchenko, 2015.
+       https://github.com/konsav/email-templates/  -->
 
-   <style>
+       <style>
 
-/* Reset styles */
-body {
-   margin: 0;
-   padding: 0;
-   min-width: 100%;
-   width: 100% !important;
-   height: 100% !important;
-}
+    /* Reset styles */
+    body {
+       margin: 0;
+       padding: 0;
+       min-width: 100%;
+       width: 100% !important;
+       height: 100% !important;
+    }
 
-body,table,td,div,p,a {
-   -webkit-font-smoothing: antialiased;
-   text-size-adjust: 100%;
-   -ms-text-size-adjust: 100%;
-   -webkit-text-size-adjust: 100%;
-   line-height: 100%;
-}
+    body,table,td,div,p,a {
+       -webkit-font-smoothing: antialiased;
+       text-size-adjust: 100%;
+       -ms-text-size-adjust: 100%;
+       -webkit-text-size-adjust: 100%;
+       line-height: 100%;
+    }
 
-table,td {
-   mso-table-lspace: 0pt;
-   mso-table-rspace: 0pt;
-   border-collapse: collapse !important;
-   border-spacing: 0;
-}
+    table,td {
+       mso-table-lspace: 0pt;
+       mso-table-rspace: 0pt;
+       border-collapse: collapse !important;
+       border-spacing: 0;
+    }
 
-img {
-   border: 0;
-   line-height: 100%;
-   outline: none;
-   text-decoration: none;
-   -ms-interpolation-mode: bicubic;
-}
+    img {
+       border: 0;
+       line-height: 100%;
+       outline: none;
+       text-decoration: none;
+       -ms-interpolation-mode: bicubic;
+    }
 
-#outlook a {
-   padding: 0;
-}
+    #outlook a {
+       padding: 0;
+    }
 
-.ReadMsgBody {
-   width: 100%;
-}
+    .ReadMsgBody {
+       width: 100%;
+    }
 
-.ExternalClass {
-   width: 100%;
-}
+    .ExternalClass {
+       width: 100%;
+    }
 
-.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {
-   line-height: 100%;
-}
+    .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {
+       line-height: 100%;
+    }
 
-/* Rounded corners for advanced mail clients only */
-@media all and (min-width: 560px) {
-   .container {
-      border-radius: 8px;
-      -webkit-border-radius: 8px;
-      -moz-border-radius: 8px;
-      -khtml-border-radius: 8px;
-   }
-}
+    /* Rounded corners for advanced mail clients only */
+    @media all and (min-width: 560px) {
+       .container {
+          border-radius: 8px;
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          -khtml-border-radius: 8px;
+       }
+    }
 
-/* Set color for auto links (addresses, dates, etc.) */
-a,a:hover {
-   color: #127DB3;
-}
+    /* Set color for auto links (addresses, dates, etc.) */
+    a,a:hover {
+       color: #127DB3;
+    }
 
-.footer a,.footer a:hover {
-   color: #999999;
-}
+    .footer a,.footer a:hover {
+       color: #999999;
+    }
 
-</style>
+    </style>
 
-<!-- MESSAGE SUBJECT -->
-<title>Barcode</title>
+    <!-- MESSAGE SUBJECT -->
+    <title>Barcode</title>
 
-</head>
+    </head>
 
-<!-- BODY -->
-<!-- Set message background color (twice) and text color (twice) -->
-<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
-   background-color: #F0F0F0;
-   color: #000000;"
-   bgcolor="#F0F0F0"
-   text="#000000">
+    <!-- BODY -->
+    <!-- Set message background color (twice) and text color (twice) -->
+    <body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
+       background-color: #F0F0F0;
+       color: #000000;"
+       bgcolor="#F0F0F0"
+       text="#000000">
 
-<!-- SECTION / BACKGROUND -->
-<!-- Set message background color one again -->
-<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background"><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
-   bgcolor="#F0F0F0">
+    <!-- SECTION / BACKGROUND -->
+    <!-- Set message background color one again -->
+    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background"><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
+       bgcolor="#F0F0F0">
 
-<!-- WRAPPER -->
-<!-- Set wrapper width (twice) -->
-<table border="0" cellpadding="0" cellspacing="0" align="center"
-   width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
-   max-width: 560px;" class="wrapper">
-
-
-
-<!-- End of WRAPPER -->
-</table>
-
-<!-- WRAPPER / CONTEINER -->
-<!-- Set conteiner background color -->
-<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF"width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit; max-width: 560px;" class="container">
+    <!-- WRAPPER -->
+    <!-- Set wrapper width (twice) -->
+    <table border="0" cellpadding="0" cellspacing="0" align="center"
+       width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
+       max-width: 560px;" class="wrapper">
 
 
-<tr>
-<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-padding-top: 20px;" class="hero">
-<a target="_blank" style="text-decoration: none;"href=""><img border="0" vspace="0" hspace="0" src="'.$base_url.'images/logo.png"  style="width:100%; max-width: 200px;"/></a>
-</td>
-</tr>
+
+    <!-- End of WRAPPER -->
+    </table>
+
+    <!-- WRAPPER / CONTEINER -->
+    <!-- Set conteiner background color -->
+    <table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF"width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit; max-width: 560px;" class="container">
 
 
-   
-<tr>
-<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;  font-size: 20px; font-weight:bold; padding-top:25px;font-family: sans-serif;" class="header">';
+    <tr>
+    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
+    padding-top: 20px;" class="hero">
+    <a target="_blank" style="text-decoration: none;"href=""><img border="0" vspace="0" hspace="0" src="'.$base_url.'images/logo.png"  style="width:100%; max-width: 200px;"/></a>
+    </td>
+    </tr>
 
 
-if($status==0){
-  $email_temp.='<span style="color:#ff9900">Once your order is approved, you can use this project.</span>'; 
-}
-elseif($status==1){
-$email_temp.='<span style="color:#009900">Your Order is Approved successfully</span>'; 
-}
-elseif($status==2){
-$email_temp.='<span style="color:#cc0000">Your Order request is Rejected !</span>'; 
-}
-elseif($status==3){
-$email_temp.='<span style="color:#ff0000">Your Order is disabled or block for the short the period</span>'; 
-}
-$email_temp.='</td>
-</tr>
-
-   
+       
+    <tr>
+    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;  font-size: 20px; font-weight:bold; padding-top:25px;font-family: sans-serif;" class="header">';
 
 
-   
+    if($status==0){
+      $email_temp.='<span style="color:#ff9900">Once your order is approved, you can use this project.</span>'; 
+    }
+    elseif($status==1){
+    $email_temp.='<span style="color:#009900">Your Order is Approved successfully</span>'; 
+    }
+    elseif($status==2){
+    $email_temp.='<span style="color:#cc0000">Your Order request is Rejected !</span>'; 
+    }
+    elseif($status==3){
+    $email_temp.='<span style="color:#ff0000">Your Order is disabled or block for the short the period</span>'; 
+    }
+    $email_temp.='</td>
+    </tr>
 
-   <!-- LIST -->
-<tr>
-<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;" class="list-item"><table align="center" border="0" cellspacing="0" cellpadding="0" style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
-         
-<!-- LIST ITEM -->
-<tr>
+       
+
+
+       
+
+       <!-- LIST -->
+    <tr>
+    <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;" class="list-item"><table align="center" border="0" cellspacing="0" cellpadding="0" style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
+             
+    <!-- LIST ITEM -->
+    <tr>
 
             
-<td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;padding-top: 30px;
-padding-right: 20px;">
-<img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block; color: #000000;"src="https://raw.githubusercontent.com/konsav/email-templates/master/images/list-item.png" width="50" height="50"></td>
+    <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;padding-top: 30px;
+    padding-right: 20px;">
+    <img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block; color: #000000;"src="https://raw.githubusercontent.com/konsav/email-templates/master/images/list-item.png" width="50" height="50"></td>
 
             <!-- LIST ITEM TEXT -->
             <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
@@ -267,9 +273,9 @@ padding-right: 20px;">
 
 </body>
 </html>';
-	$glnprice="SELECT `gln_price` FROM order_tbl WHERE company_id='".$view_id."' && id='".$id."' ";
-			$querygln=mysqli_query($conn,$glnprice)or die(mysqli_error($conn));
-			$glnprice=mysqli_fetch_assoc($querygln);
+    $glnprice="SELECT `gln_price` FROM order_tbl WHERE company_id='".$view_id."' && id='".$id."' ";
+            $querygln=mysqli_query($conn,$glnprice)or die(mysqli_error($conn));
+            $glnprice=mysqli_fetch_assoc($querygln);
 
  if($status=='0'){
 if(isset($_GET['view_id']))
@@ -281,39 +287,39 @@ if(isset($_GET['view_id']))
 $query4=mysqli_query($conn,$sql4)or die(mysqli_error($conn));
  
 if($query4){
-	$_SESSION['message']="Record Updated Successfully";
+    $_SESSION['message']="Record Updated Successfully";
 
  echo "<script>window.location='show.php?stype=&search=Filter';</script>";
 $sql6=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='$view_id'");
 $fetched_records=mysqli_fetch_assoc($sql6);
 $user_email=$fetched_records['user_email'];
 $glnprice="SELECT `gln_price` FROM order_tbl WHERE company_id='".$view_id."' && id='".$id."' ";
-			$querygln=mysqli_query($conn,$glnprice)or die(mysqli_error($conn));
-			$glnprice=mysqli_fetch_assoc($querygln);
-			//echo $glnprice;
+            $querygln=mysqli_query($conn,$glnprice)or die(mysqli_error($conn));
+            $glnprice=mysqli_fetch_assoc($querygln);
+            //echo $glnprice;
 
 /* $mail = new PHPMailer(true);
              
      $mail->isSMTP(); 
-	    #$mail->SMTPDebug = 2;
-	    $mail->Host       = 'host33.theukhost.net';                     
-	    $mail->SMTPAuth   = true;                                   
-	    $mail->Username   = 'info@gs1oman.com';                    
-	    $mail->Password   = '9rsE@+3M[f*&';                             
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-	    $mail->Port       = 465;                                    
+        #$mail->SMTPDebug = 2;
+        $mail->Host       = 'host33.theukhost.net';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'info@gs1oman.com';                    
+        $mail->Password   = '9rsE@+3M[f*&';                             
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
 
-	  
-	    $mail->setFrom('info@gs1oman.com', 'Barcode');
-	    $mail->addAddress($user_email);
-	    $mail->addAddress('info@gs1oman.com');  
+      
+        $mail->setFrom('info@gs1oman.com', 'Barcode');
+        $mail->addAddress($user_email);
+        $mail->addAddress('info@gs1oman.com');  
                                   
    
      
-      
-       
-       
-                 
+        
+         
+         
+                   
 
 
     $mail->isHTML(true);                                 
@@ -346,7 +352,7 @@ $_SESSION['message']="Record Updated Successfully";
  //if staus not equal to one 
 
 /* elseif($status=='1'){
-	 
+     
    $font="Lato-Bold.ttf";
 $font1="Lato-Regular.ttf";
    $image=imagecreatefromjpeg("ct.jpg");
@@ -400,108 +406,164 @@ $font1="Lato-Regular.ttf";
  
 if ($glnprice != '') {
 echo 'glntest';}
-			// If a GLN product is purchased, generate a GLN certificate
-			 $image_gln = imagecreatefromjpeg("glncertificate.jpg"); 
-			
-			  $color = imagecolorallocate($image_gln, 242, 98, 52);
-			imagettftext($image_gln, 14, 0, 305, 240, $color, $font1, $company_name);
-			imagettftext($image_gln, 13, 0, 525, 319, $color, $font, $prefix_num);
-			imagettftext($image_gln, 10, 0, 377, 370, $color, $font, $order_date);
-			imagettftext($image_gln, 10, 0, 688, 370, $color, $font, $expired_date);
-			imagettftext($image_gln, 14, 0, 635, 400, $color, $font, $gln_number);
-			$file_gln = time();
-			$file_path_gln = "../../certificate/glncertificate/gln_" . $file_gln . ".jpg";
-			$file_path_pdf_gln = "../../certificate/glncertificate/gln_".$file.".pdf";
-			
-			//echo $file_path_pdf_gln;
-			
-			$c_img_path_gln = substr($file_path_gln, 6);
-			$c_pdf_path_gln = substr($file_path_pdf_gln, 6);
-			imagejpeg($image_gln, $file_path_gln);
-			imagedestroy($image_gln);
+        // If a GLN product is purchased, generate a GLN certificate
+         $image_gln = imagecreatefromjpeg("glncertificate.jpg"); 
+        
+          $color = imagecolorallocate($image_gln, 242, 98, 52);
+        imagettftext($image_gln, 14, 0, 305, 240, $color, $font1, $company_name);
+        imagettftext($image_gln, 13, 0, 525, 319, $color, $font, $prefix_num);
+        imagettftext($image_gln, 10, 0, 377, 370, $color, $font, $order_date);
+        imagettftext($image_gln, 10, 0, 688, 370, $color, $font, $expired_date);
+        imagettftext($image_gln, 14, 0, 635, 400, $color, $font, $gln_number);
+        $file_gln = time();
+        $file_path_gln = "../../certificate/glncertificate/gln_" . $file_gln . ".jpg";
+        $file_path_pdf_gln = "../../certificate/glncertificate/gln_".$file.".pdf";
+        
+        //echo $file_path_pdf_gln;
+        
+        $c_img_path_gln = substr($file_path_gln, 6);
+        $c_pdf_path_gln = substr($file_path_pdf_gln, 6);
+        imagejpeg($image_gln, $file_path_gln);
+        imagedestroy($image_gln);
 
-			$pdf_gln = new FPDF('L', 'mm', array(150, 220));
-			$pdf_gln->AddPage();
-			$pdf_gln->Image($file_path_gln, 0, 0, 210, 150);
-			$pdf_gln->Output($file_path_pdf_gln, "F");
+        $pdf_gln = new FPDF('L', 'mm', array(150, 220));
+        $pdf_gln->AddPage();
+        $pdf_gln->Image($file_path_gln, 0, 0, 210, 150);
+        $pdf_gln->Output($file_path_pdf_gln, "F");
 
-	}else{
-		'<script>alert("Gln not purchased no certificate available");</script>';
-	}  
+    }else{
+        '<script>alert("Gln not purchased no certificate available");</script>';
+    }  
 }*/
 
 elseif($status=='1'){
-	
-	   $font = "Lato-Bold.ttf";
-		$font1 = "Lato-Regular.ttf";
-		$image = imagecreatefromjpeg("gcpcertificate.jpg");
-
-		$color = imagecolorallocate($image, 242, 98, 52);
-		$colorblack = imagecolorallocate($image, 0, 0, 0);
-
-		imagettftext($image, 14, 0, 305, 240, $colorblack, $font1, $company_name);
-		imagettftext($image, 13, 0, 525, 319, $color, $font, $prefix_num);
-		imagettftext($image, 10, 0, 377, 370, $color, $font, $order_date);
-		imagettftext($image, 10, 0, 688, 370, $color, $font, $expired_date);
-       
-		$file = time();
-		$file_path="../../certificate/".$file.".jpg";
-	   $file_path_pdf="../../certificate/".$file.".pdf";
-	
-		
-		$c_img_path = substr($file_path, 6);
-		$c_pdf_path = substr($file_path_pdf, 6);
-		imagejpeg($image, $file_path);
-		imagedestroy($image);
-
-		require('fpdf.php');
-		$pdf = new FPDF('L', 'mm', array(150, 220));
-		$pdf->AddPage();
-		$pdf->Image($file_path, 0, 0, 210, 150);
-		$pdf->Output($file_path_pdf, "F");
-	
-
-		if ($glnprice != '') {
-			
-			// If a GLN product is purchased, generate a GLN certificate
-			$image_gln = imagecreatefromjpeg("glncertificate.jpg");
-			
-			$color = imagecolorallocate($image_gln, 242, 98, 52);
-			imagettftext($image_gln, 14, 0, 305, 240, $color, $font1, $company_name);
-			imagettftext($image_gln, 13, 0, 525, 319, $color, $font, $prefix_num);
-			imagettftext($image_gln, 10, 0, 377, 370, $color, $font, $order_date);
-			imagettftext($image_gln, 10, 0, 688, 370, $color, $font, $expired_date);
-			imagettftext($image_gln, 14, 0, 635, 400, $color, $font, $gln_number);
-			imagettftext($image_gln, 12, 0, 365, 432, $color, $font, $longitude);
-			imagettftext($image_gln, 12, 0, 707, 432, $color, $font, $latitude);
-			$file_gln = time();
-			$file_path_gln = "../../certificate/glncertificate/gln_" . $file_gln . ".jpg";
-			$file_path_pdf_gln = "../../certificate/glncertificate/gln_".$file.".pdf";
-			
-			
-			
-			$c_img_path_gln = substr($file_path_gln, 6);
-			
-			$c_pdf_path_gln = substr($file_path_pdf_gln, 6);
-				
-			imagejpeg($image_gln, $file_path_gln);
-			imagedestroy($image_gln);
-
-			$pdf_gln = new FPDF('L', 'mm', array(150, 220));
-			
-			
-			$pdf_gln->AddPage();
-			$pdf_gln->Image($file_path_gln, 0, 0, 210, 150);
-			
-				
-			$pdf_gln->Output($file_path_pdf_gln, "F"); 
-		
-
-		
-	}else{
-		'<script>alert("Gln not purchased no certificate available");</script>';
-	} 
-
+    try {
+        // Check if GD library is installed
+        if (!extension_loaded('gd')) {
+            throw new Exception("PHP GD library is not installed. Please contact your system administrator.");
+        }
+        
+        // Check if required files exist
+        $font = "Lato-Bold.ttf";
+        $font1 = "Lato-Regular.ttf";
+        $template = "gcpcertificate.jpg";
+        
+        if (!file_exists($font) || !file_exists($font1) || !file_exists($template)) {
+            throw new Exception("Required font or template files are missing.");
+        }
+        
+        // Create the certificate image
+        $image = @imagecreatefromjpeg($template);
+        if (!$image) {
+            throw new Exception("Failed to create image from template.");
+        }
+        
+        // Allocate colors
+        $color = imagecolorallocate($image, 242, 98, 52);
+        $colorblack = imagecolorallocate($image, 0, 0, 0);
+        
+        // Add text to image
+        imagettftext($image, 14, 0, 305, 240, $colorblack, $font1, $company_name);
+        imagettftext($image, 13, 0, 525, 319, $color, $font, $prefix_num);
+        imagettftext($image, 10, 0, 377, 370, $color, $font, $order_date);
+        imagettftext($image, 10, 0, 688, 370, $color, $font, $expired_date);
+        
+        // Save the image
+        $file = time();
+        $file_path = "../../certificate/".$file.".jpg";
+        $file_path_pdf = "../../certificate/".$file.".pdf";
+        
+        // Create certificate directory if it doesn't exist
+        $cert_dir = "../../certificate";
+        if (!file_exists($cert_dir)) {
+            mkdir($cert_dir, 0777, true);
+        }
+        
+        // Save image and create PDF
+        if (!imagejpeg($image, $file_path)) {
+            throw new Exception("Failed to save certificate image.");
+        }
+        imagedestroy($image);
+        
+        require('fpdf.php');
+        $pdf = new FPDF('L', 'mm', array(150, 220));
+        $pdf->AddPage();
+        $pdf->Image($file_path, 0, 0, 210, 150);
+        $pdf->Output($file_path_pdf, "F");
+        
+        $c_img_path = substr($file_path, 6);
+        $c_pdf_path = substr($file_path_pdf, 6);
+        
+        // Generate GLN certificate if GLN price exists
+        if ($glnprice != '') {
+            $gln_template = "glncertificate.jpg";
+            if (!file_exists($gln_template)) {
+                throw new Exception("GLN certificate template is missing.");
+            }
+            
+            $image_gln = @imagecreatefromjpeg($gln_template);
+            if (!$image_gln) {
+                throw new Exception("Failed to create GLN certificate image.");
+            }
+            
+            $color = imagecolorallocate($image_gln, 242, 98, 52);
+            imagettftext($image_gln, 14, 0, 305, 240, $color, $font1, $company_name);
+            imagettftext($image_gln, 13, 0, 525, 319, $color, $font, $prefix_num);
+            imagettftext($image_gln, 10, 0, 377, 370, $color, $font, $order_date);
+            imagettftext($image_gln, 10, 0, 688, 370, $color, $font, $expired_date);
+            imagettftext($image_gln, 14, 0, 635, 400, $color, $font, $gln_number);
+            imagettftext($image_gln, 12, 0, 365, 432, $color, $font, $longitude);
+            imagettftext($image_gln, 12, 0, 707, 432, $color, $font, $latitude);
+            
+            // Create GLN certificate directory if it doesn't exist
+            $gln_cert_dir = "../../certificate/glncertificate";
+            if (!file_exists($gln_cert_dir)) {
+                mkdir($gln_cert_dir, 0777, true);
+            }
+            
+            $file_gln = time();
+            $file_path_gln = $gln_cert_dir."/gln_".$file_gln.".jpg";
+            $file_path_pdf_gln = $gln_cert_dir."/gln_".$file.".pdf";
+            
+            if (!imagejpeg($image_gln, $file_path_gln)) {
+                throw new Exception("Failed to save GLN certificate image.");
+            }
+            imagedestroy($image_gln);
+            
+            $pdf_gln = new FPDF('L', 'mm', array(150, 220));
+            $pdf_gln->AddPage();
+            $pdf_gln->Image($file_path_gln, 0, 0, 210, 150);
+            $pdf_gln->Output($file_path_pdf_gln, "F");
+            
+            $c_img_path_gln = substr($file_path_gln, 6);
+            $c_pdf_path_gln = substr($file_path_pdf_gln, 6);
+        }
+        
+        // Update database
+        $sql4 = "UPDATE `order_tbl` SET 
+            `prefix_num`='$prefix_num', 
+            `gln_number`='$gln_number', 
+            `longitude`='$longitude',
+            `latitude`='$latitude',
+            `certificate_img`='$c_img_path', 
+            `certificate_pdf`='$c_pdf_path',
+            `certificate_glnimg`='".($glnprice != '' ? $c_img_path_gln : '')."', 
+            `certificate_glnpdf`='".($glnprice != '' ? $c_pdf_path_gln : '')."',
+            `status`='$status' 
+            WHERE company_id='".$view_id."' && id='".$id."'";
+            
+        if (!mysqli_query($conn, $sql4)) {
+            throw new Exception("Failed to update database: " . mysqli_error($conn));
+        }
+        
+        $_SESSION['message'] = "Record Updated Successfully";
+        echo "<script>window.location='common.php?stype=1&search=Filter&page=PROT';</script>";
+        
+    } catch (Exception $e) {
+        $_SESSION['error'] = $e->getMessage();
+        echo "<script>alert('".$e->getMessage()."');</script>";
+        echo "<script>window.location='edit.php?view_id=".$view_id."&id=".$id."&page=PROT';</script>";
+    }
 } 
 
 if(isset($_GET['view_id']))
@@ -514,7 +576,7 @@ $sql4="UPDATE `order_tbl` SET `prefix_num`='$prefix_num', `gln_number`='$gln_num
 $query4=mysqli_query($conn,$sql4)or die(mysqli_error($conn));
  
 if($query4){
-	$_SESSION['message']="Record Updated Successfully";
+    $_SESSION['message']="Record Updated Successfully";
 
  echo "<script>window.location='show.php?stype=&search=Filter';</script>";
 /* $sql6=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='$view_id'");
@@ -525,23 +587,23 @@ $user_email=$fetched_records['user_email'];
         $mail = new PHPMailer(true);
              
         $mail->isSMTP(); 
-	    #$mail->SMTPDebug = 2;
-	    $mail->Host       = 'host33.theukhost.net';                     
-	    $mail->SMTPAuth   = true;                                   
-	    $mail->Username   = 'info@gs1oman.com';                    
-	    $mail->Password   = '9rsE@+3M[f*&';                             
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-	    $mail->Port       = 465;                                    
+            #$mail->SMTPDebug = 2;
+            $mail->Host       = 'host33.theukhost.net';                     
+            $mail->SMTPAuth   = true;                                   
+            $mail->Username   = 'info@gs1oman.com';                    
+            $mail->Password   = '9rsE@+3M[f*&';                             
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+            $mail->Port       = 465;                                    
 
-	  
-	    $mail->setFrom('info@gs1oman.com', 'Barcode');
-	    $mail->addAddress($user_email);
-	    $mail->addAddress('info@gs1oman.com');
-     
-      
-       
-       
-                 
+          
+            $mail->setFrom('info@gs1oman.com', 'Barcode');
+            $mail->addAddress($user_email);
+            $mail->addAddress('info@gs1oman.com');
+         
+          
+           
+           
+                   
 
 
     $mail->isHTML(true);                                 
@@ -590,7 +652,7 @@ if(isset($_GET['view_id']))
 $query4=mysqli_query($conn,$sql4)or die(mysqli_error($conn));
  
 if($query4){
-	$_SESSION['message']="Record Updated Successfully";
+    $_SESSION['message']="Record Updated Successfully";
 
  echo "<script>window.location='show.php?stype=&search=Filter';</script>";
 $sql6=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='$view_id'");
@@ -601,23 +663,23 @@ $user_email=$fetched_records['user_email'];
 $mail = new PHPMailer(true);
              
     $mail->isSMTP(); 
-	    #$mail->SMTPDebug = 2;
-	    $mail->Host       = 'host33.theukhost.net';                     
-	    $mail->SMTPAuth   = true;                                   
-	    $mail->Username   = 'info@gs1oman.com';                    
-	    $mail->Password   = '9rsE@+3M[f*&';                             
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-	    $mail->Port       = 465;                                    
+        #$mail->SMTPDebug = 2;
+        $mail->Host       = 'host33.theukhost.net';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'info@gs1oman.com';                    
+        $mail->Password   = '9rsE@+3M[f*&';                             
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
 
-	  
-	    $mail->setFrom('info@gs1oman.com', 'Barcode');
-	    $mail->addAddress($user_email);
-	    $mail->addAddress('info@gs1oman.com');
+      
+        $mail->setFrom('info@gs1oman.com', 'Barcode');
+        $mail->addAddress($user_email);
+        $mail->addAddress('info@gs1oman.com');
      
       
        
        
-                 
+                   
 
 
     $mail->isHTML(true);                                 
@@ -657,7 +719,7 @@ if(isset($_GET['view_id']))
 $query4=mysqli_query($conn,$sql4)or die(mysqli_error($conn));
  
 if($query4){
-	$_SESSION['message']="Record Updated Successfully";
+    $_SESSION['message']="Record Updated Successfully";
 
  echo "<script>window.location='show.php?stype=&search=Filter';</script>";
 $sql6=mysqli_query($conn,"SELECT * FROM order_tbl WHERE company_id='$view_id'");
@@ -668,23 +730,23 @@ $user_email=$fetched_records['user_email'];
 $mail = new PHPMailer(true);
              
      $mail->isSMTP(); 
-	    #$mail->SMTPDebug = 2;
-	    $mail->Host       = 'host33.theukhost.net';                     
-	    $mail->SMTPAuth   = true;                                   
-	    $mail->Username   = 'info@gs1oman.com';                    
-	    $mail->Password   = '9rsE@+3M[f*&';                             
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-	    $mail->Port       = 465;                                    
+        #$mail->SMTPDebug = 2;
+        $mail->Host       = 'host33.theukhost.net';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'info@gs1oman.com';                    
+        $mail->Password   = '9rsE@+3M[f*&';                             
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
+        $mail->Port       = 465;                                    
 
-	  
-	    $mail->setFrom('info@gs1oman.com', 'Barcode');
-	    $mail->addAddress($user_email);
-	    $mail->addAddress('info@gs1oman.com');
+      
+        $mail->setFrom('info@gs1oman.com', 'Barcode');
+        $mail->addAddress($user_email);
+        $mail->addAddress('info@gs1oman.com');
      
       
        
        
-                 
+                   
 
 
     $mail->isHTML(true);                                 
