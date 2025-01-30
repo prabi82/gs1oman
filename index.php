@@ -200,13 +200,47 @@
 			// Create order
 			$order_id = 'Barcode' . (1000 + $company_id);
 			$order_date = date('Y-m-d');
+			$expiry_date = date('Y-12-31'); // Set expiry to end of current year
 			
-			$sql = "INSERT INTO `order_tbl` (company_id, order_id, product_id, user_email, status, order_date) 
-					VALUES (?, ?, ?, ?, '0', ?)";
+			// Get product fees from POST data
+			$registration_fee = isset($_POST['registration_fee']) ? $_POST['registration_fee'] : 0;
+			$gtins_annual_fee = isset($_POST['gtins_annual_fee']) ? $_POST['gtins_annual_fee'] : 0;
+			$gln_price = isset($_POST['gln_price']) ? $_POST['gln_price'] : 0;
+			$sscc_price = isset($_POST['sscc_price']) ? $_POST['sscc_price'] : 0;
+			$annual_subscription_fee = isset($_POST['annual_subscription_fee']) ? $_POST['annual_subscription_fee'] : 0;
+			$annual_total_price = isset($_POST['annual_total_price']) ? $_POST['annual_total_price'] : 0;
+			
+			$sql = "INSERT INTO `order_tbl` (
+				company_id, 
+				order_id, 
+				product_id, 
+				user_email, 
+				registration_fee,
+				gtins_annual_fee,
+				gln_price,
+				sscc_price,
+				annual_subscription_fee,
+				annual_total_price,
+				status,
+				order_date,
+				expiry_date
+			) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, '0', ?, ?)";
 
 			$stmt = mysqli_prepare($conn, $sql);
-			mysqli_stmt_bind_param($stmt, "sssss", 
-				$company_id, $order_id, $product_id, $user_email, $order_date);
+			mysqli_stmt_bind_param($stmt, "ssssssssssss", 
+				$company_id,
+				$order_id,
+				$product_id,
+				$user_email,
+				$registration_fee,
+				$gtins_annual_fee,
+				$gln_price,
+				$sscc_price,
+				$annual_subscription_fee,
+				$annual_total_price,
+				$order_date,
+				$expiry_date
+			);
 
 			if (!mysqli_stmt_execute($stmt)) {
 				throw new Exception("Error creating order: " . mysqli_error($conn));
@@ -331,7 +365,7 @@
 				<label class="fw-bold">Registration Fee </label>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">OMR</span>
-					<input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0"  value="<?=$productData['registration_fee']?>" disabled>
+					<input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0" value="<?=$productData['registration_fee']?>" readonly>
 				</div>
 				<span class="fw-bold text-danger">Valid till 31st Dec <?php echo date("Y"); ?> </span>
 			</div>
@@ -346,7 +380,7 @@
 				  	<!--<input type="hidden" name="annual_subscription_fee" id="annual_subscription_fee" value="<?=$productData['gtins_annual_fee']?>"/>-->
 				  	<input type="hidden" name="annual_subscription_fee" id="annual_subscription_fee" value="0" />
 				  	<input type="hidden" id="annual" value="<?=$productData['gtins_annual_fee']+$productData['gln_annual_fee']+$productData['sscc_annual_fee'];?>" />
-				  	<input type="text" class="form-control mb-0" size="2" name="annual_total_price" id="annual_total_price" value="0" disabled/>
+				  	<input type="text" class="form-control mb-0" size="2" name="annual_total_price" id="annual_total_price" value="0" readonly/>
 				</div>
 				<span class="fw-bold text-danger">Next renewal Jan <?php echo date('Y', strtotime('+1 year'));?> </span>
 			</div>
@@ -355,7 +389,7 @@
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="basic-addon1">OMR</span>
 
-					<input name="total_pricee" id="total_price" type="text" class="form-control mb-0" value="<?php echo $granddiscount5;?>" disabled>
+					<input name="total_price" id="total_price" type="text" class="form-control mb-0" value="0" readonly>
 
 					<input class="form-control mb-0" disabled id="demo">
 				</div>
@@ -422,7 +456,15 @@
 						<p>Processing your registration...</p>
 					</div>
 				</div>
-				<input type="hidden" name="annual_total_price" value="<?=$annual_total_price?>">
+				
+				<!-- Hidden fields for fees -->
+				<input type="hidden" name="registration_fee" value="0">
+				<input type="hidden" name="gtins_annual_fee" value="0">
+				<input type="hidden" name="gln_price" value="0">
+				<input type="hidden" name="sscc_price" value="0">
+				<input type="hidden" name="annual_subscription_fee" value="0">
+				<input type="hidden" name="annual_total_price" value="0">
+				
 				<h4>companies details</h4>
 				<div class="row">
 					
@@ -1005,7 +1047,7 @@
 									<label class="fw-bold">Total Fee  </label>
 									<div class="input-group mb-3">
 									  <span class="input-group-text" id="basic-addon1">OMR</span>
-									 <input name="total_pricee" id="actual_total_price" type="text" class="form-control mb-0"  value="<?php echo $granddiscount5;?>" disabled>
+									 <input name="total_price" id="actual_total_price" type="text" class="form-control mb-0"  value="<?php echo $granddiscount5;?>" disabled>
 									
 									  <input class="form-control mb-0" disabled id="demo">
 									  
@@ -1046,7 +1088,7 @@
 									<label class="fw-bold">Total Fee After Discount</label>
 									<div class="input-group mb-3">
 									  <span class="input-group-text" id="basic-addon1">OMR</span>
-									 <input name="total_pricee" id="total_price_dis" type="text" class="form-control mb-0"  value="<?php echo $granddiscount5;?>" disabled>
+									 <input name="total_price" id="total_price_dis" type="text" class="form-control mb-0"  value="<?php echo $granddiscount5;?>" disabled>
 									
 									  <input class="form-control mb-0" disabled id="demo">
 									  

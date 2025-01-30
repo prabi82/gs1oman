@@ -151,84 +151,62 @@
 
 
     function add() {
-        total_price = 0;
-        annual_total_price = 0;
-        registration_fee = $("#registration_fee").val();
-        annual_subscription_fee =  $("#annual_subscription_fee").val();
-        annual_total_price = annual_subscription_fee;	
-        total_price = parseInt(registration_fee) + parseInt(annual_subscription_fee);
-        gtins_annual_fee = $("#gtins_annual_fee").val();
-
-        gln_price = $("#gln_price").val();	
-        sscc_price = $("#sscc_price").val();	    		
-        promoregistration_fee = $("#promoregistration_fee").val();	    		
-        promoannual_fee = $("#promoannual_fee").val();	    		
-        discountamt = $("#discount_amount_input").val();	    		
-        regvalue = $("#regvalue").val();	    		
-        annualvalue = $("#annualvalue").val();	    		
-        vat = 0;    		
-
-
-
-
-
-        // Check if the element is selected/checked
-        if($('#gln_price').is(':checked')) {
-            total_price = parseInt(total_price) + parseInt(gln_price);
-            annual_total_price = parseInt(annual_total_price) + parseInt(gln_price);
-            discountamt = 0;
-            regvalue=0;
-            annualvalue=0;
-
-
+        // Get initial values
+        var registration_fee = parseFloat($("#registration_fee").val()) || 0;
+        var gtins_annual_fee = parseFloat($("#gtins_annual_fee").val()) || 0;
+        var gln_price = parseFloat($("#gln_price").val()) || 0;
+        var sscc_price = parseFloat($("#sscc_price").val()) || 0;
+        
+        // Initialize totals
+        var annual_total_price = 0;
+        var total_price = registration_fee;
+        
+        // Calculate GTINS annual fee if checked
+        if($("#gtins_annual_fee").is(":checked")) {
+            annual_total_price += gtins_annual_fee;
+            total_price += gtins_annual_fee;
+            $('input[name="gtins_annual_fee"]').val(gtins_annual_fee);
+        } else {
+            $('input[name="gtins_annual_fee"]').val(0);
         }
-        if($('#sscc_price').is(':checked')) {
-            total_price = parseInt(total_price) + parseInt(sscc_price);
-            annual_total_price = parseInt(annual_total_price) + parseInt(sscc_price);
-            discountamt = 0;
-            regvalue=0;
-            annualvalue=0;
-
-
-        }	
-        if($('#gtins_annual_fee').is(':checked')) {   
-           total_price = parseInt(total_price) + parseInt(gtins_annual_fee); 
-           annual_total_price = parseInt(annual_total_price) + parseInt(gtins_annual_fee);  
-           discountamt = 0;
-           regvalue=0;
-           annualvalue=0;
-
-        }	
-
-
-        $("#annual_total_price").val(annual_total_price); 
+        
+        // Calculate GLN price if checked
+        if($("#gln_price").is(":checked")) {
+            annual_total_price += gln_price;
+            total_price += gln_price;
+            $('input[name="gln_price"]').val(gln_price);
+        } else {
+            $('input[name="gln_price"]').val(0);
+        }
+        
+        // Calculate SSCC price if checked
+        if($("#sscc_price").is(":checked")) {
+            annual_total_price += sscc_price;
+            total_price += sscc_price;
+            $('input[name="sscc_price"]').val(sscc_price);
+        } else {
+            $('input[name="sscc_price"]').val(0);
+        }
+        
+        // Set the annual subscription fee
+        $("#annual_subscription_fee").val(annual_total_price);
+        $('input[name="annual_subscription_fee"]').val(annual_total_price);
+        
+        // Set the annual total price
+        $("#annual_total_price").val(annual_total_price);
+        $('input[name="annual_total_price"]').val(annual_total_price);
+        
+        // Set the total price
         $("#total_price").val(total_price);
-        //alert(discountamt);
-        $("#actual_annual_total_price").val(annual_total_price); 
-        $("#actual_total_price").val(total_price);
-        $("#actual_registration_fee").val(registration_fee);
-        $("#discount_amount_input").val(discountamt);
-        $("#regvalue").val(regvalue);
-        $("#annualvalue").val(annualvalue);
-
-    	// Assuming vat is the initial VAT amount
-    	var vat = total_price; // Replace this with your actual VAT amount
-
-    	// Calculate VAT including 5% tax
-    	var totalVAT = vat + (vat * 0.05);
-
-    	// Format the result
-    	//var vatResult = vat + ' + (' + vat + ' * 0.05) = ' + totalVAT;
-    	//show only the vat value
-    	var vatResult = +vat * 0.05;//Only vat amount show
-
-    	
-    	var vatvalue=$('#vat').text("OMR "+vatResult);
-    	var discount=totalVAT -(totalVAT*0.05);
-
-    	var discountvalue=$('#discount').text("DISCOUNT(5%)="+totalVAT+'-('+totalVAT+'* 0.05 )='+discount);
-
-    	document.getElementById("grand_total").textContent = "OMR: " + totalVAT;
+        $('input[name="total_price"]').val(total_price);
+        
+        // Calculate VAT
+        var vat = total_price * 0.05;
+        var totalWithVAT = total_price + vat;
+        
+        // Display VAT and total with VAT
+        $('#vat').text("OMR " + vat.toFixed(2));
+        $('#grand_total').text("OMR: " + totalWithVAT.toFixed(2));
     }
     function calculateAndDisplayVatAndDiscount(vat) {
         // Calculate VAT including 5% tax
