@@ -3,6 +3,7 @@
 .idea/
 *.sublime-project
 *.sublime-workspace
+.vs/
 
 # Dependency directories
 /vendor/
@@ -18,6 +19,8 @@
 *.log
 /cache/
 /temp/
+[Ll]og/
+[Ll]ogs/
 
 # Composer files
 composer.phar
@@ -26,16 +29,24 @@ composer.phar
 # System files
 .DS_Store
 Thumbs.db
+*.user
+*.userosscache
+*.sln.docstates
 
 # Backup files
 *.bak
 *.backup
 *~
 *.swp
+*.tmp
+*.temp
 
 # Configuration files that may contain sensitive information
 config.php
 /admin/include/config.php
+*.pubxml
+*.publishproj
+PublishScripts/
 
 # Uploaded files and media
 /uploads/
@@ -44,7 +55,12 @@ config.php
 # Test files
 /test-files/
 *.test.js
+[Tt]est[Rr]esult*/
 
-# Build files
+# Build files and directories
 /dist/
 /build/
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
