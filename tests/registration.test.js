@@ -264,7 +264,7 @@ describe('Registration Form Test', () => {
                         first_name: 'John',
                         last_name: 'Doe',
                         job_title: 'CEO',
-                        email: generateRandomEmail('john.doe'),
+                        email: generateRandomEmail(),
                         phone: generateRandomPhone()
                     },
                     {
@@ -272,7 +272,7 @@ describe('Registration Form Test', () => {
                         first_name: 'Jane',
                         last_name: 'Smith',
                         job_title: 'Manager',
-                        email: generateRandomEmail('jane.smith'),
+                        email: generateRandomEmail(),
                         phone: generateRandomPhone()
                     }
                 ]

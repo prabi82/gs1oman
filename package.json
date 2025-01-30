@@ -7,9 +7,11 @@
     "test": "jest tests/registration.test.js"
   },
   "dependencies": {
-    "puppeteer": "^22.3.0",
+    "@jest/globals": "^29.7.0"
+  },
+  "devDependencies": {
     "jest": "^29.7.0",
-    "@jest/globals": "^29.7.0",
-    "mysql2": "^3.9.2"
+    "mysql2": "^3.12.0",
+    "puppeteer": "^24.1.1"
   }
 }
