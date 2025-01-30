@@ -1,0 +1,83 @@
+Return-Path: <>
+Delivered-To: info@gs1oman.com
+Received: from host33.theukhost.net
+	by host33.theukhost.net with LMTP
+	id oJ0cKIIND2M8UT8AHKgXzA
+	(envelope-from <>)
+	for <info@gs1oman.com>; Wed, 31 Aug 2022 08:28:02 +0100
+Return-path: <>
+Envelope-to: info@gs1oman.com
+Delivery-date: Wed, 31 Aug 2022 08:28:02 +0100
+Received: from mailnull by host33.theukhost.net with local (Exim 4.95)
+	id 1oTI8o-00HPXA-HZ
+	for info@gs1oman.com;
+	Wed, 31 Aug 2022 08:28:02 +0100
+X-Failed-Recipients: prabikrishna@gmail.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@host33.theukhost.net>
+To: info@gs1oman.com
+References: <xQ6Y9HpVXMNc5jn9CTLsC2MTCt25wMu4Jxpgcr48YrQ@gs1oman.com>
+Content-Type: multipart/report; report-type=delivery-status; boundary=1661930882-eximdsn-480343875
+MIME-Version: 1.0
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1oTI8o-00HPXA-HZ@host33.theukhost.net>
+Date: Wed, 31 Aug 2022 08:28:02 +0100
+
+--1661930882-eximdsn-480343875
+Content-type: text/plain; charset=us-ascii
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  prabikrishna@gmail.com
+    host gmail-smtp-in.l.google.com [142.250.96.27]
+    SMTP error from remote mail server after end of data:
+    550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+    550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+    550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+    550-5.7.26 the message has been blocked. Please visit
+    550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+    550 5.7.26 information. b135-20020a25348d000000b00696391be2ebsi6431479yba.262 - gsmtp
+
+--1661930882-eximdsn-480343875
+Content-type: message/delivery-status
+
+Reporting-MTA: dns; host33.theukhost.net
+
+Action: failed
+Final-Recipient: rfc822;prabikrishna@gmail.com
+Status: 5.0.0
+Remote-MTA: dns; gmail-smtp-in.l.google.com
+Diagnostic-Code: smtp; 550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+ 550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+ 550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+ 550-5.7.26 the message has been blocked. Please visit
+ 550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+ 550 5.7.26 information. b135-20020a25348d000000b00696391be2ebsi6431479yba.262 - gsmtp
+
+--1661930882-eximdsn-480343875
+Content-type: text/rfc822-headers
+
+Return-path: <info@gs1oman.com>
+Received: from [109.203.124.234] (port=47822 helo=gs1oman.com)
+	by host33.theukhost.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.95)
+	(envelope-from <info@gs1oman.com>)
+	id 1oTI8n-00HPVt-7A;
+	Wed, 31 Aug 2022 08:28:00 +0100
+Date: Wed, 31 Aug 2022 08:28:00 +0100
+To: prabikrishna@gmail.com, info@gs1oman.com
+From: Barcode <info@gs1oman.com>
+Subject: New Order
+Message-ID: <xQ6Y9HpVXMNc5jn9CTLsC2MTCt25wMu4Jxpgcr48YrQ@gs1oman.com>
+X-Mailer: PHPMailer 6.6.0 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="b1_xQ6Y9HpVXMNc5jn9CTLsC2MTCt25wMu4Jxpgcr48YrQ"
+Content-Transfer-Encoding: 8bit
+X-Exim-DSN-Information: Due to administrative limits only headers are returned
+
+
+--1661930882-eximdsn-480343875--

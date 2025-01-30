@@ -1,0 +1,20 @@
+[30-Jul-2022 08:58:31 +0100]: <9e7dd61e> DB Error: [1] no such table: carddav_migrations (SQL Query: SELECT "filename" FROM carddav_migrations) in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/rcube_db.php on line 566 (GET /cpsess8485663569/3rdparty/roundcube/index.php)
+[19-May-2024 09:55:53 Europe/London] [CPANELICSIMPORT: Touch file created for info@gs1oman.com]
+[19-May-2024 09:55:53 Europe/London] [CPANELICSIMPORT: IMPORTED 0]
+[19-May-2024 09:55:53 Europe/London] [CPANELICSIMPORT: ERRORS 1]
+[19-May-2024 09:55:53 Europe/London] [CPANELVCFIMPORT: Touch file created for info@gs1oman.com]
+[19-May-2024 09:56:10 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[19-May-2024 09:56:10 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 15:59:51 Europe/London] [CPANELICSIMPORT: Touch file /home/gs1omancom/.cpanel/icals/.cpanel_ics_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 15:59:51 Europe/London] [CPANELVCFIMPORT: Touch file /home/gs1omancom/.cpanel/vcards/.cpanel_vcf_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 16:00:23 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 16:00:23 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 16:02:39 Europe/London] PHP Warning:  Undefined array key 3 in /usr/local/cpanel/base/3rdparty/roundcube/program/include/rcmail_attachment_handler.php on line 64
+[23-May-2024 16:33:55 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 16:33:55 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 17:04:13 Europe/London] [CPANELICSIMPORT: Touch file /home/gs1omancom/.cpanel/icals/.cpanel_ics_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 17:04:13 Europe/London] [CPANELVCFIMPORT: Touch file /home/gs1omancom/.cpanel/vcards/.cpanel_vcf_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 17:20:23 Europe/London] [CPANELICSIMPORT: Touch file /home/gs1omancom/.cpanel/icals/.cpanel_ics_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 17:20:23 Europe/London] [CPANELVCFIMPORT: Touch file /home/gs1omancom/.cpanel/vcards/.cpanel_vcf_import_info@gs1oman.com exists for info@gs1oman.com and cpanel_run_once is true, exiting]
+[23-May-2024 17:22:42 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155
+[23-May-2024 17:22:42 Europe/London] PHP Deprecated:  preg_match(): Passing null to parameter #2 ($subject) of type string is deprecated in /usr/local/cpanel/base/3rdparty/roundcube/program/lib/Roundcube/bootstrap.php on line 155

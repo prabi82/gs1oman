@@ -1,0 +1,1 @@
+<footer class="main-footer">© <a class="text-white" href="http://c-dat.co/" target="_blank">C-Dat</a> <?php echo date("Y"); ?></footer>

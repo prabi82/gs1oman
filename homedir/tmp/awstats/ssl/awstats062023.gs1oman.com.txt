@@ -1,0 +1,1268 @@
+AWSTATS DATA FILE 7.8 (build 20200416)
+# If you remove this file, all statistics for date 202306 will be lost/reset.
+# Last config file used to build this data file was /home/gs1omancom/tmp/awstats/ssl/awstats.gs1oman.com.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 28
+POS_GENERAL 2014                
+POS_TIME 2691                
+POS_VISITOR 32720               
+POS_DAY 45592               
+POS_DOMAIN 3466                
+POS_LOGIN 3709                
+POS_ROBOT 3864                
+POS_WORMS 4600                
+POS_EMAILSENDER 4731                
+POS_EMAILRECEIVER 4874                
+POS_SESSION 46347               
+POS_SIDER 46526               
+POS_FILETYPES 5009                
+POS_DOWNLOADS 5202                
+POS_OS 11821               
+POS_BROWSER 12190               
+POS_SCREENSIZE 13440               
+POS_UNKNOWNREFERER 13514               
+POS_UNKNOWNREFERERBROWSER 14010               
+POS_ORIGIN 14381               
+POS_SEREFERRALS 14520               
+POS_PAGEREFS 14679               
+POS_SEARCHWORDS 14909               
+POS_KEYWORDS 15061               
+POS_MISC 2355                
+POS_ERRORS 15120               
+POS_CLUSTER 3565                
+POS_SIDER_404 15247               
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20230701002504 46 8009 8360462187693
+FirstTime 20230601020443
+LastTime 20230630224845
+LastUpdate 20230701132326 46 0 45 0 0
+TotalVisits 280                 
+TotalUnique 242                 
+MonthHostsKnown 0                   
+MonthHostsUnknown 381                 
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+TotalMisc 0 0 0
+JavascriptDisabled 0 0 0
+RealPlayerSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+FlashSupport 0 0 0
+JavaEnabled 0 0 0
+DirectorSupport 0 0 0
+PDFSupport 0 0 0
+AddToFavourites 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 10 103 515349 117 163 35498
+1 10 10 85958 67 79 136670
+2 5 5 46875 119 134 85301
+3 11 16 482253 44 75 155601
+4 6 10 432883 46 72 73720
+5 6 8 61220 25 57 73213
+6 3 3 28125 13 35 61379
+7 18 18 169675 43 67 117670
+8 9 12 136689 31 54 153038
+9 3 3 28125 31 42 100259
+10 17 23 167943 50 57 48514
+11 8 8 75000 56 69 115997
+12 28 70 3836963 13 32 152380
+13 45 66 1408643 38 55 61173
+14 16 20 459870 30 44 104430
+15 9 9 84375 44 61 128792
+16 3 3 28125 31 46 141932
+17 4 4 37500 22 43 236757
+18 9 9 56250 65 81 240442
+19 7 7 65625 106 118 51827
+20 8 9 78420 23 46 151178
+21 58 58 543750 65 95 130579
+22 30 31 283725 47 76 169329
+23 5 5 46875 36 54 131662
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 25 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 2
+us 323 504 9111791
+eu 5 6 48425
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 25 first Hits must be first (order not required for others)
+BEGIN_ROBOT 16
+AhrefsBot/ 129 1551873 20230630074446 0
+no_user_agent 43 344565 20230630182700 0
+Googlebot/ 29 168517 20230627200422 0
+bingbot/ 26 138217 20230628140609 0
+YandexBot/ 20 187500 20230630210235 0
+bot[\s_+:,\.\;\/\\-] 19 168132 20230630065623 0
+Go\-http\-client/ 4 37500 20230621191154 0
+DotBot/ 4 38425 20230616172035 0
+link 3 29050 20230630112419 0
+SemrushBot/ 3 28125 20230628222711 0
+Googlebot\-Image/ 3 7485 20230627200425 0
+crawl 3 29050 20230612055502 0
+survey 2 18750 20230606001705 0
+facebookexternalhit/ 2 18750 20230617170457 0
+yandex 2 4990 20230626050436 0
+Baiduspider/ 1 9375 20230601234743 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 7
+ttf 2 323592 0 0
+html 245 2260958 0 0
+css 26 2351760 0 0
+js 41 3080879 0 0
+txt 90 368360 0 0
+png 25 468568 0 0
+php 81 306099 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 90
+/.well-known/pki-validation/69A2A75678B39736CFF4D0952F564514.txt 1 0 12150
+/.well-known/pki-validation/757CCDC86D21B53ED89F04841913B5E8.txt 1 0 64
+/.well-known/pki-validation/A4776194CD661AF6B09E2D934011B0E1.txt 1 0 12148
+/.well-known/pki-validation/E5A16C17290EDD5CA75998E663D1FFC0.txt 1 0 64
+/.well-known/pki-validation/299C235A55806C6F211364FB08668B67.txt 1 0 64
+/.well-known/pki-validation/A90788CA776021AD2AF458938302559B.txt 1 0 64
+/.well-known/pki-validation/AEF6AE8B93DBB5CFE4D846F644DDF9FB.txt 1 0 64
+/.well-known/pki-validation/620F9196E883027B90BD942DC06B508D.txt 1 0 12155
+/.well-known/pki-validation/D824FDDEE98A37916F92B9F5CF6077F9.txt 1 0 64
+/.well-known/pki-validation/7F49349C4A5CC3744E2B2EBCB02FF5D0.txt 1 0 64
+/.well-known/pki-validation/94AA82E281CED09C11CD2A8ACDBE0033.txt 1 0 12148
+/.well-known/pki-validation/F586ED5078AF14F83DA4511E4E3A4E9A.txt 1 0 64
+/.well-known/pki-validation/C7C494219DCAC6A316BF3F5721DD67AB.txt 1 0 12152
+/.well-known/pki-validation/B3C312D19AEBEDC5BCA56D19B3A22EA2.txt 1 0 64
+/.well-known/pki-validation/1E5FBAD9A6FB630E9B40605449ADCF5D.txt 1 0 12153
+/.well-known/pki-validation/63EA7C51C2A03B2C18C64C2466D7CD2A.txt 1 0 64
+/.well-known/pki-validation/075059717147481D85E0DEFD22B12B81.txt 1 0 64
+/.well-known/pki-validation/1025CB6A605190437D399C42253856DE.txt 1 0 64
+/.well-known/pki-validation/8A79E80FA9477B67BADB253B830241C9.txt 1 0 12148
+/.well-known/pki-validation/8A64EBF5910254C592B9021089959D2F.txt 1 0 64
+/.well-known/pki-validation/593EEAF4A30870CF8EB95AB6B59D9925.txt 1 0 64
+/.well-known/pki-validation/0C798AFE75CE6024BD77AB7E6FC08BB1.txt 1 0 64
+/.well-known/pki-validation/71F72B9DD79F3C47D9123EA6EE65B0C7.txt 1 0 64
+/.well-known/pki-validation/D0EC34D9855F4948B23070BD483F4258.txt 1 0 12154
+/.well-known/pki-validation/F7DEC7E58F1E877466E6CD323120A39C.txt 1 0 12149
+/.well-known/pki-validation/386E76DA5A88396A5F2C7B97D8C2485C.txt 1 0 64
+/.well-known/pki-validation/FBE73A0859560ACAB44F1A1B21F08E31.txt 1 0 12151
+/.well-known/pki-validation/2D9A52235B8C3E3EFA9E251AA07B0DBD.txt 1 0 12148
+/.well-known/pki-validation/D48343704C335A21441617E8E0A176DE.txt 1 0 64
+/.well-known/pki-validation/07957483D9E24328394F5B2C80D0F80E.txt 1 0 12150
+/.well-known/pki-validation/FD82CB5A30949404065E38AA2F079A31.txt 1 0 12151
+/.well-known/pki-validation/AD24D0D1542C9E0AAD44CB23B6F7AC0D.txt 1 0 64
+/.well-known/pki-validation/3964EEE1178DF4F1452D803EB274CF8F.txt 1 0 64
+/.well-known/pki-validation/510BBAF587F7A3CEB8DB80CC41AB3E88.txt 1 0 64
+/.well-known/pki-validation/E449B1D037557F61B5EBA4AD732C15E9.txt 1 0 64
+/.well-known/pki-validation/3CCF8897EBDBE07479826516EB8DD748.txt 1 0 64
+/.well-known/pki-validation/60F44BCEF9A19A365777A6E8FAA27F5A.txt 1 0 64
+/.well-known/pki-validation/105F4906086B2292821B5587CBE4EB94.txt 1 0 64
+/.well-known/pki-validation/7EA0F059D99CBEDE67B728D7018F7C94.txt 1 0 64
+/.well-known/pki-validation/A22F4FB4CE9F983FFB7C7D253F918387.txt 1 0 12154
+/.well-known/pki-validation/5C43DAE47F272F6DD73E079493A2046F.txt 1 0 12150
+/.well-known/pki-validation/CEE385B7D48FC7D80C47F1547C187F5C.txt 1 0 64
+/.well-known/pki-validation/FF149B3DC34E9F1D11095FAF0AB51BC9.txt 1 0 64
+/.well-known/pki-validation/09C62BAF812372F6E5C69E79766CA60D.txt 1 0 64
+/.well-known/pki-validation/9B5AD4EA7F3B3CD8EB5C2A8DED380BD6.txt 1 0 12150
+/.well-known/pki-validation/7C2319AC7144EACAE3536261A361FF2E.txt 1 0 64
+/.well-known/pki-validation/2F24C28CF7836A24978D0BAFD01090AD.txt 1 0 12152
+/.well-known/pki-validation/35EDC71FBFA701BA4C9417763DA53407.txt 1 0 64
+/.well-known/pki-validation/26BA75FD5F7958FF8F82A63706857AEB.txt 1 0 64
+/.well-known/pki-validation/4CC8C5D1E0CBAEAD3049904A843F9D2B.txt 1 0 12151
+/.well-known/pki-validation/15555052502F69B21557B8A49EE785B9.txt 1 0 12146
+/.well-known/pki-validation/CD3CA93DDCEB1258DD45F68CE2246FD9.txt 1 0 64
+/.well-known/pki-validation/3C4539D5A77F1E6BA39DA200A6C0F30E.txt 1 0 64
+/.well-known/pki-validation/069CC5AF71BD134DBC2CD46D004066BC.txt 1 0 12150
+/.well-known/pki-validation/EFAC73AA284B91D972DB7934B5DF3CED.txt 1 0 12152
+/.well-known/pki-validation/D606983DD980AFC0BEB97EB499E8BE23.txt 1 0 64
+/.well-known/pki-validation/05132B91BBC68CF8C61BAC417BCA782E.txt 1 0 12154
+/.well-known/pki-validation/0E36BD5D248FBC33EFBFF7F233E3453B.txt 1 0 64
+/.well-known/pki-validation/DCCD4AABBBAE0793916660C31952D8C4.txt 1 0 12151
+/.well-known/pki-validation/3A424C906D8626B88C21AE5E2AA14936.txt 1 0 64
+/.well-known/pki-validation/5555DF0C17A72D15E1929CF23FE50035.txt 1 0 64
+/.well-known/pki-validation/82D52626661AB75BCF6DD906302C6337.txt 1 0 64
+/.well-known/pki-validation/1B4E3EF6ABA35694D2ED7C4A3D65B739.txt 1 0 64
+/.well-known/pki-validation/BB537FBC8134726EFB70AFFB71159199.txt 1 0 64
+/.well-known/pki-validation/2B74BDFA6A043FB9DC2410E515CE234A.txt 1 0 12150
+/.well-known/pki-validation/57AA66AB2D3B959B26246F56A11A2B72.txt 1 0 64
+/.well-known/pki-validation/210F37B91AAA22677C102F6A6658917C.txt 1 0 64
+/.well-known/pki-validation/60A751395CA8D55577B946299ED14B61.txt 1 0 64
+/.well-known/pki-validation/2F0B6DFE4B3F8605AF264B1EA47FD345.txt 1 0 64
+/.well-known/pki-validation/EA893FF003BE3476D2374BEE9E06E446.txt 1 0 64
+/.well-known/pki-validation/7756DD3C90A9496A495D880C7DAE335F.txt 1 0 64
+/.well-known/pki-validation/7A1171CA9ED6CD4E82A65E0F27B69B76.txt 1 0 64
+/.well-known/pki-validation/B7EFC79C5B2F9804A417574D5D05113C.txt 1 0 12149
+/.well-known/pki-validation/F992BC59566B2B2D91CF6B03F77BFE8C.txt 1 0 64
+/.well-known/pki-validation/4E240C741E963EAB13FA680A15FC61FA.txt 1 0 12150
+/.well-known/pki-validation/210BE2B6414D7E533E2EF8CBBC6FC057.txt 1 0 64
+/.well-known/pki-validation/553467340C29CEF18E0DB3F4AC82C6AF.txt 1 0 64
+/.well-known/pki-validation/5A66ADE03E75249D7BA50994E6DA2C24.txt 1 0 64
+/.well-known/pki-validation/CF7246DACD688F2A029E92018C5CF767.txt 1 0 12152
+/.well-known/pki-validation/BC4B621A16DE5407A158E69EFB201D3A.txt 1 0 64
+/.well-known/pki-validation/2EE880EB8BF07EE0197C8C8A7C531A8C.txt 1 0 12147
+/.well-known/pki-validation/E7BB130C1C6511AE33BD7143BE1BD081.txt 1 0 64
+/.well-known/pki-validation/DECF2DE8B7E4034D2C622E5276B3A2D8.txt 1 0 64
+/.well-known/pki-validation/9AEF4E914EC5D45CB84A3ACA20F3CAFE.txt 1 0 12151
+/.well-known/pki-validation/F5E9250635107008035C99B69875E10A.txt 1 0 64
+/.well-known/pki-validation/255DB32A81E8A87AD0342A764C5637E0.txt 1 0 64
+/.well-known/pki-validation/9326B35AF996A6FDAD0F507F59E226EB.txt 1 0 12154
+/.well-known/pki-validation/150DC8D6553A165344210A367367F1C3.txt 1 0 64
+/.well-known/pki-validation/BD23DD4225B2BD1962148B93D6CF8844.txt 1 0 64
+/.well-known/pki-validation/5B472D3D2A2403D599485A520D599651.txt 1 0 64
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS ID - Hits - Pages 22
+linux 99 98
+androidpie 1 1
+macosx11 1 1
+androidcupcake 1 1
+winxp 7 7
+macosx7 1 0
+win8.1 3 3
+win7 22 18
+macosx 1 1
+win10 203 123
+macosx10 1 1
+ios_iphone 2 2
+macosx15 15 15
+Unknown 120 27
+androidnougat 15 15
+android 2 2
+android10 1 1
+macosx13 5 2
+bsdfreebsd 1 1
+macosx14 2 2
+androidkitkat 6 6
+symbian 1 1
+END_OS
+
+# Browser ID - Hits - Pages
+BEGIN_BROWSER 59
+chrome60.0.3112.113 1 1
+chrome81.0.4044.129 12 12
+chrome42.0.2311.90 1 1
+chrome49.0.2623.112 6 2
+msie7.0 3 3
+opera94.0.0.0 1 1
+chrome78.0.3904.108 8 8
+chrome114.0.0.0 6 2
+chrome17.0.963.56 1 0
+firefox28.0 1 1
+safari3.0 1 1
+chrome103.0.5060.114 1 1
+chrome66.0.3359.126 1 1
+opera93.0.0.0 1 1
+chrome74.0.3729.169 3 3
+chrome114.0.5735.106 5 5
+opera32.0.1948.45 6 6
+msie6.0 1 1
+chrome83.0.4103.97 72 72
+chrome39.0.2171.95 1 1
+firefox88.0 2 2
+firefox77.0 1 1
+chrome74.0.3694.0 4 1
+chrome94.0.4606.81 2 1
+chrome109.0.0.0 2 2
+mozilla 11 8
+chrome105.0.0.0 2 1
+chrome91.0.4472.114 1 1
+chrome80.0.3987.162 1 1
+chrome103.0.5060.134 1 1
+msie8.0 2 2
+chrome68.0.3440.106 1 1
+chrome111.0.0.0 5 5
+firefox65.0 1 1
+firefox40.0 1 1
+chrome108.0.0.0 12 12
+chrome63.0.3239.132 1 1
+safari13.0.3 2 2
+chrome85.0.4183.121 5 5
+chrome88.0.4240.193 4 4
+chrome100.0.4896.60 7 7
+chrome72.0.3626.121 2 2
+firefox57.0 1 1
+chrome60.0.3112.107 14 14
+chrome80.0.3987.149 9 9
+firefox63.0 3 3
+netscape5.0 8 8
+firefox114.0 146 71
+android 7 7
+chrome5.0.375.99 3 3
+chrome99.0.4844.84 1 1
+chrome114.0.5735.90 1 1
+Unknown 105 15
+chrome113.0.0.0 3 3
+chrome91.0.4472.124 1 1
+msie11.0 2 2
+chrome76.0.3809.100 1 1
+chrome77.0.3864.0 1 1
+msie9.0 2 2
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 9
+python-requests/2.9.1 20230603221114
+Mozilla/5.0_researchscan.comsys.rwth-aachen.de 20230629034113
+panscient.com 20230602070616
+python-requests/2.21.0 20230603132028
+COMODO_DCV 20230630002504
+python-requests/2.27.1 20230622120821
+Iframely/1.3.1_(_https://iframely.com/docs/about)_Atlassian 20230627134848
+Python/3.7_aiohttp/3.7.4.post0 20230614122925
+Mozilla/5.0_(compatible;_Dataprovider.com) 20230617005838
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 7
+Python/3.7_aiohttp/3.7.4.post0 20230614122925
+python-requests/2.27.1 20230622120821
+Iframely/1.3.1_(_https://iframely.com/docs/about)_Atlassian 20230627134848
+python-requests/2.9.1 20230603221114
+COMODO_DCV 20230630002504
+python-requests/2.21.0 20230603132028
+panscient.com 20230602070616
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 211 307
+From1 5 5
+From2 1 1
+From3 12 12
+From4 99 185
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+google_com 1 1
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 25 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 2
+https://team-1629172665994.atlassian.net 7 7
+https://bakman.fresnounified.org 5 5
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 25 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 4
+302 20 64293
+401 30 1560
+404 1267 7704
+301 17 3480
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referrer
+BEGIN_SIDER_404 404
+/wp-content/plugins/elementor/assets/lib/font-awesome/migration/index.php 1 -
+/qxecuqci.php 1 www.google.com
+/wp-content/plugins/ioptimization/index.php 1 -
+//web/wp-includes/wlwmanifest.xml 18 -
+/wp-admin/css/colors/sunrise/admin.php 1 -
+/wp-content/themes/twentytwentyone/assets/sass/05-blocks/tag-clould/load.php 1 -
+/ee.php 1 http://gs1oman.com/ee.php
+/wp-admin/css/colors/coffee/wp-load.php 1 -
+//ups.php 1 http://gs1oman.com//ups.php
+/cms/wp-admin/install.php 1 -
+//wp/wp-includes/wlwmanifest.xml 18 -
+//wp-content/upload.php 1 http://gs1oman.com//wp-content/upload.php
+/wp-content/plugins/dzs-zoomsounds/savepng.php 1 -
+/administrator/language/en-GB/en-GB.xml 2 -
+//xmlrpc.php 18 -
+/wp-includes/css/buttons.css 2 http://gs1oman.com/wp-includes/css/buttons.css
+/css/fonts/ENKI.php 1 -
+/fileupload/index.php 1 -
+//fw.php 1 http://gs1oman.com//fw.php
+/wp-includes/wp-includes/js/tinymce/themes/advanced/skins/default/wp.php 1 -
+//wp-includes/customize/class-wp-customize-nav-menu.php 1 http://gs1oman.com//wp-includes/customize/class-wp-customize-nav-menu.php
+/wp-includes/js/tinymce/skins/wordpress/images/index.php 1 -
+/uploadify/uploadify.css 1 -
+/info 1 -
+/a.php 1 https://gs1oman.com/a.php
+/wp-admin/images/wp-info.php 1 -
+//xmlrqc.php 1 http://gs1oman.com//xmlrqc.php
+//hehe.php 1 http://gs1oman.com//hehe.php
+/wp-content/plugins/hellopress/wp_filemanager.php 3 -
+/blog 15 -
+/wp-content/themes/welfare-charity/www.php 1 -
+/about.php 2 https://gs1oman.com/about.php
+//sito/wp-includes/wlwmanifest.xml 11 -
+/wp-admin/css/colors/midnight/wp-crons.php 1 -
+/wp-admni/js/index.php 1 -
+/wordpress/wp-admin/install.php 1 -
+/zaacfdef.php 1 www.google.com
+/wp 16 -
+/jnphaqye.php 1 www.google.com
+/phpmyinfo 1 -
+//srx.php 1 http://gs1oman.com//srx.php
+/eghrezly.php 1 www.google.com
+/test/ 1 -
+/robots.txt 212 https://gs1oman.com/
+/Ueditor/net/controller.ashx 1 http://gs1oman.com/Ueditor/net/controller.ashx
+/wp-commentin.php 1 -
+/gamkquno.php 1 www.google.com
+/Makhdamx.php 1 -
+//uploads/xleet.php 1 http://gs1oman.com//uploads/xleet.php
+/admin-heade.php 11 -
+/wp-content/plugins/better-search-replace/languages/index.php 1 -
+/user_editor.php 1 https://gs1oman.com/user_editor.php
+//xleet.php 1 http://gs1oman.com//xleet.php
+/home 1 http://gs1oman.com/home
+/.well-known/autoload_classmap.php 1 -
+/vursmlxr.php 1 www.google.com
+/wp-content/plugins/dos2unix/dos2unix.php 1 -
+//C.php 1 http://gs1oman.com//C.php
+/bc 1 http://gs1oman.com/bc
+/wp-content/plugins/woocommerce-abandoned-cart/assets/css/view.abandoned.orders.style.css 1 -
+/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php 7 -
+/frontend_dev.php/$ 1 -
+//wpx.php 1 http://gs1oman.com//wpx.php
+//wp-content/themes/seotheme/db.php 1 http://gs1oman.com//wp-content/themes/seotheme/db.php
+/wp-content/plugins/js_composer/assets/fonts/vc_icons/fonts/index.php 1 -
+/assets/uploadify/uploadify.css 1 -
+//xml.php 1 http://gs1oman.com//xml.php
+/wp-content/themes/pridmag/db.php 5 www.google.com
+/wp-content/themes/seotheme/mar.php 1 -
+/wp-admin/css/colors/ectoplasm/wp-crons.php 1 -
+/wp-admin/css/ 5 binance.com
+/wp-content/plugins/wp-post-author/assets/css/awpa-frontend-style.css 1 -
+/wp-content/plugins/wpyii2/wpyii2.php 1 -
+/fehmxwav.php 1 www.google.com
+/wp-content/plugins/essential-addons-for-elementor-lite/readme.txt 1 www.google.com
+/wp-content/inputs.php 1 -
+/phpinfo 1 -
+/wp-includes/js/tinymce/plugins/textcolor/textcolor/index.php 1 -
+/wp-includes/wp-class.php 3 -
+/wp-admin/inputs.php 1 -
+/help.php 1 https://gs1oman.com/help.php
+/wp-includes/SimplePie/XML/lofter.php 1 -
+/wp-admin/css/colors/light/load.php 1 -
+//Deadcode1975xxxxxxxxxxxxxxxxxxxxxxxxxxxx.php 1 http://gs1oman.com//Deadcode1975xxxxxxxxxxxxxxxxxxxxxxxxxxxx.php
+//pi.php 1 http://gs1oman.com//pi.php
+/wp-includes/js/tinymce/utils/wp-config-samples.php 1 -
+//wp-content/plugins/ccx/index.php 1 http://gs1oman.com//wp-content/plugins/ccx/index.php
+//wp-god.php 1 http://gs1oman.com//wp-god.php
+/test/wp-admin/install.php 1 -
+/IXR/about.php 1 -
+//alfa.php 1 http://gs1oman.com//alfa.php
+/xmrlpc.php 1 -
+/js/uploadify/uploadify.css 1 -
+/wp-includes/pomo/about.php 1 -
+/autoload_classmap.php 1 -
+/css/album.css 1 -
+//1index.php 2 http://gs1oman.com//1index.php
+/wp-content/plugins/litespeed-cache/assets/img/icons/index.php 1 -
+//wp-2018.php 1 http://gs1oman.com//wp-2018.php
+/administrator/index.php 3 -
+/wp-content/plugins/hellopress/wp_mna.php 1 -
+/theme/assets/fileupload/index.php 1 -
+//ini.php 1 http://gs1oman.com//ini.php
+//uploads/up.php 1 http://gs1oman.com//uploads/up.php
+/testing 15 -
+/wp-includes/SimplePie/Cache/lofter.php 1 -
+/wp-content/themes/signify/firkon.php 1 http://gs1oman.com/wp-content/themes/signify/firkon.php
+/wp-content/plugins/seoplugins/mar.php 2 -
+/plugins/uploadify/uploadify.css 1 -
+//DKIZ.php 1 http://gs1oman.com//DKIZ.php
+/humans.txt 5 http://gs1oman.com/humans.txt
+/wp-admin/js/widgets/wp-contact.php 1 -
+//reminder.php 1 http://gs1oman.com//reminder.php
+/admin/img/profile-bg.jpg 4 https://gs1oman.com/admin/css/main.css
+//wp-2020.php 1 http://gs1oman.com//wp-2020.php
+//small.php 1 http://gs1oman.com//small.php
+//wp.php 1 http://gs1oman.com//wp.php
+/uuwfenij.php 1 www.google.com
+//3x.php 1 http://gs1oman.com//3x.php
+/wordpress/ 1 -
+/wp-content/plugins/press/wp-class.php 2 -
+//2020/wp-includes/wlwmanifest.xml 9 -
+//404.php 1 http://gs1oman.com//404.php
+//02.php 1 http://gs1oman.com//02.php
+/wp-content/plugins/wordpresss3cll/up.php 1 -
+/wp-content/upgrade/about.php 1 -
+/wp-content/plugins/woocommerce-product-options/includes/image-upload.php 1 -
+//2021/wp-includes/wlwmanifest.xml 7 -
+/wp-login.php/ 1 -
+/wp-includes/IXR/bak.php 1 -
+/wp-22.php 1 -
+//wp-2021.php 1 http://gs1oman.com//wp-2021.php
+//c.php 1 http://gs1oman.com//c.php
+/aa.php 1 https://gs1oman.com/aa.php
+//wp-admin/priv8.php 1 http://gs1oman.com//wp-admin/priv8.php
+/wp-includes/Requests/about.php 1 -
+/wp-content/plugins/really-simple-ssl/lets-encrypt/functions.php 1 -
+/wp-admin/css/colors/ectoplasm/jsdindex.php 1 -
+/wp-content/plugins/elementor/modules/shapes/index.php 1 -
+/security.txt 1 http://www.gs1oman.com/security.txt
+/kquydlbt.php 1 www.google.com
+//media/wp-includes/wlwmanifest.xml 9 -
+/wp-content/plugins/wordpress-three/miin.php 1 -
+/wp-content/index.php 2 -
+/repeater.php 14 -
+//wp-admin/fx.php 1 http://gs1oman.com//wp-admin/fx.php
+/wp-admin/css/colors/blue/xmlrpcs.php 1 -
+/404 1 -
+//wp-admin/xleet.php 1 http://gs1oman.com//wp-admin/xleet.php
+/wp-admin/css/colors/coffee/index.php 3 -
+/moduless.php 1 -
+//4price.php 1 http://gs1oman.com//4price.php
+//0z.php 1 http://gs1oman.com//0z.php
+/zxilljnu.php 1 www.google.com
+//wp_wrong_datlib.php 1 http://gs1oman.com//wp_wrong_datlib.php
+/wp-admin/css/colors/modern/lofter.php 1 -
+//wp-easy.php 1 http://gs1oman.com//wp-easy.php
+/applicazione.php 1 https://gs1oman.com/applicazione.php
+//wp-content/fw.php 1 http://gs1oman.com//wp-content/fw.php
+//up.php 1 http://gs1oman.com//up.php
+//www.google.com/recaptcha/api.js 5 -
+/assets/inputs.php 1 -
+/wp-includes/index-op.php 1 -
+/old/ 1 -
+/wp/wp-admin/install.php 1 -
+//marijuana.php 1 http://gs1oman.com//marijuana.php
+/wp-admin/css/colors/midnight/xmlrpcs.php 1 -
+//wso.php 1 http://gs1oman.com//wso.php
+/wp-includes/SimplePie/admin.php 1 -
+/backup/wp-admin/install.php 1 -
+//news/wp-includes/wlwmanifest.xml 11 -
+/test 15 -
+/xmlrpc.php 1 -
+//wp_logx.php 1 http://gs1oman.com//wp_logx.php
+/wp-content/themes/fx.php 1 -
+/dist/js/bootstrap.bundle.min.js 4 -
+/sitemap.txt 1 -
+/wp-includes/widgets/class-wp-widget-index.php 1 -
+/wp-content/plugins/wordpress-seo/admin/banner/index.php 1 -
+/wp-admin/css/colors/modern/wp-login.php 1 -
+/wp-includes/js/jquery/jquery-migrate.min.js 2 -
+/wp-content/themes/wp-update.php 2 www.google.com
+/assets/images/inputs.php 1 -
+/wp-content/themes/sketch/404.php 2 -
+/777.php 1 https://gs1oman.com/777.php
+/blog/ 1 -
+/admin/uploadify/uploadify.css 1 -
+/.well-known/pki-validation/xmrlpc.php 1 -
+/assets/global/plugins/uploadify/uploadify.css 1 -
+/wp-content/plugins/wp-file-upload/ROOBOTS.php 1 -
+/wp-includes/js/tinymce/plugins/compat3x/css/index.php 3 -
+/wordpress 16 -
+/wp-admin/network/subjects.php 1 http://gs1oman.com/wp-admin/network/subjects.php
+/wp-includes/embed-wp.php 1 -
+/wp-config-sample.php 1 -
+/wp/ 1 -
+//admin.php 1 http://gs1oman.com//admin.php
+//wp-includes/1index.php 1 http://gs1oman.com//wp-includes/1index.php
+//old-index.php 1 http://gs1oman.com//old-index.php
+/wp-content/themes/mero-megazines/ws.php 1 http://gs1oman.com/wp-content/themes/mero-megazines/ws.php
+/wp-includes/sodium_compat/src/Core32/Curve25519/Ge/index.php 1 -
+/wp-plain.php 15 www.google.com
+/public/assets/uploadify/uploadify.css 2 -
+/temp/ 1 -
+/wp-content/plugins/Cache/dropdown.php 1 http://gs1oman.com/wp-content/plugins/Cache/dropdown.php
+/xxl.php 1 http://gs1oman.com/xxl.php
+/wp-content/plugins/wp-daft/miin.php 1 -
+/wp-admin/x.php 1 -
+/ppenppqk.php 1 www.google.com
+/wp-content/updates.php 8 www.google.com
+/.tmb/cache/shz.php 1 -
+/wp-includes/Text/about.php 1 -
+/wp-admin/css/colors/ocean/lofter.php 1 -
+/666.php 1 https://gs1oman.com/666.php
+//wp-2019.php 1 http://gs1oman.com//wp-2019.php
+//autoload_classmap.php 1 http://gs1oman.com//autoload_classmap.php
+/wp-content/plugins/vs-admin-media/about.php 1 -
+/public/assets/plugins/uploadify/uploadify.css 1 -
+/new/wp-admin/install.php 1 -
+/wp-login.php 1 http://gs1oman.com/wp-login.php
+//403.php 1 http://gs1oman.com//403.php
+/plugins/background-image-cropper/ups.php 1 -
+/wp-admin/css/colors/blue/admin.php 1 -
+//xwxx.php 1 http://gs1oman.com//xwxx.php
+//blog/wp-includes/wlwmanifest.xml 18 -
+//cdn.js 4 -
+//google.php 1 http://gs1oman.com//google.php
+/wp-content/plugins/cach/coment/index.php 1 -
+/.tmb/cloud.php 1 -
+/1975.php 1 -
+/info.php 1 -
+/.env 19 -
+/shell.php 1 -
+/wp-admin/css/colors/light/admin.php 1 -
+//doc.php 1 http://gs1oman.com//doc.php
+//shell.php 1 http://gs1oman.com//shell.php
+//mad.php 1 http://gs1oman.com//mad.php
+/wp-admin/css/colors/light/index.php 1 -
+/oldsite/wp-admin/install.php 1 -
+/wp-content/cong.php 3 www.google.com
+/wp-includes/css/about.php 1 -
+/main 16 -
+//wp-blog.php 1 http://gs1oman.com//wp-blog.php
+//media-admin.php 1 http://gs1oman.com//media-admin.php
+/wp-includes/rest-api/about.php 1 -
+/logs.php 1 https://gs1oman.com/logs.php
+/beence.php 1 -
+/wp-content/plugins/linkpreview/db.php 1 -
+//website/wp-includes/wlwmanifest.xml 11 -
+//mininew.php 1 http://gs1oman.com//mininew.php
+//wp-22.php 1 http://gs1oman.com//wp-22.php
+/alfa-rex.php7 2 -
+/wp-content/plugins/plugins-setting/unstall.php 1 -
+/z.php 1 https://gs1oman.com/z.php
+/wp-content/plugins/revslider/includes/external/page/index.php 4 -
+/wp-content/plugins/ango/sett.php 2 www.google.com
+/style.php 4 -
+/alfacgiapi/perl.alfa 14 www.google.com
+/jpblncii.php 1 www.google.com
+/assets/js/uploadify/uploadify.css 1 -
+/wp-includes/js/jcrop/themes.php 1 -
+/wp-content/plugins/ccx/index.php 2 -
+/wp-includes/js/tinymce/skins/lightgray/fonts/index.php 3 -
+/wp-content/uploads/ac_assets/IndoSec.php 1 -
+/ccx/index.php 4 http://gs1oman.com/ccx/index.php
+/config.php 1 https://gs1oman.com/config.php
+//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js 4 -
+//mass.php 1 http://gs1oman.com//mass.php
+//vendor/phpunit/phpunit/src/Util/PHP/kill.php 1 -
+/wp-admin/img/php-compat/blocks/themes/index.php 1 -
+//upload.php 2 http://gs1oman.com//upload.php
+/wp-content/plugins/wc-multivendor-membership/assets/css/wcfmvm-style-memberships.css 1 -
+/wp-content/plugins/index.php 1 -
+/content/Ueditor/net/controller.ashx 1 http://gs1oman.com/content/Ueditor/net/controller.ashx
+/wp-content/plugins/elementor/core/editor/data/index.php 1 -
+/.well-known/security.txt 1 http://www.gs1oman.com/.well-known/security.txt
+/wp-content/plugins/mstore-api/assets/js/mstore-inspireui.js 1 -
+//wp-content/plugins/fighter/fk.php 1 http://gs1oman.com//wp-content/plugins/fighter/fk.php
+//1337.php 1 http://gs1oman.com//1337.php
+//xl.php 2 http://gs1oman.com//xl.php
+//wordpress/wp-includes/wlwmanifest.xml 18 -
+//ALFA_DATA/alfacgiapi/ups.php 1 http://gs1oman.com//ALFA_DATA/alfacgiapi/ups.php
+/wp-content/upgrade/cs.php 1 -
+/wp-admin/css/colors/ocean/wp-crons.php 1 -
+//wp-includes/wlwmanifest.xml 11 -
+//baindex.php 1 http://gs1oman.com//baindex.php
+/wp-includes/ID3/license.txt 2 -
+/wp-content/themes/finley/min.php 1 http://gs1oman.com/wp-content/themes/finley/min.php
+/x.php 2 https://gs1oman.com/x.php
+/_profiler/phpinfo 1 -
+/.git/config 2 -
+/.well-known/pki-validation/Mhbgf.php 1 -
+//test/wp-includes/wlwmanifest.xml 18 -
+//wp-2022.php 1 http://gs1oman.com//wp-2022.php
+//wp-includes/css/buttons.css 1 http://gs1oman.com//wp-includes/css/buttons.css
+//up-kon.php 1 http://gs1oman.com//up-kon.php
+/admin/fileupload/index.php 1 -
+/400.php 1 https://gs1oman.com/400.php
+/bk 1 http://gs1oman.com/bk
+/.well-known/pki-validation/moon.php 1 -
+/bnqxpyjk.php 1 www.google.com
+/wp-includes/style-engine/index.php 1 -
+//1.php 1 http://gs1oman.com//1.php
+//3index.php 1 http://gs1oman.com//3index.php
+//wp-x.php 1 http://gs1oman.com//wp-x.php
+//haxor.php 1 http://gs1oman.com//haxor.php
+//good.php 1 http://gs1oman.com//good.php
+/wp-admin/install.php 1 -
+/wp-includes/inputs.php 1 -
+//wp-admin/css/colors/blue/blue.php 1 www.google.com
+/wp-content/themes/ccx/index.php 2 http://gs1oman.com/wp-content/themes/ccx/index.php
+//wp-includes/assets/pi.php 1 http://gs1oman.com//wp-includes/assets/pi.php
+/xx.php 1 http://gs1oman.com/xx.php
+/wp-content/plugins/TOPXOH/wDR.php 1 -
+/auto_seo.php 1 -
+//radio.php 1 http://gs1oman.com//radio.php
+//wikindex.php 2 http://gs1oman.com//wikindex.php
+/ALFA_DATA/alfacgiapi/perl.alfa 14 www.google.com
+//admin/controller/extension/wpm.php 1 http://gs1oman.com//admin/controller/extension/wpm.php
+/arif/Telerik.Web.UI.WebResource.axd 1 -
+//payout.php 1 http://gs1oman.com//payout.php
+/wordpress-seo/vendor/xrstf/composer-php52/lib/xrstf/Composer52/wp-admin.php 1 -
+//01.php 1 http://gs1oman.com//01.php
+/alfa-rex.php 1 -
+/wp-content/about.php 9 -
+/xhziqlar.php 1 www.google.com
+//new-index.php 1 http://gs1oman.com//new-index.php
+/wp-admin/images/Mhbgf.php 1 -
+//utchiha.php 1 http://gs1oman.com//utchiha.php
+//crypted.php 1 http://gs1oman.com//crypted.php
+/wp-content/themes/seotheme/db.php 32 www.google.com
+//xlt.php 1 http://gs1oman.com//xlt.php
+//wxo.php 1 http://gs1oman.com//wxo.php
+/inputs.php 1 -
+/old 16 -
+/web/wp-admin/install.php 1 -
+/xxxss 3 -
+/404.php 1 -
+//wp-content/plugins//masterx/wpx.php 1 http://gs1oman.com//wp-content/plugins//masterx/wpx.php
+//lock360.php 1 http://gs1oman.com//lock360.php
+//wp-content/plugins/easybusy/wp-blog.php 1 http://gs1oman.com//wp-content/plugins/easybusy/wp-blog.php
+/wp-admin/css/colors/coffee/lofter.php 1 -
+/wp-content/plugins/duplicator/installer/dup-installer/src/index.php 1 -
+/blog/wp-admin/install.php 1 -
+/wp-content/plugins/elementor/assets/lib/swiper/index.php 1 -
+//feed/ 7 -
+/wp-includes/pomo/index.php 1 -
+/ 9 -
+/dropdown.php 1 -
+/wp-admin/css/colors/midnight/wp-admin.php 1 -
+/.well-known/pki-validation/install.php 1 -
+/wp-includes/rest-api/search/about.php 1 -
+/admin/public/js/uploadify/uploadify.css 1 -
+//XxX.php 1 http://gs1oman.com//XxX.php
+/wp-admin/dropdown.php 1 http://gs1oman.com/wp-admin/dropdown.php
+/wp-content/fonts/barlow-semi-condensed/wp-hudbud.php 1 -
+/wp-security.php 2 -
+//wp-content/themes/wp-pridmag/init.php 1 http://gs1oman.com//wp-content/themes/wp-pridmag/init.php
+//about.php 1 http://gs1oman.com//about.php
+/ads.txt 38 -
+//image/screenshot_1.php 1 http://gs1oman.com//image/screenshot_1.php
+//2018/wp-includes/wlwmanifest.xml 9 -
+/wp-content/upgrade/cloud.php 1 -
+/wp-includes/ID3/vp.php 1 -
+//cms/wp-includes/wlwmanifest.xml 18 -
+/wp-content/plugins/anttt/simple.php 1 -
+//wp-admin/setup-config.php 1 http://gs1oman.com//wp-admin/setup-config.php
+//1h6j5.php 1 http://gs1oman.com//1h6j5.php
+/wp-includes/sodium_compat/namespaced/Core/Curve25519/Ge/index.php 2 -
+/w.php 1 https://gs1oman.com/w.php
+//wp-info.php 1 http://gs1oman.com//wp-info.php
+/addmore.js 6 -
+//priv8.php 1 http://gs1oman.com//priv8.php
+/wp-load/SimplePie/IXR/met/met/wp.php 1 -
+/gfgawqlx.php 1 www.google.com
+/wp-content/plugins/column/miin.php 1 -
+//wp1/wp-includes/wlwmanifest.xml 18 -
+//screenshot_1.php 1 http://gs1oman.com//screenshot_1.php
+/sitemap.xml 3 -
+//images/vuln.php 1 http://gs1oman.com//images/vuln.php
+//site/wp-includes/wlwmanifest.xml 18 -
+//lufix.php 1 http://gs1oman.com//lufix.php
+/wp-info.php 1 https://gs1oman.com/wp-info.php
+/images/inputs.php 1 -
+//2019/wp-includes/wlwmanifest.xml 18 -
+//shop/wp-includes/wlwmanifest.xml 18 -
+/zz.php 1 https://gs1oman.com/zz.php
+/.cgi/cache/index.php 1 -
+/wp-admin/css/colors/sunrise/wp-admin.php 1 -
+//x.php 1 http://gs1oman.com//x.php
+/old/wp-admin/install.php 1 -
+/phpinfo.php 1 -
+//2index.php 2 http://gs1oman.com//2index.php
+//wp-includes/ID3/license.txt 7 -
+//wp2/wp-includes/wlwmanifest.xml 11 -
+/site/wp-admin/install.php 1 -
+/wp-includes/js/tinymce/skins/lightgray/img/index.php 1 -
+/wp-content/plugins/ioptimization/IOptimize.php 2 -
+//code.jquery.com/jquery-3.5.1.min.js 5 -
+/asset-manifest.json 1 https://gs1oman.com/
+/.well-known/ 5 binance.com
+//wp-admin/rss.php 1 http://gs1oman.com//wp-admin/rss.php
+//mini.php 1 http://gs1oman.com//mini.php
+/admin/assets/uploadify/uploadify.css 1 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 25 first Hits must be first (order not required for others)
+BEGIN_VISITOR 381
+162.158.111.180 17 17 77077 20230627132428
+172.71.146.171 6 6 56250 20230621210909
+172.71.147.92 4 4 37500 20230624215959
+172.70.246.36 4 5 15210 20230627131553
+172.70.243.164 4 4 38425 20230627132958
+172.71.146.70 4 4 37500 20230627215910
+172.71.246.90 3 3 20726 20230627131745
+162.158.159.91 3 3 0 20230625183811
+162.158.111.227 3 3 19744 20230630053357
+162.158.238.228 3 3 28125 20230627034923
+172.71.222.198 3 3 28125 20230630224845
+162.158.30.109 3 3 11420 20230625035452
+162.158.86.170 3 3 3154 20230621132746
+172.71.150.76 3 3 28125 20230621210851
+172.71.142.175 3 3 28125 20230624220115
+172.71.151.30 2 2 18750 20230627215958
+172.70.90.228 2 2 18750 20230619074107
+162.158.95.150 2 2 2045 20230622133628
+162.158.189.174 2 2 18750 20230622110944
+172.71.146.170 2 2 18750 20230624215940
+172.70.34.150 2 2 18750 20230620195420
+172.70.251.37 2 2 18750 20230624073633
+141.101.99.125 2 2 18750 20230624215718
+172.71.150.54 2 2 18750 20230624220015
+172.71.151.90 2 2 18750 20230623213147
+172.70.110.218 1 1 994 20230604104556
+172.69.79.208 0 3 12282 
+172.71.223.93 1 1 9375 20230624123658
+172.70.35.107 1 1 9375 20230617005731
+172.70.130.252 1 1 9375 20230603221114
+172.69.79.167 0 3 192 
+172.70.91.211 1 1 9375 20230621135838
+162.158.239.65 1 1 9375 20230601024442
+172.71.246.92 0 1 2495 
+162.158.174.173 1 1 9375 20230625060905
+172.70.91.197 1 1 9375 20230613134650
+172.70.111.121 1 1 994 20230604104545
+172.70.35.20 0 1 1550 
+162.158.111.196 0 1 43485 
+172.71.166.218 1 1 9375 20230627102347
+172.71.222.173 1 1 9375 20230629222431
+172.70.114.59 1 1 9375 20230602070614
+162.158.110.203 0 1 4720 
+172.71.147.132 1 1 9375 20230610210850
+172.70.39.183 1 1 9375 20230627134848
+162.158.111.76 0 2 666777 
+172.68.50.194 1 1 9375 20230606181558
+162.158.94.82 0 1 193121 
+162.158.94.247 0 2 2495 
+172.70.174.183 1 1 9375 20230628045903
+172.68.50.48 1 1 9375 20230606155340
+172.70.34.170 1 1 9375 20230617005837
+162.158.30.21 1 1 9375 20230610103732
+172.68.50.67 1 1 9375 20230608145921
+162.158.86.29 1 1 9375 20230615012614
+172.70.126.94 1 1 10300 20230603221140
+172.70.246.90 1 1 9375 20230625103107
+162.158.110.227 0 1 81905 
+172.71.146.71 1 1 9375 20230614213503
+172.71.154.31 1 1 9375 20230602230831
+162.158.34.62 0 1 12148 
+162.158.74.3 0 1 64 
+162.158.110.239 0 1 193121 
+172.70.90.243 1 1 9375 20230630000305
+172.70.100.206 1 1 9375 20230603221149
+172.71.150.102 1 1 9375 20230614213536
+162.158.74.20 0 1 12146 
+162.158.107.46 1 1 9375 20230622110953
+162.158.30.92 0 1 193121 
+162.158.86.94 0 1 2495 
+172.70.251.139 1 1 5471 20230604011318
+162.158.87.56 0 1 48182 
+162.158.95.50 1 1 1051 20230621135446
+162.158.111.183 0 1 14292 
+172.70.43.105 1 1 9375 20230625215912
+172.71.218.153 1 1 9375 20230629022016
+162.158.111.159 0 1 567638 
+172.70.246.31 0 1 2495 
+162.158.30.85 0 1 149540 
+172.70.35.4 1 1 994 20230614140218
+108.162.245.186 1 1 9375 20230607214129
+108.162.245.169 1 1 9375 20230624220009
+172.71.246.120 1 1 9375 20230629034113
+172.70.251.55 1 1 9375 20230622134038
+162.158.87.79 0 1 149540 
+162.158.86.164 1 1 1051 20230621134141
+172.69.59.54 1 1 9375 20230603221114
+162.158.74.15 0 1 64 
+162.158.110.183 0 1 2384 
+162.158.74.69 0 1 64 
+172.70.250.211 0 2 2582 
+162.158.110.249 0 1 643 
+162.158.34.24 0 2 128 
+162.158.34.235 0 1 64 
+172.69.79.239 0 1 12148 
+162.158.74.66 0 1 64 
+141.101.98.9 1 1 9375 20230624160424
+172.69.79.149 0 5 60761 
+172.71.142.99 1 1 9375 20230615215459
+172.70.46.190 1 1 9375 20230622120821
+172.70.55.57 1 1 9375 20230610051639
+162.158.30.20 2 2 2045 20230615044304
+162.158.175.50 2 2 18750 20230630071116
+172.71.147.131 1 1 9375 20230628203930
+172.70.243.104 1 1 9375 20230615012614
+172.70.34.245 1 1 9375 20230612005556
+172.69.79.209 0 1 12148 
+162.158.154.75 1 1 994 20230604104644
+172.71.134.158 1 1 9375 20230608152621
+162.158.107.28 2 2 18750 20230624114637
+162.158.189.138 1 1 9375 20230608075857
+172.71.150.92 2 2 18750 20230623212333
+162.158.111.145 0 1 48182 
+108.162.245.149 1 1 9375 20230601085945
+172.71.131.152 1 1 9375 20230606000029
+162.158.30.94 0 3 144546 
+162.158.189.175 2 2 18750 20230623133236
+172.69.79.169 0 2 24302 
+172.70.43.198 1 1 9375 20230626095748
+172.70.90.177 1 1 9375 20230627175433
+172.70.90.131 1 1 9375 20230603045741
+172.70.34.184 1 1 9375 20230617005726
+108.162.227.44 2 2 18750 20230625210808
+172.70.243.54 0 1 2495 
+172.70.174.213 1 1 9375 20230623041045
+172.71.214.241 1 1 9375 20230623065722
+172.70.246.230 1 1 10300 20230629054632
+108.162.212.62 1 1 9375 20230608212858
+162.158.154.4 1 1 10300 20230623204440
+108.162.210.179 1 1 9375 20230610051639
+172.70.91.178 1 1 9375 20230625074637
+172.70.247.112 0 1 48182 
+172.70.250.10 0 1 1550 
+172.68.50.111 1 1 9375 20230606155337
+172.71.150.41 1 1 9375 20230603210015
+172.70.247.184 0 1 2582 
+172.70.243.163 1 1 9375 20230627131747
+162.158.74.23 0 1 12152 
+162.158.110.53 0 1 20076 
+162.158.95.180 1 1 994 20230627123615
+172.70.142.149 0 1 2495 
+172.71.142.57 2 2 18750 20230610210835
+108.162.245.48 0 1 2582 
+162.158.110.150 0 1 78635 
+162.158.111.53 0 1 2301 
+141.101.76.220 1 1 9375 20230617181520
+172.70.242.146 1 1 9375 20230623074742
+162.158.189.40 1 1 9375 20230606224602
+162.158.155.178 1 1 9375 20230622232331
+172.71.242.192 0 1 2495 
+162.158.158.142 1 1 994 20230604104636
+172.70.91.228 1 1 9375 20230603001840
+162.158.94.148 1 1 9375 20230601020443
+172.69.79.185 0 3 192 
+162.158.63.10 1 1 9375 20230617081307
+172.68.226.236 1 1 9375 20230613185505
+162.158.239.55 1 1 9375 20230626090609
+162.158.87.175 2 2 2102 20230621132631
+172.70.110.106 1 1 9375 20230602070612
+172.71.146.130 1 1 9375 20230603132028
+172.70.250.11 0 1 0 
+172.70.46.153 1 1 9375 20230611072636
+172.70.34.81 1 1 9375 20230617005729
+162.158.111.151 0 1 6007 
+172.71.94.20 1 1 9375 20230624001509
+172.71.150.52 1 1 9375 20230620212756
+162.158.94.219 2 2 18750 20230624100121
+162.158.74.86 0 1 64 
+172.71.151.98 1 1 9375 20230613221439
+108.162.245.111 1 1 9375 20230614213504
+172.70.174.32 1 1 9375 20230622035453
+162.158.95.76 0 1 149540 
+162.158.111.78 1 1 161796 20230627123943
+172.70.42.94 1 1 994 20230621140855
+162.158.74.19 0 1 12150 
+172.71.150.208 2 2 18750 20230623141646
+172.71.155.39 1 1 9375 20230602182039
+172.70.178.96 1 1 9375 20230603221131
+172.71.250.77 1 1 9375 20230604011321
+172.69.79.222 0 2 128 
+162.158.30.86 0 3 7485 
+172.69.79.181 0 1 64 
+162.158.111.62 0 1 1957 
+162.158.155.134 1 1 9375 20230602070611
+172.71.142.169 1 1 9375 20230612202606
+172.70.251.56 1 1 9375 20230621134007
+162.158.111.49 0 1 1093326 
+162.158.74.16 0 1 12149 
+162.158.238.210 1 1 9375 20230617151645
+172.69.79.212 0 1 12149 
+162.158.110.107 1 1 9375 20230629034113
+172.69.79.200 0 1 64 
+172.69.79.168 0 1 12151 
+162.158.34.8 0 1 64 
+172.71.147.49 1 1 9375 20230608222401
+141.101.99.117 1 1 9375 20230612200023
+162.158.34.75 0 1 64 
+141.101.99.112 0 1 1550 
+162.158.238.202 0 1 2495 
+172.70.250.50 2 2 10369 20230621133313
+172.70.90.17 1 1 9375 20230622175116
+172.70.243.93 1 1 3751 20230627125059
+162.158.174.30 1 1 9375 20230623114526
+172.71.123.51 1 1 9375 20230630142507
+172.70.42.150 1 1 994 20230615124343
+172.71.175.66 1 1 9375 20230608041848
+162.158.110.131 0 1 2495 
+162.158.63.70 1 1 9375 20230602070616
+108.162.227.77 2 2 18750 20230622110940
+172.71.178.144 0 1 1550 
+162.158.110.194 0 1 3120 
+162.158.95.116 0 1 48182 
+172.69.79.220 0 3 192 
+162.158.94.202 1 1 1051 20230621140328
+172.71.150.77 2 2 18750 20230620212806
+172.70.211.200 1 1 9375 20230614210509
+162.158.110.186 0 1 1347 
+162.158.111.186 0 1 19503 
+108.162.245.45 0 1 1550 
+162.158.86.77 1 1 9375 20230623084124
+172.71.250.72 1 1 9375 20230629033752
+162.158.110.187 0 1 1671 
+162.158.159.151 1 1 9375 20230602070607
+172.71.242.22 1 1 9375 20230613090957
+162.158.111.89 0 1 23129 
+162.158.111.28 2 2 2102 20230627123711
+162.158.86.100 1 1 1051 20230621140430
+172.71.178.148 1 1 9375 20230618012216
+172.70.251.145 1 1 994 20230614140126
+172.71.131.78 1 1 9375 20230618081637
+172.70.247.190 1 1 9375 20230623153545
+172.70.34.63 0 1 2582 
+162.158.166.209 1 1 9375 20230620135530
+172.70.34.80 1 1 10300 20230617005728
+172.70.85.36 1 1 9375 20230629155955
+162.158.110.140 0 1 3748 
+172.71.254.248 1 1 9375 20230603221122
+172.70.91.149 1 1 9375 20230620144637
+162.158.34.68 0 1 12150 
+162.158.74.58 0 2 128 
+172.70.251.206 1 1 9375 20230629033753
+172.70.175.70 1 1 9375 20230624123658
+172.71.174.154 1 1 9375 20230629154814
+162.158.34.69 0 3 36454 
+162.158.74.59 0 1 64 
+162.158.154.45 1 1 9375 20230622014721
+172.69.79.221 0 5 320 
+172.70.246.134 2 2 2102 20230614140158
+162.158.126.15 1 1 9375 20230615085908
+172.70.90.147 1 1 9375 20230615101016
+172.70.178.198 1 1 9375 20230621225029
+172.70.134.151 1 1 9375 20230613074339
+162.158.34.25 0 2 128 
+162.158.110.212 0 1 101939 
+162.158.30.93 0 3 197253 
+172.69.79.190 0 1 12152 
+162.158.34.27 0 1 64 
+162.158.95.138 1 1 9375 20230617110326
+162.158.78.68 1 1 9375 20230624123659
+172.70.243.58 1 1 3751 20230627124427
+172.69.58.9 1 1 9375 20230604183342
+172.70.246.112 0 1 193121 
+162.158.111.75 0 1 31764 
+172.70.242.186 1 1 1052 20230621132930
+162.158.110.42 0 1 104149 
+162.158.110.179 2 2 10426 20230627134606
+162.158.30.84 0 1 149540 
+162.158.183.181 1 1 9375 20230604171115
+162.158.110.137 0 1 57116 
+172.71.151.29 1 1 9375 20230612202548
+162.158.74.14 0 1 64 
+172.71.242.75 1 1 9375 20230622051844
+172.71.142.174 2 2 18750 20230627215910
+172.70.250.71 1 1 994 20230621132608
+172.71.151.67 2 2 18750 20230620212831
+172.69.0.104 1 1 9375 20230608145804
+172.68.50.164 1 1 9375 20230629032231
+172.70.34.87 1 1 9375 20230611233109
+162.158.110.238 0 1 8013 
+172.70.35.69 2 2 18750 20230625193532
+172.71.222.144 1 1 9375 20230613074330
+172.70.43.41 1 1 9375 20230603184343
+172.71.147.50 1 1 9375 20230606221626
+172.71.142.89 1 1 9375 20230613221410
+108.162.245.36 1 1 9375 20230624220148
+172.70.127.106 1 1 9375 20230602015612
+162.158.74.90 0 1 64 
+172.69.79.243 0 2 128 
+172.71.151.68 1 1 9375 20230620212731
+162.158.62.137 1 1 9375 20230615193228
+172.68.11.189 1 1 9375 20230625104106
+162.158.166.213 1 1 9375 20230602233034
+172.71.150.93 2 2 18750 20230621210723
+172.71.147.91 1 1 9375 20230627215935
+172.70.35.13 0 1 48182 
+172.71.147.170 1 1 9375 20230607214141
+162.158.170.34 1 1 9375 20230604061636
+172.71.246.64 2 2 2045 20230621140623
+162.158.74.51 0 1 12154 
+172.70.91.94 0 1 2495 
+172.71.158.159 1 1 9375 20230621102453
+172.70.250.6 1 1 9375 20230601020443
+172.70.246.231 1 1 161796 20230627131541
+162.158.110.176 0 1 5548 
+172.71.130.129 1 1 9375 20230614122925
+162.158.74.12 0 1 64 
+172.69.79.198 0 2 128 
+162.158.111.27 0 1 5442 
+172.69.214.170 1 1 9375 20230627110447
+172.71.242.109 1 1 9375 20230615053908
+162.158.189.41 1 1 9375 20230606224559
+172.71.246.91 1 1 1051 20230621135152
+162.158.110.198 0 1 949 
+172.70.246.113 0 1 193121 
+162.158.111.198 0 1 6729 
+162.158.159.33 1 1 994 20230604104559
+162.158.34.28 0 1 64 
+162.158.86.222 1 1 9375 20230628221626
+162.158.110.154 0 1 2751 
+162.158.110.90 0 1 6022 
+172.70.38.110 1 1 9375 20230624123659
+172.70.247.57 0 1 149540 
+162.158.74.22 0 1 12148 
+162.158.34.18 0 2 128 
+162.158.34.23 0 1 12153 
+162.158.95.45 1 1 9375 20230623163255
+162.158.87.111 1 1 9375 20230628155544
+108.162.245.114 0 1 48182 
+172.69.134.140 1 1 9375 20230629101456
+162.158.154.138 1 1 9375 20230619085035
+162.158.34.19 0 1 64 
+162.158.74.2 0 3 192 
+162.158.34.67 0 1 64 
+172.71.142.18 1 1 9375 20230628203956
+172.71.147.169 2 2 18750 20230623212601
+162.158.111.149 0 1 7643 
+162.158.74.42 0 1 64 
+162.158.86.165 1 1 994 20230621134126
+162.158.74.50 0 1 12151 
+172.69.79.178 0 1 64 
+162.158.86.109 1 1 9375 20230624010105
+172.70.250.195 1 1 9375 20230622134211
+162.158.34.74 0 2 128 
+162.158.175.148 1 1 9375 20230625030458
+108.162.245.240 1 1 9375 20230621210758
+172.71.222.95 0 1 1550 
+172.69.79.234 0 1 12147 
+162.158.111.65 0 1 700 
+172.71.242.122 2 2 18750 20230629135816
+172.71.150.209 1 1 9375 20230621210759
+162.158.74.91 0 1 64 
+162.158.159.51 1 1 10300 20230602070609
+172.70.242.34 1 1 9375 20230627132524
+162.158.110.65 0 1 86926 
+172.71.150.53 1 1 9375 20230614213530
+162.158.110.215 1 1 9375 20230625214530
+172.69.79.213 0 3 36453 
+162.158.186.220 1 1 9375 20230612232306
+162.158.111.48 0 1 51465 
+172.71.146.225 1 1 9375 20230615215517
+172.68.50.198 2 2 18750 20230608155959
+172.71.98.7 1 1 9375 20230602173849
+172.71.174.183 1 1 9375 20230615215936
+162.158.110.167 0 1 2093 
+162.158.110.95 0 1 2582 
+172.71.146.85 1 1 9375 20230624220101
+162.158.87.60 0 1 193121 
+162.158.18.76 1 1 9375 20230619165429
+172.69.79.196 0 1 64 
+172.69.79.223 0 1 64 
+172.71.102.33 1 1 9375 20230628103903
+162.158.111.117 0 1 149540 
+172.69.134.202 1 1 9375 20230614194900
+172.70.246.196 1 1 5487 20230604011319
+162.158.34.234 0 2 128 
+162.158.159.34 1 1 994 20230604104653
+172.70.250.244 0 2 2495 
+172.71.147.22 1 1 9375 20230612202555
+162.158.87.176 1 1 1051 20230621132650
+172.71.142.88 2 2 18750 20230621210821
+162.158.110.110 0 1 39747 
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 30
+20230601 4 10 102092 4
+20230602 11 14 116329 11
+20230603 16 19 163204 16
+20230604 13 16 76079 13
+20230605 1 4 21654 1
+20230606 10 13 106030 10
+20230607 5 8 59154 4
+20230608 10 13 106027 10
+20230609 0 3 12280 0
+20230610 8 15 142087 8
+20230611 5 8 59151 5
+20230612 7 10 77903 7
+20230613 7 10 77905 7
+20230614 14 21 495132 13
+20230615 12 23 501118 11
+20230616 1 4 21653 1
+20230617 9 15 149892 9
+20230618 2 5 31031 2
+20230619 4 7 49776 3
+20230620 11 14 115408 10
+20230621 33 45 568173 26
+20230622 13 24 510782 12
+20230623 18 21 181950 16
+20230624 24 27 237279 21
+20230625 16 23 510785 11
+20230626 2 5 31032 2
+20230627 48 99 4371999 24
+20230628 6 9 68526 6
+20230629 12 16 127257 12
+20230630 6 9 68528 5
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 4
+0s-30s 273
+30s-2mn 5
+5mn-15mn 1
+30mn-1h 1
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 25 first Pages must be first (order not required for others)
+BEGIN_SIDER 13
+/ 241 2250000 225 228
+/admin/login.php 44 45090 33 29
+/index.php 13 121875 9 10
+/arabic.php 7 72100 6 6
+/admin/index.php 6 19314 1 0
+/admin/website_setting/website_setting_form.php 3 11253 2 2
+/admin/product/show.php 3 18684 0 0
+/admin/fonts/icomoonf33b.ttf 2 323592 2 2
+/admin/registration/show.php 2 9949 0 0
+/new/ 2 5471 1 2
+/backup/ 2 5487 1 1
+/admin/package/show.php 2 7758 0 0
+/admin/include/session_destroy.php 1 76 0 0
+END_SIDER

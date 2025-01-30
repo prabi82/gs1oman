@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+*
+{
+	margin: 0;padding: 0;
+}
+
+body
+{
+	font-family: 'Lato', sans-serif;
+}
+
+:root
+{	
+
+}
+
+
+.logo img
+{
+	width: 35%;margin: 50px;
+}
+
+.user_registration
+{
+	margin-bottom: 50px;
+}
+
+.user_registration form h4
+{
+	text-transform: uppercase;font-weight: bolder;
+}
+
+.user_registration form label
+{
+	margin-bottom: 7px;
+}
+
+.user_registration form
+{
+	background: #f7f7f7;
+    padding: 15px;
+    border: 2px solid #002c6c;
+    margin-top: 15px;
+}
+
+.user_registration form input
+{
+	margin-bottom: 15px;border: none;border-bottom: 1px solid #55555570;border-radius: 0;height: 45px;
+}
+
+.user_registration form select
+{
+	margin-bottom: 15px;border: none;border-bottom: 1px solid #55555570;border-radius: 0;height: 45px;width: 100%;
+}
+
+.tick
+{
+	margin-bottom: 0!important;
+    vertical-align: middle;
+}
+
+.fo-12
+{
+	font-size: 12px;
+}
+
+.multiselect select{
+	margin-bottom: 0!important;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes, #checkboxes_gtin, #checkboxes_gln, #checkboxes_sscc {
+  display: none;
+  border: 1px #dadada solid;
+  position: absolute;
+	width: inherit;
+	background: #fff;
+}
+
+#checkboxes label, #checkboxes_gtin label, #checkboxes_gln label, #checkboxes_sscc label {
+  display: block;
+  margin-bottom: 0;
+  padding: 5px 10px;
+}
+
+#checkboxes label:hover, #checkboxes_gtin label:hover, #checkboxes_gln label:hover, #checkboxes_sscc label:hover {
+  background-color: #1e90ff;
+}
+
+#checkboxes input, #checkboxes_gtin input, #checkboxes_gln input, #checkboxes_sscc input
+{
+	height: inherit;
+	margin-bottom: 0;
+}
+
+.form-control
+{
+	line-height: 2;
+}
+
+.colors
+{
+	display: none;
+}
+
+#colorselector
+{
+	width: 100%;
+}
+
+.output input[type="checkbox"]
+{
+	width: 100px;border: none;margin-bottom: 0px;
+}
+
+.output tr td
+{
+	vertical-align: middle;
+}
+
+/*.fee_table
+{
+	display: none;
+}*/
+
+
+.fee_table .col-md-4
+{
+	float: left;
+}
+
+.input-group-text
+{
+    border-bottom: 1px solid #55555570;
+    border-radius: 0;
+    border-top: 0;
+    border-left: 0;
+    border-radius:0;
+}
+
+
+.modal-dialog
+{
+    max-width:1100px;
+}
+
+.text-orange
+{
+    color:#f4815b;
+}
+
+
+@media only screen and (max-width:480px)
+{
+    .logo img
+    {
+        width:70%;
+        margin:30px;
+    }
+    
+    
+}
+.full-width-content {
+    width: 100%;
+    text-align: justify;
+}
+.full-width-content ol li {
+    text-align: justify;
+}

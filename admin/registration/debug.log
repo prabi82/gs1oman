@@ -1,0 +1,1527 @@
+[2025-01-29 06:33:52] Script started
+[2025-01-29 06:33:52] Session data:
+[2025-01-29 06:33:52] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 06:36:17] Script started
+[2025-01-29 06:36:17] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 06:36:17] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:38:06] Script started
+[2025-01-29 09:38:06] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:38:06] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:38:06] Before loading company details
+[2025-01-29 09:38:06] Database connection successful
+[2025-01-29 09:41:11] Script started
+[2025-01-29 09:41:11] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:11] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:17] Script started
+[2025-01-29 09:41:17] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:17] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:17] Script started
+[2025-01-29 09:41:17] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:17] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:17] Script started
+[2025-01-29 09:41:17] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:17] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:17] Script started
+[2025-01-29 09:41:17] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:17] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:18] Script started
+[2025-01-29 09:41:18] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:18] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:19] Script started
+[2025-01-29 09:41:19] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:19] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:20] Script started
+[2025-01-29 09:41:20] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:20] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:20] Script started
+[2025-01-29 09:41:20] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:20] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:20] Script started
+[2025-01-29 09:41:20] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:20] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:41:20] Script started
+[2025-01-29 09:41:20] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:41:20] GET data:
+Array
+(
+    [view_id] => 10
+)
+
+[2025-01-29 09:44:10] Script started
+[2025-01-29 09:44:10] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:44:10] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:44:10] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:44:10] Template started loading
+[2025-01-29 09:44:25] Script started
+[2025-01-29 09:44:25] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:44:25] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:44:25] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:44:25] Template started loading
+[2025-01-29 09:46:04] Script started
+[2025-01-29 09:46:04] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:46:04] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:46:04] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:46:04] Template started loading
+[2025-01-29 09:48:38] Script started
+[2025-01-29 09:48:38] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:38] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:38] Loading company data for ID: 1
+[2025-01-29 09:48:38] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:38] Template started loading
+[2025-01-29 09:48:38] Error: Company data not available or invalid
+[2025-01-29 09:48:39] Script started
+[2025-01-29 09:48:39] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:39] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:39] Loading company data for ID: 1
+[2025-01-29 09:48:39] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:39] Template started loading
+[2025-01-29 09:48:39] Error: Company data not available or invalid
+[2025-01-29 09:48:41] Script started
+[2025-01-29 09:48:41] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:41] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:41] Loading company data for ID: 1
+[2025-01-29 09:48:41] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:41] Template started loading
+[2025-01-29 09:48:41] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:42] Script started
+[2025-01-29 09:48:42] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:42] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:42] Loading company data for ID: 1
+[2025-01-29 09:48:42] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:42] Template started loading
+[2025-01-29 09:48:42] Error: Company data not available or invalid
+[2025-01-29 09:48:47] Script started
+[2025-01-29 09:48:47] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:48:47] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:48:47] Loading company data for ID: 1
+[2025-01-29 09:48:47] Error loading data: Error preparing statement: Table 'gs1omancom_barcode.companies' doesn't exist
+[2025-01-29 09:48:47] Template started loading
+[2025-01-29 09:48:47] Error: Company data not available or invalid
+[2025-01-29 09:53:05] Script started
+[2025-01-29 09:53:05] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:53:05] GET data:
+Array
+(
+    [view_id] => 1
+)
+
+[2025-01-29 09:53:05] Loading company data for ID: 1
+[2025-01-29 09:53:05] Error loading data: Company with ID 1 not found
+[2025-01-29 09:53:05] Template started loading
+[2025-01-29 09:53:05] Error: Company data not available or invalid
+[2025-01-29 09:59:39] Script started
+[2025-01-29 09:59:39] Session data:
+Array
+(
+    [email] => barcode@gmail.com
+    [roles] => Super Admin
+    [filter_status] => 
+    [filter_sdate1] => 
+    [filter_sdate2] => 
+    [filter_rfilter] => 
+)
+
+[2025-01-29 09:59:39] GET data:
+Array
+(
+    [view_id] => 1
+    [debug] => 1
+)
+
+[2025-01-29 09:59:39] Loading company data for ID: 1
+[2025-01-29 09:59:39] Error loading data: Company with ID 1 not found
+[2025-01-29 09:59:39] Template started loading
+[2025-01-29 09:59:39] Error: Company data not available or invalid

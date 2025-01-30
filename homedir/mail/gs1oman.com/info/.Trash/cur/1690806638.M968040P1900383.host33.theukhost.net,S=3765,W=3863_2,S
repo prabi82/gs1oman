@@ -1,0 +1,98 @@
+Return-Path: <>
+Delivered-To: info@gs1oman.com
+Received: from host33.theukhost.net
+	by host33.theukhost.net with LMTP
+	id WsXuOG6px2Rf/xwAHKgXzA
+	(envelope-from <>)
+	for <info@gs1oman.com>; Mon, 31 Jul 2023 13:30:38 +0100
+Return-path: <>
+Envelope-to: info@gs1oman.com
+Delivery-date: Mon, 31 Jul 2023 13:30:38 +0100
+Received: from mailnull by host33.theukhost.net with local (Exim 4.96)
+	id 1qQS2o-007yNE-2d
+	for info@gs1oman.com;
+	Mon, 31 Jul 2023 13:30:38 +0100
+X-Failed-Recipients: navpreet.abstain@gmail.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@host33.theukhost.net>
+To: info@gs1oman.com
+References: <YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o@gs1oman.com>
+Content-Type: multipart/report; report-type=delivery-status; boundary=1690806638-eximdsn-146431097
+MIME-Version: 1.0
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1qQS2o-007yNE-2d@host33.theukhost.net>
+Date: Mon, 31 Jul 2023 13:30:38 +0100
+
+--1690806638-eximdsn-146431097
+Content-type: text/plain; charset=us-ascii
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  navpreet.abstain@gmail.com
+    host gmail-smtp-in.l.google.com [64.233.167.26]
+    SMTP error from remote mail server after end of data:
+    550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+    550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+    550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+    550-5.7.26 the message has been blocked. Please visit
+    550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+    550 5.7.26 information. a17-20020a5d53d1000000b00317671e4280si2663240wrw.234 - gsmtp
+
+--1690806638-eximdsn-146431097
+Content-type: message/delivery-status
+
+Reporting-MTA: dns; host33.theukhost.net
+
+Action: failed
+Final-Recipient: rfc822;navpreet.abstain@gmail.com
+Status: 5.0.0
+Remote-MTA: dns; gmail-smtp-in.l.google.com
+Diagnostic-Code: smtp; 550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+ 550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+ 550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+ 550-5.7.26 the message has been blocked. Please visit
+ 550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+ 550 5.7.26 information. a17-20020a5d53d1000000b00317671e4280si2663240wrw.234 - gsmtp
+
+--1690806638-eximdsn-146431097
+Content-type: message/rfc822
+
+Return-path: <info@gs1oman.com>
+Received: from [109.203.124.234] (port=41178 helo=gs1oman.com)
+	by host33.theukhost.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <info@gs1oman.com>)
+	id 1qQS2o-007yN7-2V
+	for navpreet.abstain@gmail.com;
+	Mon, 31 Jul 2023 13:30:38 +0100
+Date: Mon, 31 Jul 2023 13:30:37 +0100
+To: navpreet.abstain@gmail.com
+From: Barcode <info@gs1oman.com>
+Subject: Barcode:New Registration
+Message-ID: <YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o@gs1oman.com>
+X-Mailer: PHPMailer 6.6.0 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o"
+Content-Transfer-Encoding: 8bit
+
+This is a multi-part message in MIME format.
+
+--b1_YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o
+Content-Type: text/plain; charset=us-ascii
+
+This is the body in plain text for non-HTML mail clients
+
+--b1_YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o
+Content-Type: text/html; charset=us-ascii
+
+testing mail
+
+
+--b1_YRAX6hX2Q3NTleFNv3sIXjsqA5OHroqvdsEw1M2R2o--
+
+
+--1690806638-eximdsn-146431097--

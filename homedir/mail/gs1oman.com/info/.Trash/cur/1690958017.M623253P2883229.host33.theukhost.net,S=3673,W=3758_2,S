@@ -1,0 +1,85 @@
+Return-Path: <>
+Delivered-To: info@gs1oman.com
+Received: from host33.theukhost.net
+	by host33.theukhost.net with LMTP
+	id uLrqJMH4yWSd/isAHKgXzA
+	(envelope-from <>)
+	for <info@gs1oman.com>; Wed, 02 Aug 2023 07:33:37 +0100
+Return-path: <>
+Envelope-to: info@gs1oman.com
+Delivery-date: Wed, 02 Aug 2023 07:33:37 +0100
+Received: from mailnull by host33.theukhost.net with local (Exim 4.96)
+	id 1qR5QP-00C63m-1c
+	for info@gs1oman.com;
+	Wed, 02 Aug 2023 07:33:37 +0100
+X-Failed-Recipients: prabikrishna@gmail.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@host33.theukhost.net>
+To: info@gs1oman.com
+References: <rATqZ86W2gqtaF2iTP1KEdf8pQRBC5FQctcBSEUsI3k@gs1oman.com>
+Content-Type: multipart/report; report-type=delivery-status; boundary=1690958017-eximdsn-1958153427
+MIME-Version: 1.0
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1qR5QP-00C63m-1c@host33.theukhost.net>
+Date: Wed, 02 Aug 2023 07:33:37 +0100
+
+--1690958017-eximdsn-1958153427
+Content-type: text/plain; charset=us-ascii
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  prabikrishna@gmail.com
+    host gmail-smtp-in.l.google.com [108.177.15.26]
+    SMTP error from remote mail server after end of data:
+    550-5.7.26 This mail is unauthenticated, which poses a security risk to the
+    550-5.7.26 sender and Gmail users, and has been blocked. The sender must
+    550-5.7.26 authenticate with at least one of SPF or DKIM. For this message,
+    550-5.7.26 DKIM checks did not pass and SPF check for [gs1oman.com] did not
+    550-5.7.26 pass with ip: [109.203.124.234]. The sender should visit
+    550-5.7.26  https://support.google.com/mail/answer/81126#authentication for
+    550 5.7.26 instructions on setting up authentication. t2-20020a5d42c2000000b003176f0e5f3dsi6761707wrr.762 - gsmtp
+
+--1690958017-eximdsn-1958153427
+Content-type: message/delivery-status
+
+Reporting-MTA: dns; host33.theukhost.net
+
+Action: failed
+Final-Recipient: rfc822;prabikrishna@gmail.com
+Status: 5.0.0
+Remote-MTA: dns; gmail-smtp-in.l.google.com
+Diagnostic-Code: smtp; 550-5.7.26 This mail is unauthenticated, which poses a security risk to the
+ 550-5.7.26 sender and Gmail users, and has been blocked. The sender must
+ 550-5.7.26 authenticate with at least one of SPF or DKIM. For this message,
+ 550-5.7.26 DKIM checks did not pass and SPF check for [gs1oman.com] did not
+ 550-5.7.26 pass with ip: [109.203.124.234]. The sender should visit
+ 550-5.7.26  https://support.google.com/mail/answer/81126#authentication for
+ 550 5.7.26 instructions on setting up authentication. t2-20020a5d42c2000000b003176f0e5f3dsi6761707wrr.762 - gsmtp
+
+--1690958017-eximdsn-1958153427
+Content-type: text/rfc822-headers
+
+Return-path: <info@gs1oman.com>
+Received: from [109.203.124.234] (port=47960 helo=gs1oman.com)
+	by host33.theukhost.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96)
+	(envelope-from <info@gs1oman.com>)
+	id 1qR5QO-00C63Z-2M;
+	Wed, 02 Aug 2023 07:33:36 +0100
+Date: Wed, 2 Aug 2023 07:33:36 +0100
+To: prabikrishna@gmail.com, info@gs1oman.com
+From: Barcode <info@gs1oman.com>
+Subject: New Order
+Message-ID: <rATqZ86W2gqtaF2iTP1KEdf8pQRBC5FQctcBSEUsI3k@gs1oman.com>
+X-Mailer: PHPMailer 6.6.0 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="b1_rATqZ86W2gqtaF2iTP1KEdf8pQRBC5FQctcBSEUsI3k"
+Content-Transfer-Encoding: 8bit
+X-Exim-DSN-Information: Due to administrative limits only headers are returned
+
+
+--1690958017-eximdsn-1958153427--

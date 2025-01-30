@@ -1,0 +1,45 @@
+Return-Path: <info@gs1oman.com>
+Delivered-To: info@gs1oman.com
+Received: from host33.theukhost.net
+	by host33.theukhost.net with LMTP
+	id mCytKWAHymSNXywAHKgXzA
+	(envelope-from <info@gs1oman.com>)
+	for <info@gs1oman.com>; Wed, 02 Aug 2023 08:36:00 +0100
+Return-path: <info@gs1oman.com>
+Envelope-to: info@gs1oman.com
+Delivery-date: Wed, 02 Aug 2023 08:36:00 +0100
+Received: from [37.41.87.147] (port=58428 helo=DESKTOPBC0820C)
+	by host33.theukhost.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <info@gs1oman.com>)
+	id 1qR6Om-00CCXF-1Q
+	for info@gs1oman.com;
+	Wed, 02 Aug 2023 08:36:00 +0100
+From: "Microsoft Outlook" <info@gs1oman.com>
+Sender: "Microsoft Outlook" <info@gs1oman.com>
+To: <info@gs1oman.com>
+Subject: Microsoft Outlook Test Message
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0078_01D9C535.81A6C870"
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0078_01D9C535.81A6C870
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+This is an email message sent automatically by Microsoft Outlook while =
+testing the settings for your account.
+
+------=_NextPart_000_0078_01D9C535.81A6C870
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>This is an email message sent automatically by Microsoft =
+Outlook while testing the settings for your account.
+</p></body></html>
+------=_NextPart_000_0078_01D9C535.81A6C870--
+

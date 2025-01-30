@@ -1,0 +1,544 @@
+AWSTATS DATA FILE 7.8 (build 20200416)
+# If you remove this file, all statistics for date 202207 will be lost/reset.
+# Last config file used to build this data file was /home/gs1omancom/tmp/awstats/ssl/awstats.gs1oman.com.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 28
+POS_GENERAL 2014                
+POS_TIME 2691                
+POS_VISITOR 10211               
+POS_DAY 13922               
+POS_DOMAIN 3282                
+POS_LOGIN 3526                
+POS_ROBOT 3681                
+POS_WORMS 4016                
+POS_EMAILSENDER 4147                
+POS_EMAILRECEIVER 4290                
+POS_SESSION 14031               
+POS_SIDER 14211               
+POS_FILETYPES 4425                
+POS_DOWNLOADS 4614                
+POS_OS 4881                
+POS_BROWSER 5125                
+POS_SCREENSIZE 5468                
+POS_UNKNOWNREFERER 5542                
+POS_UNKNOWNREFERERBROWSER 5692                
+POS_ORIGIN 5837                
+POS_SEREFERRALS 5972                
+POS_PAGEREFS 6126                
+POS_SEARCHWORDS 6274                
+POS_KEYWORDS 6426                
+POS_MISC 2355                
+POS_ERRORS 6485                
+POS_CLUSTER 3382                
+POS_SIDER_404 6614                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20220801002458 51 9140 8421228415955
+FirstTime 20220730084539
+LastTime 20220731232631
+LastUpdate 20220801133300 51 0 50 0 0
+TotalVisits 50                  
+TotalUnique 43                  
+MonthHostsKnown 0                   
+MonthHostsUnknown 121                 
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+FlashSupport 0 0 0
+TotalMisc 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+JavascriptDisabled 0 0 0
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+DirectorSupport 0 0 0
+PDFSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 0 3 12407 6 7 52
+1 4 10 179739 0 1 0
+2 61 76 504470 3 7 174149
+3 0 0 0 1 3 0
+4 1 1 0 9 9 0
+5 0 0 0 12 12 10738
+6 3 7 99041 0 1 0
+7 5 9 92296 3 4 0
+8 6 14 197459 1 2 130
+9 5 13 188353 2 2 0
+10 7 11 117722 16 20 96246
+11 0 0 0 0 0 0
+12 0 0 0 0 0 0
+13 0 0 0 2 2 0
+14 2 2 10738 62 64 1872
+15 16 57 3775680 22 25 3475
+16 0 0 0 0 0 0
+17 0 0 0 0 0 0
+18 3 3 16107 12 18 0
+19 1 1 5369 15 17 5405
+20 0 0 0 4 5 0
+21 2 2 10738 0 2 0
+22 4 4 21476 1 10 0
+23 3 3 16107 10 16 0
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 25 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 2
+us 119 208 5075247
+eu 4 8 172455
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 25 first Hits must be first (order not required for others)
+BEGIN_ROBOT 5
+(firefox/)([0-9]\.|[0-1][0]\.) 8 101615 20220731101446 0
+feed 6 168780 20220731101502 0
+Go\-http\-client/ 1 5369 20220731053645 0
+AhrefsBot/ 1 5369 20220730194537 0
+no_user_agent 1 5369 20220731052634 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 7
+css 20 442903 0 0
+js 44 3087079 0 0
+txt 3 12407 0 0
+ttf 1 161796 0 0
+html 48 239631 0 0
+php 74 124161 0 0
+png 26 1179725 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 3
+/.well-known/pki-validation/2686EF356634F40918A89EEFA63CD184.txt 1 0 64
+/.well-known/pki-validation/96697E7585AFC3015F0AFC6B7CE3406F.txt 1 0 64
+/.well-known/pki-validation/EB399B965A0EB4833DBA1E045267D25A.txt 1 0 12279
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS ID - Hits - Pages 12
+symbian 4 1
+android 5 1
+androidics 1 1
+androidjellybean 1 1
+ios_iphone 17 9
+macosx13 1 1
+androidoreo 12 6
+androidkitkat 1 1
+linuxubuntu 8 8
+Unknown 4 1
+win10 159 92
+macosx15 3 1
+END_OS
+
+# Browser ID - Hits - Pages
+BEGIN_BROWSER 16
+chrome103.0.0.0 95 30
+android 3 3
+firefox28.0 4 4
+chrome78.0.3904.108 2 2
+safari 3 1
+chrome74.0.3729.169 1 1
+chrome67.0.3396.99 61 53
+nokia 4 1
+safari15.6 2 2
+firefox103.0 2 2
+chrome61.0.3163.128 12 6
+chrome94.0.4606.61 7 7
+firefox72.0 2 2
+chrome91.0.4472.114 2 2
+Unknown 4 1
+safari15.5 12 6
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 2
+COMODO_DCV 20220731002503
+WhatsApp/2.22.15.74_A 20220731064844
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 2
+COMODO_DCV 20220731002503
+WhatsApp/2.22.15.74_A 20220731064844
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 31 34
+From1 0 0
+From2 5 5
+From3 0 0
+From4 87 177
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+baidu 5 5
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 25 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 0
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 25 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 5
+401 1 52
+301 1 234
+302 1 3205
+500 1 130
+404 198 1944
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referrer
+BEGIN_SIDER_404 135
+/images/Upload/logo/footer-logo.png 1 https://gs1oman.com/admin/registration/show.php
+/8.php 1 -
+/wp/wp-admin/setup-config.php 1 -
+/wp-content/ALFA_DATA/alfacgiapi/perl.alfa 1 www.google.com
+//2019/wp-includes/wlwmanifest.xml 2 -
+/administrator/help/en-GB/toc.json 2 -
+/blog/wp-admin/setup-config.php 1 -
+/2.php 1 -
+//web/wp-includes/wlwmanifest.xml 2 -
+/admin/view/javascript/common.js 2 -
+/bc 1 http://gs1oman.com/bc
+//core/.env 4 -
+/sitemap 1 -
+/.env/config 1 -
+/xleet-shell.php 1 -
+/g.php 1 -
+//wp/wp-includes/wlwmanifest.xml 2 -
+/w.php 1 -
+/new 2 -
+/9.php 1 -
+//site/wp-includes/wlwmanifest.xml 2 -
+/u.php 1 -
+/k.php 1 -
+/MARIJUANA.php 1 -
+/backup 1 http://gs1oman.com/backup
+/a.php 1 -
+/ads.txt 3 http://gs1oman.com/ads.txt
+/images/editor/separator.gif 2 -
+/c.php 1 -
+/misc/ajax.js 2 -
+/.env/.env 2 -
+//blog/wp-includes/wlwmanifest.xml 2 -
+//wp1/wp-includes/wlwmanifest.xml 2 -
+/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php 10 -
+//2018/wp-includes/wlwmanifest.xml 1 -
+/plugins/system/debug/debug.xml 2 -
+/admin/img/profile-bg.jpg 1 https://gs1oman.com/admin/css/main.css
+/media-admin.php 1 -
+/sitemap.txt 1 -
+/wp-includes/radio.php 1 -
+/core/.env 2 -
+/fckeditor/editor/filemanager/connectors/php/upload.php 1 -
+/wp-includes/wp-class.php 1 -
+/wikindex.php 1 -
+//xmlrpc.php 2 -
+/wp-includes/fw.php 1 -
+/dev 1 -
+/js/header-rollup-554.js 2 -
+/wp-admin/radio.php 1 -
+/o.php 1 -
+/0.php 1 -
+//news/wp-includes/wlwmanifest.xml 1 -
+/6.php 1 -
+/env/config 1 -
+/wp-admin/includes/class-wp-media-list-data.php 1 -
+/2index.php 1 -
+/xleet.php 1 -
+/m.php 1 -
+/ups.php 1 -
+//wp-includes/ID3/license.txt 1 -
+/administrator/language/en-GB/install.xml 2 -
+/site/wp-admin/setup-config.php 1 -
+/sym.php 1 -
+/10.php 1 -
+/p.php 1 -
+/wp-admin/fw.php 1 -
+/h.php 1 -
+/core/ 4 -
+/admin/includes/general.js 2 -
+//feed/ 1 -
+/old 2 -
+/404.php 1 -
+/sym403.php 1 -
+//sito/wp-includes/wlwmanifest.xml 1 -
+/b.php 1 -
+/administrator/ 2 -
+/home 1 http://gs1oman.com/home
+/e.php 1 -
+/3.php 1 -
+/.env 11 -
+/radio.php 1 -
+/wp-admin/setup-config.php 1 -
+/wordpress 2 -
+/doc.php 1 -
+/robots.txt 8 -
+//wp2/wp-includes/wlwmanifest.xml 1 -
+/z.php 1 -
+/4.php 1 -
+/y.php 1 -
+/5.php 1 -
+/alfacgiapi/perl.alfa 1 www.google.com
+/x.php 1 -
+/main 2 -
+//website/wp-includes/wlwmanifest.xml 1 -
+/l.php 1 -
+/wp-admin/css/ 1 binance.com
+/wp 2 -
+/images/Upload/logo/fav.png 1 https://gs1oman.com/admin/index.php
+/s.php 1 -
+/wp-content/alfacgiapi/perl.alfa 1 www.google.com
+/1index.php 1 -
+/f.php 1 -
+/symlink.php 1 -
+/bk 1 http://gs1oman.com/bk
+/wp-content/fw.php 1 -
+/ALFA_DATA/alfacgiapi/perl.alfa 1 www.google.com
+/q.php 1 -
+/t.php 1 -
+/r.php 1 -
+/7.php 1 -
+/i.php 1 -
+/1.php 1 -
+/wp-includes/js/jquery/jquery.js 2 -
+/cms 1 -
+//2020/wp-includes/wlwmanifest.xml 1 -
+/blog 1 -
+//wordpress/wp-includes/wlwmanifest.xml 2 -
+/v.php 1 -
+/humans.txt 1 http://gs1oman.com/humans.txt
+//test/wp-includes/wlwmanifest.xml 2 -
+/.well-known/ 1 binance.com
+/test/wp-admin/setup-config.php 1 -
+//shop/wp-includes/wlwmanifest.xml 2 -
+/wordpress/wp-admin/setup-config.php 1 -
+/fw.php 1 -
+/d.php 1 -
+//wp-includes/wlwmanifest.xml 1 -
+/test 1 -
+/n.php 1 -
+/j.php 1 -
+//media/wp-includes/wlwmanifest.xml 1 -
+//cms/wp-includes/wlwmanifest.xml 2 -
+/wp-content/radio.php 1 -
+//2021/wp-includes/wlwmanifest.xml 1 -
+/vendor/phpunit/phpunit/build.xml 2 -
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 25 first Hits must be first (order not required for others)
+BEGIN_VISITOR 121
+172.70.90.43 22 22 25981 20220731022242
+172.70.85.241 19 19 36025 20220731101411
+172.70.142.97 15 15 18954 20220731022825
+162.158.163.152 13 13 42217 20220730154007
+172.70.90.7 5 5 26150 20220731214036
+172.70.218.133 3 3 11699 20220730090818
+172.70.162.131 3 3 16155 20220731224645
+172.71.94.115 2 2 6403 20220731071057
+172.70.85.245 2 2 10738 20220731101444
+172.70.134.167 2 2 10738 20220730153121
+172.70.250.33 2 2 10738 20220731181725
+172.70.250.221 2 2 10738 20220731181726
+172.70.85.195 2 2 10738 20220731101412
+172.70.206.203 2 2 10738 20220731013433
+172.69.22.17 1 1 0 20220731022207
+172.69.134.71 1 1 0 20220731022204
+108.162.221.117 1 1 5369 20220731020932
+141.101.99.154 1 1 5369 20220731020932
+172.71.94.33 1 2 6919 20220731064844
+162.158.91.196 1 1 5369 20220731232625
+172.70.242.213 1 1 5369 20220731232627
+162.158.146.235 1 1 5369 20220731101412
+172.69.33.27 1 1 0 20220731013720
+141.101.98.241 1 2 6919 20220730225153
+162.158.159.69 1 1 5369 20220731101412
+172.70.218.45 0 1 1550 
+162.158.163.58 0 1 643 
+162.158.162.7 0 1 57116 
+172.71.94.53 0 1 77903 
+172.69.69.186 0 1 77903 
+162.158.162.231 0 1 51465 
+172.70.206.193 0 1 1550 
+172.70.162.201 0 1 1550 
+162.158.89.242 0 1 77903 
+172.69.70.227 0 1 1118 
+162.158.163.182 0 3 10233 
+172.69.33.237 0 1 1550 
+162.158.162.111 0 1 1347 
+162.158.92.195 0 1 1550 
+172.70.147.73 0 2 155806 
+162.158.159.99 0 1 1118 
+162.158.162.213 0 2 1095710 
+172.70.219.8 0 1 2363 
+172.69.79.149 0 1 64 
+162.158.222.225 1 1 5369 20220730224158
+172.71.98.39 0 1 2363 
+162.158.91.134 0 1 2363 
+172.70.92.201 1 1 5393 20220730085124
+162.158.91.198 1 1 5369 20220731021130
+162.158.162.115 0 1 6022 
+172.70.162.39 0 2 2236 
+162.158.162.5 0 1 2093 
+172.70.242.89 1 1 5369 20220731020756
+172.70.142.139 0 1 2363 
+172.70.218.205 0 1 77903 
+172.68.110.165 1 1 0 20220731040510
+172.71.102.101 1 1 961 20220731070814
+141.101.98.193 0 1 2363 
+162.158.163.178 0 1 666188 
+172.70.206.41 0 1 2363 
+162.158.163.228 0 1 155758 
+172.70.188.167 0 1 1118 
+172.70.90.249 0 1 2363 
+172.70.122.41 1 1 5369 20220731192027
+172.69.33.23 0 1 2363 
+162.158.162.211 0 1 3748 
+141.101.98.133 0 2 155806 
+162.158.163.38 0 1 104149 
+172.70.142.179 0 1 1550 
+172.70.219.24 0 1 1118 
+162.158.163.176 0 2 59823 
+172.70.206.153 0 1 77903 
+172.70.147.27 0 2 4726 
+162.158.162.251 0 2 3250 
+162.158.162.223 0 1 6729 
+162.158.163.184 0 1 567638 
+172.70.85.79 0 1 2363 
+172.70.91.132 0 1 1550 
+172.70.85.9 0 1 1118 
+172.71.94.207 0 1 1118 
+162.158.163.226 0 1 86926 
+172.69.79.177 0 1 12279 
+172.70.147.77 0 1 1118 
+162.158.162.11 0 2 78603 
+162.158.162.67 0 1 78635 
+162.158.162.161 0 2 15656 
+162.158.162.141 0 1 101939 
+172.70.142.23 0 1 77903 
+172.69.79.217 0 1 64 
+172.70.147.183 0 2 3100 
+162.158.162.205 0 1 81905 
+172.70.91.130 0 2 77903 
+162.158.163.218 0 1 19503 
+162.158.162.97 0 1 31764 
+172.70.85.187 0 1 77903 
+162.158.162.181 0 1 23129 
+162.158.162.221 0 1 4720 
+172.70.162.143 1 1 5393 20220730090415
+162.158.159.19 1 1 5393 20220730084539
+108.162.246.220 1 1 5369 20220731101412
+162.158.90.185 1 1 5369 20220731232631
+162.158.162.95 0 1 43485 
+141.101.76.25 1 1 963 20220731070923
+162.158.162.209 0 1 1963 
+172.70.147.57 1 1 5369 20220731070546
+172.69.33.91 0 1 77903 
+141.101.76.9 1 1 1035 20220731070952
+162.158.162.45 0 1 14292 
+162.158.163.156 0 1 5044 
+172.69.33.143 1 1 5369 20220731013332
+162.158.162.203 0 1 2751 
+172.70.162.65 0 1 2363 
+172.68.102.219 1 1 5369 20220730145302
+172.71.98.153 1 1 5369 20220731064808
+172.70.90.127 0 1 1118 
+162.158.162.129 0 1 172565 
+162.158.163.204 0 1 5548 
+172.70.162.35 0 1 77903 
+162.158.163.210 1 1 161796 20220730153332
+172.70.85.37 0 1 1550 
+162.158.163.206 0 1 589 
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 2
+20220730 32 89 4188337 14
+20220731 91 127 1059365 36
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 4
+5mn-15mn 3
+2mn-5mn 1
+0s-30s 45
+15mn-30mn 1
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 25 first Pages must be first (order not required for others)
+BEGIN_SIDER 10
+/index.php 60 80617 6 11
+/ 48 239631 42 37
+/admin/product/show.php 4 15060 0 0
+/admin/product/edit.php 3 11291 0 0
+/admin/login.php 2 1483 1 0
+/admin/index.php 2 6416 0 1
+/thanks.php 1 1327 0 0
+/admin/fonts/icomoonf33b.ttf 1 161796 1 1
+/admin/product/add.php 1 3780 0 0
+/admin/registration/show.php 1 4187 0 0
+END_SIDER

@@ -1,0 +1,189 @@
+Return-Path: <>
+Delivered-To: info@gs1oman.com
+Received: from host33.theukhost.net
+	by host33.theukhost.net with LMTP
+	id 0JftEzrKDWORhTUAHKgXzA
+	(envelope-from <>)
+	for <info@gs1oman.com>; Tue, 30 Aug 2022 09:28:42 +0100
+Return-path: <>
+Envelope-to: info@gs1oman.com
+Delivery-date: Tue, 30 Aug 2022 09:28:42 +0100
+Received: from mailnull by host33.theukhost.net with local (Exim 4.95)
+	id 1oSwby-00EiiE-6X
+	for info@gs1oman.com;
+	Tue, 30 Aug 2022 09:28:42 +0100
+X-Failed-Recipients: negiharender.websutility@gmail.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@host33.theukhost.net>
+To: info@gs1oman.com
+References: <p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU@gs1oman.com>
+Content-Type: multipart/report; report-type=delivery-status; boundary=1661848122-eximdsn-1076260943
+MIME-Version: 1.0
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1oSwby-00EiiE-6X@host33.theukhost.net>
+Date: Tue, 30 Aug 2022 09:28:42 +0100
+
+--1661848122-eximdsn-1076260943
+Content-type: text/plain; charset=us-ascii
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  negiharender.websutility@gmail.com
+    host gmail-smtp-in.l.google.com [142.250.96.27]
+    SMTP error from remote mail server after end of data:
+    550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+    550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+    550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+    550-5.7.26 the message has been blocked. Please visit
+    550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+    550 5.7.26 information. 80-20020a250b53000000b0068f7573128fsi5319218ybl.110 - gsmtp
+
+--1661848122-eximdsn-1076260943
+Content-type: message/delivery-status
+
+Reporting-MTA: dns; host33.theukhost.net
+
+Action: failed
+Final-Recipient: rfc822;negiharender.websutility@gmail.com
+Status: 5.0.0
+Remote-MTA: dns; gmail-smtp-in.l.google.com
+Diagnostic-Code: smtp; 550-5.7.26 The MAIL FROM domain [gs1oman.com] has an SPF record with a hard fail
+ 550-5.7.26 policy (-all) but it fails to pass SPF checks with the ip:
+ 550-5.7.26 [109.203.124.234]. To best protect our users from spam and phishing,
+ 550-5.7.26 the message has been blocked. Please visit
+ 550-5.7.26  https://support.google.com/mail/answer/81126#authentication for more
+ 550 5.7.26 information. 80-20020a250b53000000b0068f7573128fsi5319218ybl.110 - gsmtp
+
+--1661848122-eximdsn-1076260943
+Content-type: message/rfc822
+
+Return-path: <info@gs1oman.com>
+Received: from [109.203.124.234] (port=39442 helo=gs1oman.com)
+	by host33.theukhost.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.95)
+	(envelope-from <info@gs1oman.com>)
+	id 1oSwbx-00Eii1-6F
+	for negiharender.websutility@gmail.com;
+	Tue, 30 Aug 2022 09:28:41 +0100
+Date: Tue, 30 Aug 2022 09:28:40 +0100
+To: negiharender.websutility@gmail.com
+From: forgetpassword <info@gs1oman.com>
+Subject: Barcode:Forget Password
+Message-ID: <p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU@gs1oman.com>
+X-Mailer: PHPMailer 6.6.0 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU"
+Content-Transfer-Encoding: 8bit
+
+This is a multi-part message in MIME format.
+
+--b1_p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU
+Content-Type: text/plain; charset=us-ascii
+
+This is the body in plain text for non-HTML mail clients
+
+--b1_p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Sets size and scale of the viewport. -->
+  <meta name="viewport" content="width=device-width" initial-scale="1">
+  <meta name="x-apple-disable-message-reformatting">
+  <title>MyGS1</title>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://gs1oman.com/email-temp/em-style.css">
+</head>
+<body bgcolor="#E8ECF1">
+
+  
+  <div style="display: none; max-height: 0px; overflow: hidden;">
+   
+  </div>
+
+ 
+  <div style="display: none; max-height: 0px; overflow: hidden;">&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;</div>
+
+  <table bgcolor="#E8ECF1" role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" class="document">
+    <tr>
+      <td valign="top">
+
+        <!-- Main -->
+        <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="500" class="container">
+          <tr>
+            <td bgcolor="#ffffff">
+              <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+                <tr>
+                  <td style="padding: 20px;">
+                    <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+
+                       <tr>
+                        <td style="padding-bottom: 15px; font-family: "Source Sans Pro", sans-serif; font-size: 20px; line-height: 30px; color: #1B2733;">
+                         <img src="https://gs1oman.com/images/Upload/logo/logo-oman.png" alt="Logo" style="width:100px; height:60px;">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td style="padding-bottom: 15px; font-family: "Source Sans Pro", sans-serif; font-size: 26px; line-height: 34px; color: #164da1; font-weight:800;">
+                            <span style="color:#000000">We have received your change password request.</span>
+                     
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td style="padding-bottom: 15px; font-family: "Source Sans Pro", sans-serif; font-size: 18px; line-height: 24px; color: #1B2733; font-weight:550; text-decoration: none;">
+                       We’ve reserved your space — once your password will be updated by <a href="https://gs1oman.com/"  target="_blank" style="text-decoration:none;">"MyGS1"</a>. Click on the link & set the new password.
+
+                       
+
+                      
+
+                                     
+
+                                    
+
+                        </td>
+                      </tr>
+                      <br>
+                      <tr>
+                        <td align="left">
+                          <table role="presentation" aria-hidden="true" cellspacing="0" cellpadding="0" border="0" align="left" class="container">
+                            <tr>
+                           
+                              <td style="border-radius:3px; padding:7px;" bgcolor="#42ba96">
+                             
+                              <a href='https://gs1oman.com/admin/reset-password.php?key=negiharender.websutility@gmail.com&&token=d2e0bcd6f8dbf64cf0d00fb0bb3ea9c58873' class=''  target='_blank' style='text-decoration:none;'' >Set New Password</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+       
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
+
+--b1_p9ZD4Olcw9l2bwj1A34TGOWeBm1migFryIaW0HyqrU--
+
+
+--1661848122-eximdsn-1076260943--
