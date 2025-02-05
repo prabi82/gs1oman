@@ -151,62 +151,40 @@
 
 
     function add() {
-        // Get initial values
+        // Get registration fee (this is fixed)
         var registration_fee = parseFloat($("#registration_fee").val()) || 0;
-        var gtins_annual_fee = parseFloat($("#gtins_annual_fee").val()) || 0;
-        var gln_price = parseFloat($("#gln_price").val()) || 0;
-        var sscc_price = parseFloat($("#sscc_price").val()) || 0;
         
-        // Initialize totals
-        var annual_total_price = 0;
-        var total_price = registration_fee;
+        // Initialize annual total
+        var annual_total = 0;
         
-        // Calculate GTINS annual fee if checked
+        // Check each optional service
         if($("#gtins_annual_fee").is(":checked")) {
-            annual_total_price += gtins_annual_fee;
-            total_price += gtins_annual_fee;
-            $('input[name="gtins_annual_fee"]').val(gtins_annual_fee);
-        } else {
-            $('input[name="gtins_annual_fee"]').val(0);
+            annual_total += parseFloat($("#gtins_annual_fee").val()) || 0;
         }
         
-        // Calculate GLN price if checked
         if($("#gln_price").is(":checked")) {
-            annual_total_price += gln_price;
-            total_price += gln_price;
-            $('input[name="gln_price"]').val(gln_price);
-        } else {
-            $('input[name="gln_price"]').val(0);
+            annual_total += parseFloat($("#gln_price").val()) || 0;
         }
         
-        // Calculate SSCC price if checked
         if($("#sscc_price").is(":checked")) {
-            annual_total_price += sscc_price;
-            total_price += sscc_price;
-            $('input[name="sscc_price"]').val(sscc_price);
-        } else {
-            $('input[name="sscc_price"]').val(0);
+            annual_total += parseFloat($("#sscc_price").val()) || 0;
         }
         
-        // Set the annual subscription fee
-        $("#annual_subscription_fee").val(annual_total_price);
-        $('input[name="annual_subscription_fee"]').val(annual_total_price);
+        // Update annual subscription fee
+        $("#annual_subscription_fee").val(annual_total);
+        $("#annual_total_price").val(annual_total);
         
-        // Set the annual total price
-        $("#annual_total_price").val(annual_total_price);
-        $('input[name="annual_total_price"]').val(annual_total_price);
+        // Calculate total (registration fee + annual total)
+        var total = registration_fee + annual_total;
+        $("#total_price").val(total);
         
-        // Set the total price
-        $("#total_price").val(total_price);
-        $('input[name="total_price"]').val(total_price);
+        // Calculate VAT (5% of total)
+        var vat = total * 0.05;
+        $("#vat").text("OMR " + vat.toFixed(2));
         
-        // Calculate VAT
-        var vat = total_price * 0.05;
-        var totalWithVAT = total_price + vat;
-        
-        // Display VAT and total with VAT
-        $('#vat').text("OMR " + vat.toFixed(2));
-        $('#grand_total').text("OMR: " + totalWithVAT.toFixed(2));
+        // Calculate grand total
+        var grand_total = total + vat;
+        $("#grand_total").text("OMR " + grand_total.toFixed(2));
     }
     function calculateAndDisplayVatAndDiscount(vat) {
         // Calculate VAT including 5% tax

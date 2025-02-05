@@ -61,10 +61,32 @@ if ($product['sscc_annual_fee'] > 0) {
 $html .= '</table>
     </div>
 </div>
-<input type="hidden" name="product_name" value="'.$product['product_name'].'">
-<input type="hidden" id="registration_fee" value="'.$product['registration_fee'].'">
-<input type="hidden" id="annual_subscription_fee" value="0">
-<input type="hidden" id="total_price" value="'.$product['registration_fee'].'">';
+<div class="row fee_table mt-3">
+    <div class="col-md-4">
+        <label class="fw-bold">Registration Fee</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">OMR</span>
+            <input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0" value="'.$product['registration_fee'].'" readonly>
+        </div>
+        <span class="fw-bold text-danger">Valid till 31st Dec '.date("Y").'</span>
+    </div>
+    <div class="col-md-4">
+        <label class="fw-bold">Annual Subscription Fee</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">OMR</span>
+            <input type="hidden" name="annual_subscription_fee" id="annual_subscription_fee" value="0">
+            <input type="text" class="form-control mb-0" name="annual_total_price" id="annual_total_price" value="0" readonly>
+        </div>
+        <span class="fw-bold text-danger">Next renewal Jan '.date('Y', strtotime('+1 year')).'</span>
+    </div>
+    <div class="col-md-4">
+        <label class="fw-bold">Total Fee</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">OMR</span>
+            <input name="total_price" id="total_price" type="text" class="form-control mb-0" value="'.$product['registration_fee'].'" readonly>
+        </div>
+    </div>
+</div>';
 
 // Send the response
 echo $html; 
