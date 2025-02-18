@@ -242,206 +242,170 @@ unset($_SESSION['message']); ?>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
 <div class="table-container">
-<form method="post" action="bulk_delete.php">
-<div class="text-right mb-3">
-    <button type="submit" name="bulk_delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete selected records?');">
-        <i class="fa fa-trash"></i> Delete Selected
-    </button>
-</div>
+<form method="post" id="delete_form">
+    <div class="text-right mb-3">
+        <button type="button" id="delete_selected" class="btn btn-danger">
+            <i class="fa fa-trash"></i> Delete Selected
+        </button>
+    </div>
+    
+    <div class="row t-header">
+    <div class="col-md-2">
+    <div class="t-header">Manage Registration</div>
+    </div>
 
-<div class="row t-header">
-<div class="col-md-2">
-<div class="t-header">Manage Registration</div>
-</div>
+    <div class="col-md-7">
 
-<div class="col-md-7">
+    </div>
 
-</div>
+    </div>
 
-</div>
+    <div class="table-responsive">
+    <table id="basicExample" class="table custom-table">
+    <thead>
+    <tr>
+    <th style="width: 30px; text-align: center;">
+        <input type="checkbox" id="select_all" class="select-all-checkbox">
+    </th>
+    <th>SNO</th>
+    <th>NAME</th>
+    <th>COUNTRY</th>
+    <th>CR NUMBER</th>
+    <th>REGISTRATION DATE</th>
+    <th>FIRST USER</th>
+    <th>STATUS</th>
+    <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
 
-<div class="table-responsive">
-<table id="basicExample" class="table custom-table">
-<thead>
-<tr> 
-<th style="width: 30px; text-align: center;"><input type="checkbox" id="select_all" style="margin: 0;"></th>
-<th>Sno</th>
-<th>Name</th>
-<th>Country</th>
-<th>CR Number</th>
-<th>Registration Date</th>
-<th>First User</th>
-<th>Status</th>
-<th>Action</th> 
-</tr>
-</thead>
-<tbody>
+    <?php
 
-<?php
+    if(isset($_GET['search'])){
 
-if(isset($_GET['search'])){
+    $stype=$_GET['stype'];
+    $sdate1=$_GET['sdate1'];
+    $sdate2=$_GET['sdate2'];
+    $rfilter=$_GET['rfilter'];
 
-$stype=$_GET['stype'];
-$sdate1=$_GET['sdate1'];
-$sdate2=$_GET['sdate2'];
-$rfilter=$_GET['rfilter'];
+    //1st Condition
+    if(($stype!='') && ($sdate1=='') && ($sdate2=='')){
+        if($stype==0){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records</span>';
+        }
+        elseif($stype==1){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records</span>';
+        }
+        elseif($stype==2){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records</span>';
+        }
+        elseif($stype==3){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records</span>'; 
+        }
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `status`='$stype'") or die(mysqli_error());
+    }
+    //2nd Condition
+    elseif(($sdate1!='') && ($sdate2!='') &&($stype=='')){
+        echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">'.$sdate1.' AND '.$sdate2.'</span>';
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `record_date` BETWEEN '$sdate1' AND '$sdate2'") or die(mysqli_error());
+    }
+    //3rd Condition
+    elseif(($rfilter=="All")){
+        echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">All Record</span>';
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl`") or die(mysqli_error());
+    }
+    //4th Condition
+    elseif(($rfilter==date('M-Y'))){
+        echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff"> '.$rfilter.'</span>';
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE DATE_FORMAT(reg_date, '%M-%Y') = '$rfilter'") or die(mysqli_error());
+    }
+    //5th Condition
+    elseif(($rfilter=="6months")){
+        echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">Last 6 Months Records</span>';
+        $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 6 MONTH ") or die(mysqli_error());
+    }
+    //6th Condition
+    elseif(($rfilter=="1year")){
+        echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">'.$rfilter.'</span>';
+        $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 1 YEAR ") or die(mysqli_error());
+    }
+    //7th Condition
+    elseif(($stype!='') && ($sdate1!='') && ($sdate2!='')){
+        if($stype==0){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records</span>';
+        }
+        elseif($stype==1){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records</span>';
+        }
+        elseif($stype==2){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records</span>';
+        }
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `status`='$stype' AND `record_date` BETWEEN '$sdate1' AND '$sdate2'") or die(mysqli_error());
+    }
+    //8th Condition
+    elseif( ($stype!='') && ($rfilter==date('M-Y')) ){
+        if($stype==0){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==1){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==2){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==3){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
+        }
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `up_month`= '".$rfilter."'  AND status='$stype'") or die(mysqli_error());
+    }
+    //9th Condition
+    elseif( ($stype!='') && ($rfilter=='6months') ){
+        if($stype==0){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==1){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==2){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==3){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
+        }
+        $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 6 MONTH AND status='$stype'") or die(mysqli_error());
+    }
+    //10th Condition
+    elseif( ($stype!='') && ($rfilter=='1year') ){
+        if($stype==0){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==1){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==2){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
+        }
+        elseif($stype==3){
+            echo '<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
+        }
+        $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 1 YEAR AND status='$stype'") or die(mysqli_error());
+    } 
 
-//1st Condiotion
-if(($stype!='') && ($sdate1=='') && ($sdate2=='')){
-if($stype==0){
-  echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records</span>';
-}
-elseif($stype==1){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records</span>';
-}
-elseif($stype==2){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records</span>';
-}
-elseif($stype==3){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records</span>'; 
-}
-
-
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `status`='$stype'") or die(mysqli_error());
-}
-
-//2nd Condiotion
-
-elseif(($sdate1!='') && ($sdate2!='') &&($stype=='')){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">'.$sdate1.' AND '.$sdate2.'</span>';
-
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `record_date` BETWEEN '$sdate1' AND '$sdate2'") or die(mysqli_error());
-}
-
-
-//3rd Condiotion
-elseif(($rfilter=="All")){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">All Record</span>';
-
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl`") or die(mysqli_error());
-}
-
-//4th Condiotion
-elseif(($rfilter==date('M-Y'))){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff"> '.$rfilter.'</span>';
-
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `up_month`= '".$rfilter."'") or die(mysqli_error());
-}
-
-//5th Condiotion
-elseif(($rfilter=="6months")){
-
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">Last 6 Months Records</span>';
-#echo "SELECT * FROM visa_data WHERE `upload_date` >= CURDATE() - INTERVAL 6 MONTH AND upload_type=1";
- $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 6 MONTH ") or die(mysqli_error());
- 
-}
-
-//6th Condiotion
-elseif(($rfilter=="1year")){
-
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#80bfff">'.$rfilter.'</span>';
-#echo "SELECT * FROM visa_data WHERE `upload_date` >= CURDATE() - INTERVAL 6 MONTH AND upload_type=1";
- $query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 1 YEAR ") or die(mysqli_error());
- 
-}
-
-//7th Condiotion
-elseif( ($stype!='') && ($sdate1!='') && ($sdate2!='') ){
-if($stype==0){
-  echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records</span>';
-}
-elseif($stype==1){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records</span>';
-}
-elseif($stype==2){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records</span>';
-}
-elseif($stype==3){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records</span>'; 
-}
-
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `record_date` BETWEEN '$sdate1' AND '$sdate2' AND status='$stype'") or die(mysqli_error());
-}
-
-
-//8th Condiotion
-elseif( ($stype!='') && ($rfilter==date('M-Y')) ){
-if($stype==0){
-  echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==1){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==2){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==3){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
-}
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl` WHERE `up_month`= '".$rfilter."'  AND status='$stype'") or die(mysqli_error());
-
-}
-
-//9th Condiotion
-elseif( ($stype!='') && ($rfilter=='6months') ){
-if($stype==0){
-  echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==1){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==2){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==3){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
-}
-
-$query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 6 MONTH AND status='$stype'") or die(mysqli_error());
-}
-
-//10th Condiotion
-elseif( ($stype!='') && ($rfilter=='1year') ){
-if($stype==0){
-  echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#FFCC00">All Pending Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==1){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#42ba96">All Approved Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==2){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#E85454">All Rejected Records &nbsp; '.$rfilter.'</span>';
-}
-elseif($stype==3){
-echo'<span class="badge" style="width:200px; margin-top:10px; margin-bottom:10px; font-size: 12px; background:#808080">All Disabled Records &nbsp; '.$rfilter.'</span>'; 
-}
-$query=mysqli_query($conn, "SELECT * FROM company_tbl WHERE `record_date` >= CURDATE() - INTERVAL 1 YEAR AND status='$stype'") or die(mysqli_error());
-
-}
-
-
-
-
-
-
-
-
-
-else{
-$query=mysqli_query($conn, "SELECT  * FROM `company_tbl`") or die(mysqli_error());
-}
-$row=mysqli_num_rows($query);
-if($row>0){
-$n=1;
-while($fetch=mysqli_fetch_array($query)){
-$query1=mysqli_query($conn, "SELECT * FROM `company_contacts_tbl` WHERE company_id='".$fetch['id']."'") or die(mysqli_error());
-			$fetch1=mysqli_fetch_array($query1);
-$status=$fetch['status'];
-$bid=$fetch['id'];
+    else{
+        $query=mysqli_query($conn, "SELECT  * FROM `company_tbl`") or die(mysqli_error());
+    }
+    $row=mysqli_num_rows($query);
+    if($row>0){
+        $n=1;
+        while($fetch=mysqli_fetch_array($query)){
+            $query1=mysqli_query($conn, "SELECT * FROM `company_contacts_tbl` WHERE company_id='".$fetch['id']."'") or die(mysqli_error());
+            $fetch1=mysqli_fetch_array($query1);
+            $status=$fetch['status'];
+            $bid=$fetch['id'];
 ?>
 
 <tr> 
-        <td style="text-align: center;"><input type="checkbox" name="delete_ids[]" value="<?php echo $fetch['id']; ?>" class="delete_checkbox"></td>
+        <td style="text-align: center;"><input type="checkbox" name="delete_checkbox[]" class="delete_checkbox" value="<?php echo $fetch['id']; ?>"></td>
 		<td><?php echo $n; $n++;?></td>
 	 
 		<td><?=$fetch['name']?></td>
@@ -483,47 +447,47 @@ echo"<span class='badge badge-light'>Disabled</span>";
  
 </tr>
 <?php
-			}
-		}else{
-			echo'
-			<tr>
-				<td colspan = "4"><center>Record Not Found</center></td>
-			</tr>';
-		}
-	}else{
-		$query=mysqli_query($conn, "SELECT * FROM `company_tbl`") or die(mysqli_error());
-		$n=1;
-		while($fetch=mysqli_fetch_array($query)){
+            }
+        }else{
+            echo'
+            <tr>
+                <td colspan = "4"><center>Record Not Found</center></td>
+            </tr>';
+        }
+    }else{
+        $query=mysqli_query($conn, "SELECT * FROM `company_tbl`") or die(mysqli_error());
+        $n=1;
+        while($fetch=mysqli_fetch_array($query)){
 
 
-		$query1=mysqli_query($conn, "SELECT * FROM `company_contacts_tbl` WHERE company_id='".$fetch['id']."'") or die(mysqli_error());
-		$user_count=mysqli_num_rows($query1);
-			$fetch1=mysqli_fetch_assoc($query1);
-			$status=$fetch['status'];
-			$bid=$fetch['id'];
-			$recdate=$fetch['record_date'];
-			//echo $recdate;
+        $query1=mysqli_query($conn, "SELECT * FROM `company_contacts_tbl` WHERE company_id='".$fetch['id']."'") or die(mysqli_error());
+        $user_count=mysqli_num_rows($query1);
+            $fetch1=mysqli_fetch_assoc($query1);
+            $status=$fetch['status'];
+            $bid=$fetch['id'];
+            $recdate=$fetch['record_date'];
+            //echo $recdate;
 ?>
-	<tr>
-		<td style="text-align: center;"><input type="checkbox" name="delete_ids[]" value="<?php echo $fetch['id']; ?>" class="delete_checkbox"></td>
-		<td><?php echo $n; $n++;?></td>
-	 
-		<td><?=$fetch['name']?></td>
-		<td><?=$fetch['country']?></td>
-		<td><?=$fetch['cr_number']?></td>
-		<td><?=$fetch['record_date']?></td>
-		<!--<td><?php echo $fetch['record_date']?></td>-->
-		<!--<td><?php $time_sting = strtotime($fetch['record_date']);
-					$date = date("d-M-Y", $time_sting);
-					echo $date;?>
-		</td>-->
-		<!--<td>test</td>-->
-		<td><?=$fetch1['first_name']?> &nbsp; <?=$fetch1['last_name']?></td>
+    <tr>
+        <td style="text-align: center;"><input type="checkbox" name="delete_checkbox[]" class="delete_checkbox" value="<?php echo $fetch['id']; ?>"></td>
+        <td><?php echo $n; $n++;?></td>
+     
+        <td><?=$fetch['name']?></td>
+        <td><?=$fetch['country']?></td>
+        <td><?=$fetch['cr_number']?></td>
+        <td><?=$fetch['record_date']?></td>
+        <!--<td><?php echo $fetch['record_date']?></td>-->
+        <!--<td><?php $time_sting = strtotime($fetch['record_date']);
+                    $date = date("d-M-Y", $time_sting);
+                    echo $date;?>
+        </td>-->
+        <!--<td>test</td>-->
+        <td><?=$fetch1['first_name']?> &nbsp; <?=$fetch1['last_name']?></td>
     <!--<td style="text-align:center ;"><a href="user_view.php?view_id=<?=$fetch['id']?>&page=REV"><span class='badge badge-info' style="font-size:12px;"><?=$user_count?></span></a> </td>-->
 
-		
-		
-		
+        
+        
+        
 
 <td>
 <?php
@@ -554,14 +518,14 @@ echo"<span class='badge badge-light'>Disabled</span>";
  
  
 </td>
-		 
-		  
-	</tr>
+         
+          
+    </tr>
 <?php
-		}
-	}
+        }
+    }
 ?>
- 	
+    
 </tbody>
 
 </table>
@@ -604,7 +568,7 @@ while($wo=mysqli_fetch_array($query_f))
 $query=mysqli_query($conn,$s) or die(mysqli_error($conn));
 if($query)
 {
-	
+    
 echo
 "<script>window.location='show.php?page=REV'</script>";
 $_SESSION['message']="Record Deleted Successfully";
@@ -669,17 +633,104 @@ $_SESSION['message']="Record Deleted Successfully";
   
 <script>
 $(document).ready(function(){
-    // Handle select all checkbox
-    $('#select_all').change(function(){
-        $('.delete_checkbox').prop('checked', $(this).prop('checked'));
+    // Destroy existing DataTable if it exists
+    if ($.fn.DataTable.isDataTable('#basicExample')) {
+        $('#basicExample').DataTable().destroy();
+    }
+    
+    // Initialize DataTable with pagination
+    var table = $('#basicExample').DataTable({
+        "pageLength": 10,
+        "pagingType": "simple_numbers",
+        "stateSave": true,
+        "destroy": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "columnDefs": [
+            {
+                "targets": 0, // First column (checkbox column)
+                "orderable": false, // Disable sorting
+                "searchable": false
+            }
+        ],
+        "language": {
+            "paginate": {
+                "previous": "Previous",
+                "next": "Next"
+            }
+        }
+    });
+    
+    // Handle select all checkbox - prevent sorting
+    $('#select_all').on('click', function(e) {
+        e.stopPropagation(); // Prevent the click from triggering sort
+        var isChecked = $(this).prop('checked');
+        // Only select checkboxes on the current page
+        var rows = table.rows({'page': 'current'}).nodes();
+        $('input[type="checkbox"]', rows).prop('checked', isChecked);
     });
     
     // Handle individual checkboxes
-    $(document).on('change', '.delete_checkbox', function(){
-        if($('.delete_checkbox:checked').length == $('.delete_checkbox').length){
-            $('#select_all').prop('checked', true);
-        } else {
-            $('#select_all').prop('checked', false);
+    $(document).on('change', '.delete_checkbox', function(e) {
+        e.stopPropagation(); // Prevent event bubbling
+        var currentPage = table.page();
+        var allCheckboxes = table.rows({'page': 'current'}).nodes().length;
+        var checkedCheckboxes = table.rows({'page': 'current'}).nodes().filter(function() {
+            return $('input[type="checkbox"]', this).prop('checked');
+        }).length;
+        
+        // Update select all checkbox based on current page only
+        $('#select_all').prop('checked', allCheckboxes === checkedCheckboxes);
+    });
+
+    // Ensure select all state is reset when changing pages
+    table.on('page.dt', function() {
+        $('#select_all').prop('checked', false);
+    });
+
+    // Handle delete button click
+    $('#delete_selected').on('click', function() {
+        var checkedBoxes = $('.delete_checkbox:checked');
+        
+        if (checkedBoxes.length === 0) {
+            alert('Please select at least one record to delete.');
+            return;
+        }
+        
+        if (confirm('Are you sure you want to delete the selected records?')) {
+            var selectedIds = [];
+            checkedBoxes.each(function() {
+                selectedIds.push($(this).val());
+            });
+            
+            $.ajax({
+                url: 'bulk_delete.php',
+                type: 'POST',
+                data: {
+                    delete_ids: selectedIds,
+                    bulk_delete: true
+                },
+                success: function(response) {
+                    try {
+                        var result = JSON.parse(response);
+                        if (result.success) {
+                            alert(result.message);
+                            window.location.reload();
+                        } else {
+                            alert('Error: ' + result.message);
+                        }
+                    } catch(e) {
+                        alert('Error processing the delete request');
+                        console.error(e);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert('Error processing the delete request');
+                    console.error(xhr.responseText);
+                }
+            });
         }
     });
 });

@@ -68,7 +68,7 @@ Manage User Product
 <li>
 <a class="dropdown-item">Manage Product</a>
 <ul class="dropdown-menu" aria-labelledby="tablesDropdown">
-    <li><a class="dropdown-item" href="<?php echo isset($admin_url) ? $admin_url : ''; ?>product/show.php?stype=&search=Filter">All</a></li>
+    <li><a class="dropdown-item" href="<?php echo isset($admin_url) ? $admin_url : ''; ?>product/common.php?page=PROT">All</a></li>
     <li><a class="dropdown-item" href="<?php echo isset($admin_url) ? $admin_url : ''; ?>product/common.php?stype=1&search=Filter&page=PROT">Approved</a></li>
     <li><a class="dropdown-item" href="<?php echo isset($admin_url) ? $admin_url : ''; ?>product/common.php?stype=0&search=Filter&page=PROT">Pending</a></li>
 </ul>

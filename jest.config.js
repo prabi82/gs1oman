@@ -1,9 +1,7 @@
-module.exports = {
+export default {
     transform: {},
-    moduleNameMapper: {
-        '^(\\.{1,2}/.*)\\.js$': '$1',
-    },
-    testEnvironment: 'node',
-    verbose: true,
-    testTimeout: 300000,
+    testEnvironment: "node",
+    moduleFileExtensions: ["js", "mjs"],
+    testMatch: ["**/tests/**/*.test.js"],
+    verbose: true
 }; 

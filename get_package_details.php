@@ -40,19 +40,28 @@ $html = '<div class="row mt-4">
                 <th>Price (OMR)</th>
             </tr>
             <tr>
-                <td><input type="checkbox" name="gtin" id="gtins_annual_fee" value="'.$product['gtins_annual_fee'].'" onchange="add()"></td>
+                <td>
+                    <input type="checkbox" name="gtins_annual_fee" id="gtins_annual_fee" class="product-checkbox" value="'.$product['gtins_annual_fee'].'" onchange="add()">
+                    <input type="hidden" name="gtins_annual_fee_input" id="gtins_annual_fee_input" value="0">
+                </td>
                 <td>Do you require GTIN?</td>
                 <td>'.$product['gtins_annual_fee'].'</td>
             </tr>
             <tr>
-                <td><input type="checkbox" name="gln" id="gln_price" value="'.$product['gln_annual_fee'].'" onchange="add()"></td>
+                <td>
+                    <input type="checkbox" name="gln_price" id="gln_price" class="product-checkbox" value="'.$product['gln_annual_fee'].'" onchange="add()">
+                    <input type="hidden" name="gln_price_input" id="gln_price_input" value="0">
+                </td>
                 <td>Do you require GLN?</td>
                 <td>'.$product['gln_annual_fee'].'</td>
             </tr>';
 
 if ($product['sscc_annual_fee'] > 0) {
     $html .= '<tr>
-        <td><input type="checkbox" name="sscc" id="sscc_price" value="'.$product['sscc_annual_fee'].'" onchange="add()"></td>
+        <td>
+            <input type="checkbox" name="sscc_price" id="sscc_price" class="product-checkbox" value="'.$product['sscc_annual_fee'].'" onchange="add()">
+            <input type="hidden" name="sscc_price_input" id="sscc_price_input" value="0">
+        </td>
         <td>Do you require SSCC?</td>
         <td>'.$product['sscc_annual_fee'].'</td>
     </tr>';
@@ -87,6 +96,86 @@ $html .= '</table>
         </div>
     </div>
 </div>';
+
+// Add JavaScript for price calculations
+$html .= '<script>
+// Define updatePrices in the global scope
+var updatePrices = function() {
+    console.log("updatePrices() called");
+    
+    // Get registration fee
+    const registrationFee = parseFloat($("#registration_fee").val()) || 0;
+    console.log("Registration Fee:", registrationFee);
+    
+    let annualFee = 0;
+    
+    // Get GTIN checkbox and value
+    if ($("#gtins_annual_fee").is(":checked")) {
+        const gtinValue = parseFloat($("#gtins_annual_fee").val()) || 0;
+        annualFee += gtinValue;
+        console.log("GTIN selected, value:", gtinValue);
+        $("#gtins_annual_fee_input").val(gtinValue);
+    } else {
+        $("#gtins_annual_fee_input").val("0");
+    }
+    
+    // Get GLN checkbox and value
+    if ($("#gln_price").is(":checked")) {
+        const glnValue = parseFloat($("#gln_price").val()) || 0;
+        annualFee += glnValue;
+        console.log("GLN selected, value:", glnValue);
+        $("#gln_price_input").val(glnValue);
+    } else {
+        $("#gln_price_input").val("0");
+    }
+    
+    // Get SSCC checkbox and value if it exists
+    if ($("#sscc_price").length && $("#sscc_price").is(":checked")) {
+        const ssccValue = parseFloat($("#sscc_price").val()) || 0;
+        annualFee += ssccValue;
+        console.log("SSCC selected, value:", ssccValue);
+        $("#sscc_price_input").val(ssccValue);
+    } else if ($("#sscc_price").length) {
+        $("#sscc_price_input").val("0");
+    }
+    
+    // Calculate total
+    const total = registrationFee + annualFee;
+    
+    console.log("Calculated values:", {
+        registrationFee: registrationFee,
+        annualFee: annualFee,
+        total: total
+    });
+    
+    // Update all price fields
+    $("#annual_total_price").val(annualFee.toFixed(2));
+    $("#annual_subscription_fee").val(annualFee.toFixed(2));
+    $("#total_price").val(total.toFixed(2));
+};
+
+// Define add function in the global scope
+function add() {
+    console.log("add() function called");
+    updatePrices();
+}
+
+// Use jQuery ready instead of DOMContentLoaded
+$(document).ready(function() {
+    console.log("Document ready");
+    
+    // Add event listeners to all product checkboxes
+    $(".product-checkbox").each(function() {
+        $(this).on("change", function() {
+            console.log("Checkbox changed:", this.id);
+            updatePrices();
+        });
+    });
+    
+    // Initial price calculation
+    updatePrices();
+});
+</script>';
 
 // Send the response
 echo $html; 

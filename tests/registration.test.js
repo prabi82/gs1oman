@@ -88,999 +88,887 @@ async function handleModal(page) {
     }
 }
 
-describe('Registration Form Test', () => {
-    let browser;
-    let page;
+// Add this function to handle product selection
+async function handleProductSelection(page) {
+    // Select a product package
+    await page.select('select[name="product_id"]', '3'); // Select 1000 package
+    
+    // Wait for AJAX response
+    await page.waitForResponse(response => 
+        response.url().includes('get_package_details.php') && 
+        response.status() === 200
+    );
+    
+    // Wait for checkboxes to be available
+    await page.waitForSelector('#gtins_annual_fee');
+    await page.waitForSelector('#gln_price');
+    
+    // Check both GTIN and GLN checkboxes and trigger change events
+    await page.evaluate(() => {
+        console.log('Setting up product selection...');
+        
+        // GTIN checkbox and input
+        const gtinCheckbox = document.querySelector('#gtins_annual_fee');
+        const gtinInput = document.querySelector('#gtins_annual_fee_input');
+        if (gtinCheckbox && gtinInput) {
+            gtinCheckbox.checked = true;
+            gtinInput.value = '350';
+            gtinCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            console.log('GTIN set:', { checked: gtinCheckbox.checked, value: gtinInput.value });
+        } else {
+            console.error('GTIN elements not found');
+        }
+        
+        // GLN checkbox and input
+        const glnCheckbox = document.querySelector('#gln_price');
+        const glnInput = document.querySelector('#gln_price_input');
+        if (glnCheckbox && glnInput) {
+            glnCheckbox.checked = true;
+            glnInput.value = '300';
+            glnCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
+            console.log('GLN set:', { checked: glnCheckbox.checked, value: glnInput.value });
+        } else {
+            console.error('GLN elements not found');
+        }
+        
+        // Verify total values
+        const totalPrice = document.querySelector('#total_price');
+        const annualPrice = document.querySelector('#annual_total_price');
+        console.log('Price fields:', {
+            total: totalPrice ? totalPrice.value : 'not found',
+            annual: annualPrice ? annualPrice.value : 'not found'
+        });
+    });
+    
+    // Wait for price calculations to update
+    await page.waitForFunction(() => {
+        const totalPrice = document.querySelector('#total_price');
+        const annualPrice = document.querySelector('#annual_total_price');
+        const gtinInput = document.querySelector('#gtins_annual_fee_input');
+        const glnInput = document.querySelector('#gln_price_input');
+        
+        return totalPrice && annualPrice && gtinInput && glnInput &&
+               parseFloat(totalPrice.value) > 0 && 
+               parseFloat(annualPrice.value) > 0 &&
+               parseFloat(gtinInput.value) === 350 &&
+               parseFloat(glnInput.value) === 300;
+    }, { timeout: 5000 });
+    
+    // Log final values
+    const values = await page.evaluate(() => ({
+        gtin: document.querySelector('#gtins_annual_fee_input').value,
+        gln: document.querySelector('#gln_price_input').value,
+        total: document.querySelector('#total_price').value,
+        annual: document.querySelector('#annual_total_price').value
+    }));
+    
+    console.log('Final form values:', values);
+}
 
-    beforeAll(async () => {
+// Add new helper function for package selection
+async function handlePackageSelection(page) {
+    console.log('Starting package selection...');
+    
+    try {
+        // Wait for package dropdown to be available
+        await page.waitForSelector('select[name="product_id"]', { timeout: 5000 });
+        console.log('Package dropdown found');
+
+        // First select the package
+        await page.select('select[name="product_id"]', '3');
+        console.log('Package option selected');
+
+        // Wait for AJAX to complete and checkboxes to appear
+        await page.waitForFunction(() => {
+            const gtinCheckbox = document.querySelector('#gtins_annual_fee');
+            const glnCheckbox = document.querySelector('#gln_price');
+            return gtinCheckbox && glnCheckbox;
+        }, { timeout: 5000 });
+
+        // Wait a moment for any animations
+        await sleep(page, 1000);
+
+        // Click the checkboxes directly
+        await page.evaluate(() => {
+            const gtinCheckbox = document.querySelector('#gtins_annual_fee');
+            const glnCheckbox = document.querySelector('#gln_price');
+            
+            if (gtinCheckbox) {
+                gtinCheckbox.click();
+                console.log('GTIN checkbox clicked');
+            }
+            
+            if (glnCheckbox) {
+                glnCheckbox.click();
+                console.log('GLN checkbox clicked');
+            }
+
+            // Trigger price calculation manually
+            const event = new Event('change', { bubbles: true });
+            gtinCheckbox.dispatchEvent(event);
+            glnCheckbox.dispatchEvent(event);
+        });
+
+        // Wait for price calculations
+        await page.waitForFunction(() => {
+            const total = parseFloat(document.querySelector('#total_price').value) || 0;
+            const registration = parseFloat(document.querySelector('#registration_fee').value) || 0;
+            
+            console.log('Price values:', { total, registration });
+            
+            // Check if total price is set (should be at least registration fee)
+            return total >= registration && total > 0;
+        }, { timeout: 5000 });
+
+        // Verify the final state
+        const values = await page.evaluate(() => {
+            const getFieldValue = (selector) => {
+                const element = document.querySelector(selector);
+                return element ? {
+                    value: element.value,
+                    checked: element.type === 'checkbox' ? element.checked : undefined,
+                    visible: element.offsetParent !== null
+                } : null;
+            };
+
+            const getPrice = (selector) => {
+                const element = document.querySelector(selector);
+                return element ? parseFloat(element.value) || 0 : 0;
+            };
+
+            return {
+                gtin: getFieldValue('#gtins_annual_fee_input'),
+                gln: getFieldValue('#gln_price_input'),
+                gtinCheckbox: getFieldValue('#gtins_annual_fee'),
+                glnCheckbox: getFieldValue('#gln_price'),
+                total: getPrice('#total_price'),
+                registration: getPrice('#registration_fee')
+            };
+        });
+
+        console.log('Final package state:', JSON.stringify(values, null, 2));
+
+        // Verify only that checkboxes are checked and total price is set
+        if (!values.gtinCheckbox?.checked || !values.glnCheckbox?.checked || values.total <= 0) {
+            console.log('Package selection verification failed');
+            return null;
+        }
+
+        return values;
+
+    } catch (error) {
+        console.error('Error in package selection:', error);
+        return null;
+    }
+}
+
+async function verifyDatabaseEntry(formData) {
+    console.log('Starting database verification...');
+    console.log('Form data to verify:', formData);
+    
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'gs1omancom_barcode'
+    });
+
+    try {
+        // First check company_tbl
+        console.log('Checking company_tbl...');
+        const [companies] = await connection.execute(
+            'SELECT * FROM company_tbl WHERE user_email = ? OR name = ? ORDER BY id DESC LIMIT 1',
+            [formData.email, formData.name]
+        );
+
+        if (companies.length === 0) {
+            console.log('No company entry found for:', {
+                email: formData.email,
+                name: formData.name
+            });
+            return false;
+        }
+
+        const company = companies[0];
+        console.log('Found company entry:', {
+            id: company.id,
+            name: company.name,
+            email: company.user_email,
+            cr: company.cr_number
+        });
+
+        // Check order_tbl for the company
+        console.log('Checking order_tbl...');
+        const [orders] = await connection.execute(
+            'SELECT * FROM order_tbl WHERE company_id = ? ORDER BY id DESC LIMIT 1',
+            [company.id]
+        );
+
+        if (orders.length === 0) {
+            console.log('No order entry found for company ID:', company.id);
+            return false;
+        }
+
+        const order = orders[0];
+        console.log('Found order entry:', {
+            id: order.id,
+            order_id: order.order_id,
+            total: order.total_price,
+            status: order.status,
+            gtin_fee: order.gtins_annual_fee,
+            gln_price: order.gln_price
+        });
+
+        // Check company_contacts_tbl
+        console.log('Checking company_contacts_tbl...');
+        const [contacts] = await connection.execute(
+            'SELECT * FROM company_contacts_tbl WHERE company_id = ?',
+            [company.id]
+        );
+
+        if (contacts.length === 0) {
+            console.log('No contact entries found for company ID:', company.id);
+            return false;
+        }
+
+        console.log('Found contact entries:', contacts.length);
+        contacts.forEach((contact, index) => {
+            console.log(`Contact ${index + 1}:`, {
+                title: contact.title,
+                email: contact.email_id,
+                status: contact.status
+            });
+        });
+        
+        return true;
+    } catch (error) {
+        console.error('Database verification error:', error);
+        console.error('Stack trace:', error.stack);
+        return false;
+    } finally {
+        await connection.end();
+    }
+}
+
+// Add sleep function that works with older Puppeteer versions
+async function sleep(page, ms) {
+    await page.evaluate((ms) => new Promise(resolve => setTimeout(resolve, ms)), ms);
+}
+
+// Helper function to get form field values
+async function getFormValue(selector) {
+    try {
+        const element = await page.$(selector);
+        if (!element) {
+            console.log(`Element not found: ${selector}`);
+            return { value: '', error: 'Element not found' };
+        }
+        
+        const value = await element.evaluate(el => {
+            if (el.type === 'radio' || el.type === 'checkbox') {
+                return el.checked ? el.value : '';
+            }
+            return el.value;
+        });
+        
+        const isVisible = await element.evaluate(el => {
+            const style = window.getComputedStyle(el);
+            return style.display !== 'none' && style.visibility !== 'hidden';
+        });
+        
+        return { value, isVisible };
+    } catch (error) {
+        console.error(`Error getting value for ${selector}:`, error);
+        return { value: '', error: error.message };
+    }
+}
+
+async function runRegistrationTest(testNumber) {
+    let browser;
+    try {
+        console.log(`\nStarting Registration Form Test #${testNumber}`);
+        
         browser = await puppeteer.launch({
             headless: false,
             defaultViewport: null,
             args: ['--start-maximized']
         });
-    });
 
-    afterAll(async () => {
-            await browser.close();
-    });
-
-    beforeEach(async () => {
-        page = await browser.newPage();
-        await page.setDefaultTimeout(30000);
-        await page.setDefaultNavigationTimeout(30000);
-    });
-
-    afterEach(async () => {
-        await page.close();
-    });
-
-    const runRegistrationTest = async (testNumber) => {
-        console.log(`\n=== Starting Registration Test #${testNumber} ===\n`);
-        try {
-            // Navigate to the form
-            await page.goto('http://localhost/gs1oman.com/index.php', {
-                waitUntil: 'networkidle0',
-                timeout: 60000
-            });
-
-            // Wait for form to be ready
-            await page.waitForSelector('form', { timeout: 10000 });
-            console.log('Form found, starting to fill data...');
-
-            // Generate random emails first, before any other operations
-            const timestamp = Date.now();
-            const mainEmail = `test.user.${timestamp}.${Math.floor(Math.random() * 10000)}@example.com`;
-            const additionalEmail = `test.user.${timestamp + 1}.${Math.floor(Math.random() * 10000)}@example.com`;
-
-            console.log('Generated random emails:', { mainEmail, additionalEmail });
-
-            // Fill in form fields with random emails first
-            await page.evaluate(({ mainEmail, additionalEmail }) => {
-                const fillField = (selector, value) => {
-                    const field = document.querySelector(selector);
-                    if (field) {
-                        field.value = value;
-                        field.dispatchEvent(new Event('input', { bubbles: true }));
-                        field.dispatchEvent(new Event('change', { bubbles: true }));
-                        if (typeof jQuery !== 'undefined') {
-                            jQuery(field).trigger('change');
-                        }
-                    }
-                };
-
-                // Fill main contact details
-                fillField('input[name="title_1"]', 'Mr.');
-                fillField('input[name="fname_1"]', 'John');
-                fillField('input[name="lname_1"]', 'Doe');
-                fillField('input[name="job_title_1"]', 'CEO');
-                fillField('input[name="email_1"]', mainEmail);
-                fillField('input[name="phone_1"]', '96856644518');
-
-                // Fill additional contact details
-                fillField('input[name="title_2"]', 'Mrs.');
-                fillField('input[name="fname_2"]', 'Jane');
-                fillField('input[name="lname_2"]', 'Smith');
-                fillField('input[name="job_title_2"]', 'Manager');
-                fillField('input[name="email_2"]', additionalEmail);
-                fillField('input[name="phone_2"]', '96898885641');
-
-                // Select Riyada certificate as Yes
-                const riyadaSelect = document.querySelector('#riyada_certificate');
-                if (riyadaSelect) {
-                    riyadaSelect.value = 'Yes';
-                    riyadaSelect.dispatchEvent(new Event('change', { bubbles: true }));
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(riyadaSelect).trigger('change');
-                    }
-                }
-
-                // Set expiry date (1 year from now)
-                const expDateInput = document.querySelector('#exp_date');
-                if (expDateInput) {
-                    const oneYearFromNow = new Date();
-                    oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-                    const formattedDate = oneYearFromNow.toISOString().split('T')[0];
-                    expDateInput.value = formattedDate;
-                    expDateInput.dispatchEvent(new Event('change', { bubbles: true }));
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(expDateInput).trigger('change');
-                    }
-                }
-
-            }, { mainEmail, additionalEmail });
-
-            // Handle Riyada document upload
-            const riyadaDocPath = path.join(__dirname, 'test-files', 'riyada-doc.pdf');
-            const riyadaDocInput = await page.$('input[name="documents_req"]');
-            if (riyadaDocInput) {
-                await riyadaDocInput.uploadFile(riyadaDocPath);
-                await page.evaluate(() => {
-                    const input = document.querySelector('input[name="documents_req"]');
-                    if (input) {
-                        input.dispatchEvent(new Event('change', { bubbles: true }));
-                        if (typeof jQuery !== 'undefined') {
-                            jQuery(input).trigger('change');
-                        }
-                    }
-                });
-            }
-
-            // Wait for any potential AJAX requests to complete
-            await page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 5000 }).catch(() => {
-                // Ignore timeout error as there might not be any navigation
-                console.log('No navigation occurred after email input');
-            });
-
-            // Check for any duplicate email errors
-            const emailErrors = await page.evaluate(() => {
-                const errorElements = document.querySelectorAll('.alert-danger, .error-message');
-                const errors = Array.from(errorElements)
-                    .map(el => el.textContent)
-                    .filter(text => text.toLowerCase().includes('email') && text.toLowerCase().includes('exist'));
-                
-                if (errors.length > 0) {
-                    console.log('Found email errors:', errors);
-                }
-                return errors;
-            });
-
-            if (emailErrors.length > 0) {
-                console.log('Duplicate email errors found:', emailErrors);
-                throw new Error('Duplicate email detected: ' + emailErrors.join(', '));
-            }
-
-            // Generate test data
-            const formData = {
-                // Company Information
-                name: generateRandomCompanyName(),
-                name_ar: generateRandomArabicName() + ' للتجارة',
-                cr_number: generateRandomCRNumber(),
-                pobox: Math.floor(10000 + Math.random() * 90000).toString(),
-                zipcode: Math.floor(100 + Math.random() * 900).toString(),
-                address: generateRandomAddress(),
-                address_ar: 'مبنى ' + Math.floor(Math.random() * 999) + '، طريق ' + Math.floor(Math.random() * 9999),
-                country: 'Oman',
-                city: 'Muscat',
-                mobile_number: generateRandomPhone(),
-                phone_number: generateRandomPhone(),
-                user_email: generateRandomEmail(),
-
-                // CR Details
-                riyada_certificate: 'Yes',
-                cr_registration_date: new Date().toISOString().split('T')[0],
-                cr_expiry_date: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-                cr_legal_type: 'Limited Liability Company - LLC',
-                cr_tax_registration_number: generateRandomTaxNumber(),
-                vat_number: generateRandomVATNumber(),
-
-                // Business Details
-                business_type_product_category: 'Food',
-                number_of_employee: '50',
-                
-                // Contact Person Details
-                contact_persons: [
-                    {
-                        title: 'Mr.',
-                        first_name: 'John',
-                        last_name: 'Doe',
-                        job_title: 'CEO',
-                        email: generateRandomEmail(),
-                        phone: generateRandomPhone()
-                    },
-                    {
-                        title: 'Mrs.',
-                        first_name: 'Jane',
-                        last_name: 'Smith',
-                        job_title: 'Manager',
-                        email: generateRandomEmail(),
-                        phone: generateRandomPhone()
-                    }
-                ]
-            };
-
-            // Fill Company Information
-            await page.type('input[name="name"]', formData.name);
-            await page.type('input[name="name_ar"]', formData.name_ar);
-            await page.type('input[name="cr_number"]', formData.cr_number);
-            await page.type('input[name="pobox"]', formData.pobox);
-            await page.type('input[name="zipcode"]', formData.zipcode);
-            await page.type('input[name="address"]', formData.address);
-            await page.type('input[name="address_ar"]', formData.address_ar);
-            await page.select('select[name="country"]', formData.country);
-            await page.select('select[name="city"]', formData.city);
-            await page.type('input[name="mobile_number"]', formData.mobile_number);
-            await page.type('input[name="phone_number"]', formData.phone_number);
-            await page.type('input[name="user_email"]', formData.user_email);
-
-            // Fill Other Details
-            await page.select('select[name="riyada_certificate"]', formData.riyada_certificate);
-            
-            // Fill CR Details in specific order
-            await page.evaluate((data) => {
-                const regDateInput = document.querySelector('input[name="cr_registration_date"]');
-                const expDateInput = document.querySelector('input[name="cr_expiry_date"]');
-                if (regDateInput) regDateInput.value = data.cr_registration_date;
-                if (expDateInput) expDateInput.value = data.cr_expiry_date;
-                
-                // Trigger change events
-                [regDateInput, expDateInput].forEach(input => {
-                    if (input) {
-                        const event = new Event('change', { bubbles: true });
-                        input.dispatchEvent(event);
-                    }
-                });
-            }, formData);
-
-            await page.select('select[name="cr_legal_type"]', formData.cr_legal_type);
-            await page.type('input[name="cr_tax_registration_number"]', formData.cr_tax_registration_number);
-            await page.type('input[name="vat_number"]', formData.vat_number);
-
-            // Fill Business Details
-            await page.evaluate((category) => {
-                const select = document.querySelector('select[name="business_type_product_category"]');
-                if (select) {
-                    // Remove the disabled selected option
-                    const disabledOption = select.querySelector('option[disabled]');
-                    if (disabledOption) {
-                        disabledOption.remove();
-                    }
-                    // Set the value and trigger change event
-                    select.value = category;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                    // Also trigger jQuery change event if jQuery is present
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(select).trigger('change');
-                    }
-                    console.log('Business type set to:', select.value);
-                }
-            }, formData.business_type_product_category);
-
-            // Wait for the value to be set
-            await page.waitForFunction(
-                (category) => {
-                    const select = document.querySelector('select[name="business_type_product_category"]');
-                    return select && select.value === category;
-                },
-                { timeout: 5000 },
-                formData.business_type_product_category
-            );
-
-            // Verify the value was set
-            const businessType = await page.evaluate(() => {
-                const select = document.querySelector('select[name="business_type_product_category"]');
-                return select ? select.value : null;
-            });
-            console.log('Verified business type:', businessType);
-            
-            await page.type('input[name="number_of_employee"]', formData.number_of_employee);
-
-            // Handle any modal that might appear
-            await handleModal(page);
-
-            // Set healthcare status
-            await page.evaluate(() => {
-                const noRadio = document.querySelector('input[name="healthcare_status"][value="NO"]');
-                if (noRadio) noRadio.click();
-            });
-
-            // Fill Primary Contact Person
-            await page.select('select[name="title[]"]', formData.contact_persons[0].title);
-            await page.type('input[name="first_name[]"]', formData.contact_persons[0].first_name);
-            await page.type('input[name="last_name[]"]', formData.contact_persons[0].last_name);
-            await page.type('input[name="job_title[]"]', formData.contact_persons[0].job_title);
-            await page.type('input[name="email_id[]"]', formData.contact_persons[0].email);
-            await page.type('input[name="phone_number1[]"]', formData.contact_persons[0].phone);
-
-            // Add and fill Secondary Contact Person
-            await page.evaluate(() => {
-                const addButton = document.querySelector('.add-more-contact');
-                if (addButton) addButton.click();
-            });
-            
-            // Wait for new contact fields to be added
-            await page.waitForFunction(() => {
-                const titles = document.querySelectorAll('select[name="title[]"]');
-                return titles.length > 1;
-            }, { timeout: 5000 });
-
-            // Fill Secondary Contact Person
-            await page.evaluate((data) => {
-                // Set title for second contact person
-                const titles = document.querySelectorAll('select[name="title[]"]');
-                if (titles[1]) {
-                    titles[1].value = data.title;
-                    // Trigger change event
-                    const event = new Event('change', { bubbles: true });
-                    titles[1].dispatchEvent(event);
-                }
-            }, formData.contact_persons[1]);
-
-            const inputs = {
-                'first_name[]': formData.contact_persons[1].first_name,
-                'last_name[]': formData.contact_persons[1].last_name,
-                'job_title[]': formData.contact_persons[1].job_title,
-                'email_id[]': formData.contact_persons[1].email,
-                'phone_number1[]': formData.contact_persons[1].phone
-            };
-
-            for (const [name, value] of Object.entries(inputs)) {
-                const elements = await page.$$(`input[name="${name}"]`);
-                if (elements.length > 1) {
-                    await elements[1].type(value);
-                }
-            }
-
-            // Verify contact person fields
-            const contactFieldsVerified = await page.evaluate(() => {
-                const fields = ['first_name[]', 'last_name[]', 'job_title[]', 'email_id[]', 'phone_number1[]'];
-                return fields.every(field => {
-                    const inputs = document.querySelectorAll(`input[name="${field}"]`);
-                    return Array.from(inputs).every(input => input.value);
-                });
-            });
-
-            console.log('Contact person fields verified:', contactFieldsVerified);
-
-            // Upload test files
-            const uploadPath = path.join(process.cwd(), 'test-files');
-            const uploadFiles = {
-                'upload_document1': path.join(uploadPath, 'cr.pdf'),
-                'upload_document2': path.join(uploadPath, 'coc.pdf'),
-                'upload_document3': path.join(uploadPath, 'other.pdf')
-            };
-
-            // Handle file uploads one by one with proper waiting
-            for (const [fieldName, filePath] of Object.entries(uploadFiles)) {
-                const fileInput = await page.$(`input[name="${fieldName}"]`);
-                if (fileInput) {
-                    // Make file input visible and interactable
-                await page.evaluate((selector) => {
-                    const input = document.querySelector(`input[name="${selector}"]`);
-                    if (input) {
-                        input.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important; position: relative !important;';
-                        input.removeAttribute('class');
-                        // Also make parent elements visible if they're hiding the input
-                        let parent = input.parentElement;
-                        while (parent) {
-                            parent.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important; position: relative !important;';
-                            parent = parent.parentElement;
-                        }
-                    }
-                }, fieldName);
-
-                // Wait for the input to be ready
-                    await page.waitForSelector(`input[name="${fieldName}"]`, { visible: true, timeout: 5000 });
-                    
-                    try {
-                        await fileInput.uploadFile(filePath);
-                        
-                        // Wait for file to be selected
-                        await page.waitForFunction(
-                            (name) => {
-                                const input = document.querySelector(`input[name="${name}"]`);
-                                return input && input.files && input.files.length > 0;
-                            },
-                            { timeout: 5000 },
-                            fieldName
-                        );
-
-                        // Verify file was uploaded
-                        const fileSelected = await page.evaluate((name) => {
-                            const input = document.querySelector(`input[name="${name}"]`);
-                            return input && input.files && input.files[0] ? input.files[0].name : null;
-                        }, fieldName);
-
-                        console.log(`File uploaded for ${fieldName}:`, fileSelected);
-
-                        // Trigger change and input events
-                        await page.evaluate((name) => {
-                            const input = document.querySelector(`input[name="${name}"]`);
-                            if (input) {
-                                ['change', 'input'].forEach(eventType => {
-                                    const event = new Event(eventType, { bubbles: true });
-                                    input.dispatchEvent(event);
-                                });
-                            }
-                        }, fieldName);
-
-                    } catch (error) {
-                        console.error(`Failed to upload file for ${fieldName}:`, error);
-                        throw error;
-                    }
-                } else {
-                    console.error(`Upload input not found for ${fieldName}`);
-                    throw new Error(`Upload input not found for ${fieldName}`);
-                }
-            }
-
-            // Additional verification of uploads
-            const uploadsVerified = await page.evaluate(() => {
-                const requiredUploads = ['upload_document1', 'upload_document2', 'upload_document3'];
-                return requiredUploads.every(name => {
-                    const input = document.querySelector(`input[name="${name}"]`);
-                    return input && input.files && input.files.length > 0;
-                });
-            });
-
-            if (!uploadsVerified) {
-                throw new Error('Document uploads verification failed');
-            }
-
-            console.log('All documents uploaded successfully');
-
-            // First check available packages and log them
-            const availablePackages = await page.evaluate(() => {
-                const packageSelect = document.querySelector('select[name="product_id"]');
-                if (!packageSelect) {
-                    console.log('Package select element not found');
-                    return null;
-                }
-                
-                // Log all available options
-                const options = Array.from(packageSelect.options).map(opt => ({
-                    value: opt.value,
-                    text: opt.text,
-                    disabled: opt.disabled
-                }));
-                console.log('Available packages:', options);
-                return options;
-            });
-            console.log('Found packages:', availablePackages);
-
-            // Select package and trigger change events
-                await page.evaluate(() => {
-                return new Promise((resolve) => {
-                    const packageSelect = document.querySelector('select[name="product_id"]');
-                    if (!packageSelect) {
-                        console.log('Package select not found');
-                        return resolve(false);
-                    }
-
-                    // Remove any disabled options
-                    packageSelect.querySelectorAll('option[disabled]').forEach(opt => opt.remove());
-                    
-                    // Set the value to 3 (which is the option with text "1000")
-                    packageSelect.value = '3';
-                    console.log('Set package value to:', packageSelect.value);
-                    
-                    // Create and dispatch change event
-                    const changeEvent = new Event('change', { bubbles: true });
-                    packageSelect.dispatchEvent(changeEvent);
-                    
-                    // If jQuery is available, trigger its change event
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(packageSelect).trigger('change');
-                        console.log('jQuery change event triggered');
-                    }
-                    
-                    // If show_package_details exists, call it
-                    if (typeof show_package_details === 'function') {
-                        show_package_details();
-                        console.log('show_package_details function called');
-                    }
-                    
-                    // Select Cash payment option
-                    const cashRadio = document.querySelector('input[type="radio"][name="offline_payment"][value="1"].tick');
-                    if (cashRadio) {
-                        console.log('Found Cash payment radio button');
-                        cashRadio.click();
-                        cashRadio.checked = true;
-                        ['change', 'input', 'click'].forEach(eventType => {
-                            const event = new Event(eventType, { bubbles: true });
-                            cashRadio.dispatchEvent(event);
-                        });
-                        if (typeof jQuery !== 'undefined') {
-                            jQuery(cashRadio).trigger('change').trigger('click');
-                        }
-                        console.log('Cash payment selected:', cashRadio.checked);
-                    } else {
-                        console.error('Cash payment radio button not found');
-                    }
-                    
-                    // Give a small delay for events to process
-                    setTimeout(() => {
-                        const selectedOption = packageSelect.options[packageSelect.selectedIndex];
-                        console.log('Final package selection:', {
-                            value: packageSelect.value,
-                            text: selectedOption?.text,
-                            index: packageSelect.selectedIndex
-                        });
-                        resolve(true);
-                    }, 500);
-                });
-            });
-
-            // Wait for package details AJAX request
-            console.log('Waiting for package details AJAX request...');
-            try {
-                // Set up dialog handler that removes itself after first use
-                let dialogHandled = false;
-                const dialogHandler = async (dialog) => {
-                    if (dialogHandled) {
-                        return;
-                    }
-                    dialogHandled = true;
-                    console.log('Dialog appeared:', dialog.message());
-                    await dialog.accept();
-                    page.off('dialog', dialogHandler);
-                };
-                page.on('dialog', dialogHandler);
-
-                // First trigger the package change
-                await page.evaluate(() => {
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery('#package').trigger('change');
-                        console.log('Package change event triggered');
-                    }
-                    
-                    // If show_package_details exists, call it
-                    if (typeof show_package_details === 'function') {
-                        show_package_details();
-                        console.log('show_package_details function called');
-                    }
-                });
-
-                // Wait for AJAX response
-                const response = await Promise.race([
-                    page.waitForResponse(
-                        response => response.url().includes('get_package_details.php'),
-                        { timeout: 30000 }
-                    ),
-                page.waitForResponse(
-                        response => response.url().includes('check_duplicate.php'),
-                    { timeout: 30000 }
-                )
-            ]);
-                
-                console.log('Response received from:', response.url());
-                
-                // Log response status and content
-                console.log('Response status:', response.status());
-                const responseText = await response.text();
-                console.log('Response content:', responseText);
-
-                // Wait for checkboxes to be present in the DOM
-                await page.waitForSelector('input[name="gtin"], #gtins_annual_fee', { timeout: 30000 });
-                await page.waitForSelector('input[name="gln"], #gln_annual_fee', { timeout: 30000 });
-
-                // Check if checkboxes exist and are visible
-                const checkboxesExist = await page.evaluate(() => {
-                    const gtinCheckbox = document.querySelector('input[name="gtin"], #gtins_annual_fee');
-                    const glnCheckbox = document.querySelector('input[name="gln"], #gln_annual_fee');
-                    
-                    console.log('Checkbox existence check:', {
-                        gtin: gtinCheckbox ? {
-                            name: gtinCheckbox.name,
-                            id: gtinCheckbox.id,
-                            value: gtinCheckbox.value,
-                            visible: gtinCheckbox.offsetParent !== null
-                        } : null,
-                        gln: glnCheckbox ? {
-                            name: glnCheckbox.name,
-                            id: glnCheckbox.id,
-                            value: glnCheckbox.value,
-                            visible: glnCheckbox.offsetParent !== null
-                        } : null
-                    });
-                    
-                    return {
-                        gtin: !!gtinCheckbox,
-                        gln: !!glnCheckbox
-                    };
-                });
-
-                console.log('Checkboxes exist:', checkboxesExist);
-
-                if (!checkboxesExist.gtin || !checkboxesExist.gln) {
-                    throw new Error('Checkboxes not found after AJAX response');
-                }
-
-                // Now try to select the checkboxes
-                const productSelections = await page.evaluate(() => {
-                    const results = { gtin: false, gln: false };
-                    
-                    // Function to click checkbox and verify
-                    const clickAndVerifyCheckbox = (checkbox) => {
-                        if (!checkbox) return false;
-                        
-                        console.log('Attempting to click checkbox:', {
-                            before: {
-                                name: checkbox.name,
-                                id: checkbox.id,
-                                value: checkbox.value,
-                                checked: checkbox.checked,
-                                disabled: checkbox.disabled
-                            }
-                        });
-
-                        // First try native click
-                        checkbox.click();
-                        console.log('After native click:', checkbox.checked);
-                        
-                        // If not checked, try programmatic check
-                        if (!checkbox.checked) {
-                            checkbox.checked = true;
-                            // Trigger change event to call the add() function
-                            const changeEvent = new Event('change', { bubbles: true });
-                            checkbox.dispatchEvent(changeEvent);
-                            console.log('After programmatic check:', checkbox.checked);
-                        }
-                        
-                        // If jQuery available, trigger change event
-                        if (typeof jQuery !== 'undefined') {
-                            jQuery(checkbox).trigger('change');
-                            console.log('After jQuery events:', checkbox.checked);
-                        }
-
-                        // Call add() function directly if it exists
-                        if (typeof add === 'function') {
-                            add();
-                            console.log('Called add() function directly');
-                        }
-                        
-                        return checkbox.checked;
-                    };
-
-                    // Find and click GTIN checkbox
-                    const gtinCheckbox = document.querySelector('input[name="gtin"], #gtins_annual_fee');
-                    if (gtinCheckbox) {
-                        console.log('Found GTIN checkbox:', {
-                            name: gtinCheckbox.name,
-                            id: gtinCheckbox.id,
-                            value: gtinCheckbox.value
-                        });
-                        results.gtin = clickAndVerifyCheckbox(gtinCheckbox);
-                        console.log('GTIN checkbox final state:', results.gtin);
-                    } else {
-                        console.log('GTIN checkbox not found');
-                    }
-
-                    // Find and click GLN checkbox
-                    const glnCheckbox = document.querySelector('input[name="gln"], #gln_annual_fee');
-                    if (glnCheckbox) {
-                        console.log('Found GLN checkbox:', {
-                            name: glnCheckbox.name,
-                            id: glnCheckbox.id,
-                            value: glnCheckbox.value
-                        });
-                        results.gln = clickAndVerifyCheckbox(glnCheckbox);
-                        console.log('GLN checkbox final state:', results.gln);
-                    } else {
-                        console.log('GLN checkbox not found');
-                    }
-
-                    // Final verification
-                    console.log('Final selection results:', results);
-                    return results;
-                });
-
-                console.log('Product selections result:', productSelections);
-                
-                if (!productSelections.gtin || !productSelections.gln) {
-                    throw new Error(`Failed to select products. GTIN: ${productSelections.gtin}, GLN: ${productSelections.gln}`);
-                }
-
-                // Wait for fee values to update after checkbox selection
-                console.log('Waiting for fee values to update...');
-                await page.evaluate(() => {
-                    return new Promise((resolve) => {
-                        // First check current values
-                        const checkFeeValues = () => {
-                            const feeInputs = {
-                                registration_fee: document.querySelector('input[name="registration_fee"], #registration_fee'),
-                                annual_fee: document.querySelector('input[name="annual_total_price"], #annual_subscription_fee'),
-                                total_price: document.querySelector('input[name="total_price"], #total_price')
-                            };
-
-                            // Log current values
-                            Object.entries(feeInputs).forEach(([key, input]) => {
-                                if (input) {
-                                    console.log(`${key} current value:`, input.value);
-                                }
-                            });
-
-                            // Check if values are valid
-                            const hasValidValues = Object.values(feeInputs).every(input => 
-                                input && input.value && !isNaN(parseFloat(input.value)) && parseFloat(input.value) > 0
-                            );
-
-                            return hasValidValues;
-                        };
-
-                        // If values are already valid, resolve immediately
-                        if (checkFeeValues()) {
-                            resolve(true);
-                            return;
-                        }
-
-                        // Otherwise, set up an interval to check
-                        const intervalId = setInterval(() => {
-                            if (checkFeeValues()) {
-                                clearInterval(intervalId);
-                                resolve(true);
-                            }
-                        }, 500);
-
-                        // Set a timeout to prevent infinite waiting
-                        setTimeout(() => {
-                            clearInterval(intervalId);
-                            resolve(false);
-                        }, 5000);
-                    });
-                });
-
-                // Accept terms and conditions
-                console.log('Accepting terms and conditions...');
-                await page.evaluate(() => {
-                    return new Promise((resolve) => {
-                        const acceptTerms = () => {
-                            // First try clicking the agree button
-                            const agreeButton = document.querySelector('#agree');
-                            if (agreeButton) {
-                                agreeButton.click();
-                                console.log('Clicked agree button');
-                            }
-
-                            // Get the checkbox
-                            const termsCheckbox = document.querySelector('#finalpay1');
-                            if (!termsCheckbox) {
-                                console.error('Terms checkbox not found');
-                                return false;
-                            }
-
-                            // Log initial state
-                            console.log('Terms checkbox initial state:', {
-                                checked: termsCheckbox.checked,
-                                disabled: termsCheckbox.disabled,
-                                value: termsCheckbox.value,
-                                name: termsCheckbox.name,
-                                id: termsCheckbox.id,
-                                class: termsCheckbox.className
-                            });
-
-                            // If not checked by agree button, try direct methods
-                            if (!termsCheckbox.checked) {
-                                // Make sure it's visible and enabled
-                                termsCheckbox.style.cssText = 'display: block !important; opacity: 1 !important; visibility: visible !important;';
-                                termsCheckbox.disabled = false;
-
-                                // Check it
-                                termsCheckbox.checked = true;
-
-                                // Trigger events in the right order
-                                if (typeof jQuery !== 'undefined') {
-                                    // Use jQuery to trigger events as the site uses jQuery
-                                    jQuery(termsCheckbox)
-                                        .prop('checked', true)
-                                        .trigger('click')
-                                        .trigger('change');
-                                } else {
-                                    // Fallback to native events
-                                    termsCheckbox.dispatchEvent(new MouseEvent('click', {
-                                        view: window,
-                                        bubbles: true,
-                                        cancelable: true
-                                    }));
-                                    termsCheckbox.dispatchEvent(new Event('change', { bubbles: true }));
-                                }
-                            }
-
-                            // Log final state
-                            console.log('Terms checkbox final state:', {
-                                checked: termsCheckbox.checked,
-                                disabled: termsCheckbox.disabled,
-                                value: termsCheckbox.value,
-                                name: termsCheckbox.name,
-                                id: termsCheckbox.id,
-                                class: termsCheckbox.className
-                            });
-
-                            return termsCheckbox.checked;
-                        };
-
-                        // Set up alert handler
-                        const originalAlert = window.alert;
-                        window.alert = (message) => {
-                            console.log('Alert message:', message);
-                            // Restore original alert after handling
-                            window.alert = originalAlert;
-                        };
-
-                        // Try to accept terms
-                        if (acceptTerms()) {
-                            resolve(true);
-                            return;
-                        }
-
-                        // If not successful, retry a few times
-                        let attempts = 0;
-                        const intervalId = setInterval(() => {
-                            attempts++;
-                            if (acceptTerms() || attempts >= 5) {
-                                clearInterval(intervalId);
-                                resolve(true);
-                            }
-                        }, 500);
-
-                        // Set a timeout to prevent infinite waiting
-                        setTimeout(() => {
-                            clearInterval(intervalId);
-                            resolve(false);
-                        }, 5000);
-                    });
-                });
-
-                // Select healthcare status radio button
-                console.log('Selecting healthcare status...');
-                await page.evaluate(() => {
-                    const healthcareRadio = document.querySelector('input[name="healthcare_status"][value="Yes"]');
-                    if (!healthcareRadio) {
-                        console.error('Healthcare radio button not found');
-                        return false;
-                    }
-
-                    // Log initial state
-                    console.log('Healthcare radio initial state:', {
-                        checked: healthcareRadio.checked,
-                        disabled: healthcareRadio.disabled,
-                        value: healthcareRadio.value,
-                        name: healthcareRadio.name,
-                        class: healthcareRadio.className
-                    });
-
-                    // Click the radio button
-                    healthcareRadio.click();
-                    healthcareRadio.checked = true;
-
-                    // Trigger events
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery(healthcareRadio)
-                            .prop('checked', true)
-                            .trigger('click')
-                            .trigger('change');
-                    } else {
-                        healthcareRadio.dispatchEvent(new MouseEvent('click', {
-                            view: window,
-                            bubbles: true,
-                            cancelable: true
-                        }));
-                        healthcareRadio.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-
-                    // Log final state
-                    console.log('Healthcare radio final state:', {
-                        checked: healthcareRadio.checked,
-                        disabled: healthcareRadio.disabled,
-                        value: healthcareRadio.value,
-                        name: healthcareRadio.name,
-                        class: healthcareRadio.className
-                    });
-
-                    return healthcareRadio.checked;
-                });
-
-                // Handle any alert that might appear
-                page.on('dialog', async (dialog) => {
-                    console.log('Dialog message:', dialog.message());
-                    await dialog.accept();
-                });
-
-                // Short delay before proceeding
-                await new Promise(resolve => setTimeout(resolve, 500));
-
-            } catch (error) {
-                console.error('Error during package selection:', error);
-                throw error;
-            }
-
-            // Submit form and wait for response
-            await Promise.all([
-                page.evaluate(() => {
-                    console.log('Form submission started');
-                    const form = document.querySelector('form');
-                    if (!form) {
-                        throw new Error('Form not found');
-                    }
-                    
-                    // Log form data before submission
-                    const formData = new FormData(form);
-                    console.log('Form data before submission:');
-                    for (let [key, value] of formData.entries()) {
-                        console.log(`${key}: ${value}`);
-                    }
-                    
-                    // Try to find the submit button
-                    const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
-                    if (submitButton) {
-                        submitButton.click();
-                    } else {
-                        // If no submit button found, try to trigger form submission directly
-                        const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
-                        form.dispatchEvent(submitEvent);
-                    }
-                }),
-                page.waitForNavigation({ waitUntil: 'networkidle0', timeout: 30000 })
-            ]);
-
-            // Wait for success message or error
-            await Promise.race([
-                page.waitForSelector('.alert-success', { timeout: 5000 }),
-                page.waitForSelector('.alert-danger', { timeout: 5000 })
-            ]).catch(() => {
-                console.log('No success/error message found, continuing...');
-            });
-
-            // Check for validation errors
-            const errors = await page.evaluate(() => {
-                const errorElements = document.querySelectorAll('.error, .alert-danger');
-                return Array.from(errorElements).map(el => el.textContent);
-            });
-
-            if (errors.length > 0) {
-                console.log('Validation errors found:', errors);
-                throw new Error('Form validation failed: ' + errors.join(', '));
-            }
-
-            // Verify submission by checking URL or success message
-            const currentUrl = page.url();
-            expect(currentUrl).toContain('thanks.php');
-
-            // Optional: Verify database entry
-            const connection = await mysql.createConnection({
-                host: 'localhost',
-                user: 'root',
-                password: '',
-                database: 'gs1omancom_barcode'
-            });
-
-            try {
-                const [rows] = await connection.execute(
-                    'SELECT * FROM company_tbl WHERE name = ? AND cr_number = ? ORDER BY id DESC LIMIT 1',
-                    [formData.name, formData.cr_number]
-                );
-
-                expect(rows.length).toBeGreaterThan(0);
-                console.log('Registration successful. Database entry verified.');
-            } finally {
-                await connection.end();
-            }
-
-            console.log(`\n=== Registration Test #${testNumber} Completed Successfully ===\n`);
-            return true;
-        } catch (error) {
-            console.error(`\n=== Registration Test #${testNumber} Failed ===`);
-            console.error('Error:', error);
-            return false;
-        }
-    };
-
-    test('Multiple registration form submissions for consistency', async () => {
-        const numberOfTests = 3;
-        const results = [];
-
-        for (let i = 1; i <= numberOfTests; i++) {
-            const success = await runRegistrationTest(i);
-            results.push({ testNumber: i, success });
-            
-            // Wait between tests to avoid overwhelming the server
-            if (i < numberOfTests) {
-                console.log('\nWaiting 5 seconds before next test...\n');
-                await new Promise(resolve => setTimeout(resolve, 5000));
-            }
-        }
-
-        // Log final results
-        console.log('\n=== Final Test Results ===');
-        results.forEach(result => {
-            console.log(`Test #${result.testNumber}: ${result.success ? 'PASSED' : 'FAILED'}`);
+        const page = await browser.newPage();
+        
+        // Handle dialogs automatically
+        page.on('dialog', async dialog => {
+            console.log('Dialog message:', dialog.message());
+            await dialog.accept();
         });
 
-        // Calculate success rate
-        const successRate = (results.filter(r => r.success).length / numberOfTests) * 100;
-        console.log(`\nSuccess Rate: ${successRate}%`);
+        // Navigate to the registration page
+        await page.goto('http://localhost/gs1oman.com/', {
+            waitUntil: ['networkidle0', 'domcontentloaded', 'load'],
+            timeout: 60000
+        });
 
-        // Ensure all tests passed
-        const allPassed = results.every(r => r.success);
-        expect(allPassed).toBe(true);
-    }, 180000); // Increased timeout for multiple tests
-}); 
+        // Debug: Log the current URL
+        console.log('Current URL:', await page.url());
+
+        // Debug: Log all forms on the page
+        const formsInfo = await page.evaluate(() => {
+            const forms = Array.from(document.querySelectorAll('form'));
+            return forms.map(form => ({
+                id: form.id,
+                action: form.action,
+                method: form.method,
+                html: form.outerHTML.substring(0, 200) + '...' // First 200 chars only
+            }));
+        });
+        console.log('Forms found on page:', formsInfo);
+
+        // Wait for form to be ready and visible
+        await page.waitForSelector('#regform', { 
+            visible: true,
+            timeout: 10000 
+        });
+        console.log('Form found, starting to fill data...');
+
+        // Generate random test data
+        const companyName = generateRandomCompanyName();
+        const companyNameAr = generateRandomArabicName();
+        const address = generateRandomAddress();
+        const addressAr = 'مسقط، عمان';
+        const poBox = generateRandomString(4, 'numeric');
+        const zipCode = generateRandomString(3, 'numeric');
+        const mobileNumber = generateRandomPhone();
+        const phoneNumber = generateRandomPhone();
+        const faxNumber = generateRandomPhone();
+        const crNumber = generateRandomCRNumber();
+        const email = generateRandomEmail(companyName);
+        
+        // Fill company information
+        await page.type('input[name="name"]', companyName);
+        await page.type('input[name="name_ar"]', companyNameAr);
+        await page.type('input[name="pobox"]', poBox);
+        await page.type('input[name="zipcode"]', zipCode);
+        await page.type('input[name="address"]', address);
+        await page.type('input[name="address_ar"]', addressAr);
+        
+        // Select country and city from dropdowns
+        await page.select('select[name="country"]', 'Oman');
+        await page.select('select[name="city"]', 'Muscat');
+        
+        // Fill contact information
+        await page.type('input[name="mobile_number"]', mobileNumber);
+        await page.type('input[name="phone_number"]', phoneNumber);
+        await page.type('input[name="fax_number"]', faxNumber);
+        await page.type('input[name="user_email"]', email);
+
+        // Fill CR details
+        await page.type('input[name="cr_number"]', crNumber);
+        await page.select('select[name="cr_legal_type"]', 'Limited Liability Company - LLC');
+        
+        // Set CR dates
+        const today = new Date();
+        const expiryDate = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+        
+        await page.evaluate((dates) => {
+            const regDate = document.querySelector('input[name="cr_registration_date"]');
+            const expDate = document.querySelector('input[name="cr_expiry_date"]');
+            if (regDate) {
+                regDate.value = dates.today;
+                regDate.dispatchEvent(new Event('change'));
+            }
+            if (expDate) {
+                expDate.value = dates.expiry;
+                expDate.dispatchEvent(new Event('change'));
+            }
+        }, { today: today.toISOString().split('T')[0], expiry: expiryDate.toISOString().split('T')[0] });
+
+        // Select business type and category
+        await page.select('select[name="business_type_product_category"]', 'Food');
+        await page.type('input[name="number_of_employee"]', '50');
+
+        // Handle Riyada certificate
+        await page.select('select[name="riyada_certificate"]', 'Yes');
+        await page.evaluate(() => {
+            const expDate = document.querySelector('input[name="exp_date"]');
+            if (expDate) {
+                expDate.value = '2025-12-31';
+                expDate.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Upload test files
+        const uploadPath = path.join(__dirname, 'test-files');
+        const uploadFiles = {
+            'upload_document1': path.join(uploadPath, 'cr.pdf'),
+            'upload_document2': path.join(uploadPath, 'coc.pdf'),
+            'upload_document3': path.join(uploadPath, 'other.pdf'),
+            'documents_req': path.join(uploadPath, 'riyada.pdf')
+        };
+
+        for (const [fieldName, filePath] of Object.entries(uploadFiles)) {
+            const fileInput = await page.$(`input[name="${fieldName}"]`);
+            if (fileInput) {
+                await fileInput.uploadFile(filePath);
+            }
+        }
+
+        // Fill primary contact
+        const primaryEmail = generateRandomEmail();
+        await page.evaluate((data) => {
+            const fillField = (name, value) => {
+                const field = document.querySelector(`[name="${name}"]`);
+                if (field) {
+                    if (field.tagName === 'SELECT') {
+                        field.value = value;
+                        field.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else {
+                        field.value = value;
+                        field.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            };
+
+            fillField('title[]', data.title);
+            fillField('first_name[]', data.firstName);
+            fillField('last_name[]', data.lastName);
+            fillField('job_title[]', data.jobTitle);
+            fillField('email_id[]', data.email);
+            fillField('phone_number1[]', data.phone);
+        }, {
+            title: 'Mr.',
+            firstName: 'John',
+            lastName: 'Doe',
+            jobTitle: 'CEO',
+            email: primaryEmail,
+            phone: generateRandomPhone()
+        });
+
+        // Fill secondary contact
+        const secondaryEmail = generateRandomEmail();
+        await page.evaluate((data) => {
+            const fillField = (name, value) => {
+                const fields = document.querySelectorAll(`[name="${name}"]`);
+                if (fields.length > 1) {
+                    const field = fields[1];
+                    if (field.tagName === 'SELECT') {
+                        field.value = value;
+                        field.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else {
+                        field.value = value;
+                        field.dispatchEvent(new Event('input', { bubbles: true }));
+                    }
+                }
+            };
+
+            fillField('title[]', data.title);
+            fillField('first_name[]', data.firstName);
+            fillField('last_name[]', data.lastName);
+            fillField('job_title[]', data.jobTitle);
+            fillField('email_id[]', data.email);
+            fillField('phone_number1[]', data.phone);
+
+            // Debug: Log field values after filling
+            console.log('Additional Contact Fields:', {
+                title: document.querySelectorAll('[name="title[]"]')[1]?.value,
+                firstName: document.querySelectorAll('[name="first_name[]"]')[1]?.value,
+                lastName: document.querySelectorAll('[name="last_name[]"]')[1]?.value,
+                jobTitle: document.querySelectorAll('[name="job_title[]"]')[1]?.value,
+                email: document.querySelectorAll('[name="email_id[]"]')[1]?.value,
+                phone: document.querySelectorAll('[name="phone_number1[]"]')[1]?.value
+            });
+
+            // Debug: Check for any error messages or validation issues
+            const errorMessages = Array.from(document.querySelectorAll('.error-message, .alert-danger, .text-danger'))
+                .map(el => ({
+                    text: el.textContent?.trim(),
+                    nearestField: el.previousElementSibling?.name || 'unknown'
+                }));
+            console.log('Error Messages:', errorMessages);
+
+            // Debug: Check form validation state
+            const form = document.querySelector('#regform');
+            if (form) {
+                const invalidFields = Array.from(form.querySelectorAll(':invalid'))
+                    .map(field => ({
+                        name: field.name,
+                        type: field.type,
+                        validationMessage: field.validationMessage
+                    }));
+                console.log('Invalid Fields:', invalidFields);
+            }
+        }, {
+            title: 'Mrs.',
+            firstName: 'Jane',
+            lastName: 'Smith',
+            jobTitle: 'Manager',
+            email: secondaryEmail,
+            phone: generateRandomPhone()
+        });
+
+        // Add a wait and check for any error messages that appear
+        await sleep(page, 1000);
+
+        // Take a screenshot of the additional contact section
+        await page.screenshot({
+            path: 'additional-contact-debug.png',
+            fullPage: true
+        });
+
+        const errorState = await page.evaluate(() => {
+            // Get all error messages
+            const errors = Array.from(document.querySelectorAll('.error-message, .alert-danger, .text-danger, .invalid-feedback'))
+                .map(el => ({
+                    text: el.textContent?.trim(),
+                    isVisible: window.getComputedStyle(el).display !== 'none',
+                    location: el.closest('fieldset, section, div')?.id || 'unknown',
+                    nearestInput: el.previousElementSibling?.name || 
+                                el.previousElementSibling?.querySelector('input')?.name || 
+                                'unknown'
+                }));
+
+            // Get form validation state
+            const form = document.querySelector('#regform');
+            const invalidFields = form ? Array.from(form.querySelectorAll(':invalid')).map(f => f.name) : [];
+            
+            // Get additional contact fields state
+            const additionalContactFields = {};
+            ['title[]', 'first_name[]', 'last_name[]', 'job_title[]', 'email_id[]', 'phone_number1[]'].forEach(name => {
+                const elements = document.querySelectorAll(`[name="${name}"]`);
+                if (elements.length > 1) {
+                    additionalContactFields[name] = {
+                        value: elements[1].value,
+                        isValid: elements[1].checkValidity(),
+                        validationMessage: elements[1].validationMessage,
+                        isVisible: window.getComputedStyle(elements[1]).display !== 'none'
+                    };
+                }
+            });
+
+            return {
+                errors,
+                formValidity: {
+                    isValid: form?.checkValidity() || false,
+                    invalidFields
+                },
+                additionalContactFields,
+                // Get HTML of the section for debugging
+                sectionHtml: document.querySelector('.additional-contact-section, #additional-contacts')?.outerHTML || 'Section not found'
+            };
+        });
+
+        console.log('Form Error State:', JSON.stringify(errorState, null, 2));
+
+        // Select healthcare status
+        await page.evaluate(() => {
+            const noRadio = document.querySelector('input[name="healthcare_status"][value="No"]');
+            if (noRadio) {
+                noRadio.click();
+            }
+        });
+
+        // Handle package selection
+        console.log('Starting package selection process...');
+        let packageResult = null;
+        let attempts = 0;
+        const maxAttempts = 3;
+
+        while (attempts < maxAttempts && (!packageResult || !packageResult.gtinCheckbox?.checked || !packageResult.glnCheckbox?.checked)) {
+            attempts++;
+            console.log(`Package selection attempt ${attempts}...`);
+            
+            // Select package and wait for AJAX
+            await page.select('select[name="product_id"]', '3');
+            await page.waitForResponse(response => 
+                response.url().includes('get_package_details.php')
+            );
+            await sleep(page, 1000);
+
+            // Check and set GTIN
+            await page.evaluate(() => {
+                const gtinCheckbox = document.querySelector('#gtins_annual_fee');
+                const gtinInput = document.querySelector('#gtins_annual_fee_input');
+                if (gtinCheckbox && gtinInput) {
+                    gtinCheckbox.click();
+                    gtinInput.value = '350';
+                    gtinInput.dispatchEvent(new Event('change'));
+                }
+            });
+            await sleep(page, 500);
+
+            // Check and set GLN
+            await page.evaluate(() => {
+                const glnCheckbox = document.querySelector('#gln_price');
+                const glnInput = document.querySelector('#gln_price_input');
+                if (glnCheckbox && glnInput) {
+                    glnCheckbox.click();
+                    glnInput.value = '300';
+                    glnInput.dispatchEvent(new Event('change'));
+                }
+            });
+            await sleep(page, 500);
+
+            // Verify values
+            packageResult = await page.evaluate(() => {
+                const getFieldValue = (selector) => {
+                    const el = document.querySelector(selector);
+                    return el ? {
+                        value: el.value,
+                        checked: el.type === 'checkbox' ? el.checked : undefined,
+                        visible: el.offsetParent !== null
+                    } : null;
+                };
+
+                return {
+                    gtin: getFieldValue('#gtins_annual_fee_input'),
+                    gln: getFieldValue('#gln_price_input'),
+                    gtinCheckbox: getFieldValue('#gtins_annual_fee'),
+                    glnCheckbox: getFieldValue('#gln_price'),
+                    total: parseFloat(document.querySelector('#total_price')?.value || '0'),
+                    registration: parseFloat(document.querySelector('#registration_fee')?.value || '0')
+                };
+            });
+
+            console.log('Package state:', packageResult);
+
+            if (!packageResult.gtinCheckbox?.checked || !packageResult.glnCheckbox?.checked) {
+                console.log('Package selection verification failed, retrying...');
+                await sleep(page, 1000);
+            }
+        }
+
+        // Select payment method
+        console.log('Selecting payment method...');
+        await page.evaluate(() => {
+            const paymentRadio = document.querySelector('input[type="radio"][name="offline_payment"][value="1"]');
+            if (paymentRadio) {
+                paymentRadio.checked = true;
+                paymentRadio.dispatchEvent(new Event('change'));
+                paymentRadio.dispatchEvent(new Event('click'));
+            } else {
+                console.error('Cash payment radio button not found');
+            }
+        });
+        await sleep(page, 500);
+
+        // Verify payment selection
+        const paymentSelected = await page.evaluate(() => {
+            const radio = document.querySelector('input[type="radio"][name="offline_payment"]:checked');
+            return radio ? { value: radio.value, checked: radio.checked } : null;
+        });
+
+        console.log('Payment selection verification:', paymentSelected);
+
+        if (!paymentSelected || paymentSelected.value !== '1') {
+            console.log('Payment selection failed, trying direct click...');
+            await page.click('input[type="radio"][name="offline_payment"][value="1"]');
+            await sleep(page, 500);
+        }
+
+        // Accept terms
+        console.log('Accepting terms and conditions...');
+        await page.evaluate(() => {
+            const termsCheckbox = document.querySelector('input[name="tnc"]');
+            if (termsCheckbox) {
+                termsCheckbox.checked = true;
+                termsCheckbox.dispatchEvent(new Event('change'));
+                termsCheckbox.dispatchEvent(new Event('click'));
+            }
+        });
+        await sleep(page, 500);
+
+        // Verify form state before submission
+        const formState = await page.evaluate(() => {
+            return {
+                isValid: true,
+                state: {
+                    name: document.querySelector('input[name="name"]')?.value,
+                    email: document.querySelector('input[name="user_email"]')?.value,
+                    cr: document.querySelector('input[name="cr_number"]')?.value,
+                    package: document.querySelector('select[name="product_id"]')?.value,
+                    gtin: document.querySelector('#gtins_annual_fee_input')?.value,
+                    gln: document.querySelector('#gln_price_input')?.value,
+                    total: document.querySelector('#total_price')?.value,
+                    payment: document.querySelector('input[name="offline_payment"]:checked')?.value,
+                    terms: document.querySelector('input[name="tnc"]')?.checked
+                }
+            };
+        });
+
+        console.log('Form validation result:', formState);
+
+        if (!formState.isValid || !formState.state.payment || !formState.state.terms) {
+            throw new Error('Form validation failed: ' + JSON.stringify(formState.state));
+        }
+
+        // Update form action to correct endpoint and submit
+        await page.evaluate(() => {
+            const form = document.querySelector('#regform');
+            if (!form) {
+                throw new Error('Form not found with ID "regform"');
+            }
+            form.action = 'process-registration.php';
+            form.method = 'POST';
+            form.enctype = 'multipart/form-data';
+
+            // Get values from visible fields
+            const gtinFee = parseFloat(document.querySelector('#gtins_annual_fee_input')?.value || '0');
+            const glnPrice = parseFloat(document.querySelector('#gln_price_input')?.value || '0');
+            const regFee = parseFloat(document.querySelector('#registration_fee')?.value || '0');
+            const totalPrice = regFee + gtinFee + glnPrice;
+            const annualFee = gtinFee + glnPrice;
+
+            // Set all required hidden fields
+            const setHiddenValue = (name, value) => {
+                let input = document.querySelector(`input[name="${name}"]`);
+                if (!input) {
+                    input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = name;
+                    form.appendChild(input);
+                }
+                input.value = value;
+                input.dispatchEvent(new Event('change'));
+            };
+
+            // Set all required hidden fields
+            setHiddenValue('registration_fee', regFee);
+            setHiddenValue('gtins_annual_fee', gtinFee);
+            setHiddenValue('gln_price', glnPrice);
+            setHiddenValue('sscc_price', '0');
+            setHiddenValue('annual_subscription_fee', annualFee);
+            setHiddenValue('annual_total_price', annualFee);
+            setHiddenValue('total_price', totalPrice);
+            setHiddenValue('submit', '1');
+            setHiddenValue('offline_payment', '1');
+            setHiddenValue('tnc', 'Yes');
+
+            // Ensure healthcare status is set
+            const healthcareNo = document.querySelector('input[name="healthcare_status"][value="No"]');
+            if (healthcareNo) {
+                healthcareNo.checked = true;
+                healthcareNo.dispatchEvent(new Event('change'));
+            }
+
+            // Ensure payment method is selected
+            const paymentRadio = document.querySelector('input[name="offline_payment"][value="1"]');
+            if (paymentRadio) {
+                paymentRadio.checked = true;
+                paymentRadio.dispatchEvent(new Event('change'));
+            }
+
+            // Ensure terms are accepted
+            const termsCheckbox = document.querySelector('input[name="tnc"]');
+            if (termsCheckbox) {
+                termsCheckbox.checked = true;
+                termsCheckbox.dispatchEvent(new Event('change'));
+            }
+
+            // Log form data before submission
+            const formData = new FormData(form);
+            console.log('Form data before submission:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            // Create and dispatch submit event
+            const submitEvent = new Event('submit', {
+                bubbles: true,
+                cancelable: true
+            });
+            
+            // Trigger form submission
+            form.dispatchEvent(submitEvent);
+            
+            // If the form has an onsubmit handler, call it directly
+            if (typeof form.onsubmit === 'function') {
+                form.onsubmit();
+            }
+            
+            // As a fallback, try clicking the submit button
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.click();
+            }
+        });
+
+        // Wait for navigation and response
+        try {
+            await Promise.all([
+                page.waitForNavigation({ timeout: 10000 }),
+                page.waitForResponse(response => response.url().includes('process-registration.php'), { timeout: 10000 })
+            ]);
+        } catch (error) {
+            console.error('Navigation or response timeout:', error);
+        }
+
+        // Get final URL and page content
+        const finalUrl = page.url();
+        console.log('Final URL:', finalUrl);
+
+        const pageContent = await page.content();
+        console.log('Final page content length:', pageContent.length);
+
+        // Check for success or error messages
+        const pageMessages = await page.evaluate(() => {
+            return {
+                success: document.querySelector('.alert-success')?.textContent?.trim() || '',
+                error: document.querySelector('.alert-danger')?.textContent?.trim() || '',
+                formErrors: Array.from(document.querySelectorAll('.error-message')).map(el => el.textContent?.trim() || '')
+            };
+        });
+        console.log('Final page messages:', pageMessages);
+
+        // Wait for database updates
+        await sleep(page, 5000);
+
+        // Start database verification
+        console.log('Starting database verification...');
+        const formDataToVerify = {
+            email: formState.state.email,
+            name: formState.state.name,
+            cr: formState.state.cr
+        };
+        console.log('Form data to verify:', formDataToVerify);
+
+        try {
+            await verifyDatabaseEntry(formDataToVerify);
+        } catch (error) {
+            console.error('Database verification error:', error);
+            console.error('Stack trace:', error.stack);
+            throw new Error('Database verification failed');
+        }
+
+        return { success: true, browser };
+    } catch (error) {
+        console.error('Test execution failed:', error);
+        return { success: false, browser: browser || null };
+    }
+}
+
+// Run a single test
+(async () => {
+    let testBrowser;
+    try {
+        const result = await runRegistrationTest(1);
+        testBrowser = result.browser;
+        const success = result.success;
+        
+        // Print summary
+        console.log('\nTest Summary:');
+        console.log('-------------');
+        console.log(`Registration Form Test #1: ${success ? 'PASSED' : 'FAILED'}`);
+        console.log('\nBrowser will stay open for inspection. Press Ctrl+C to exit.');
+        
+    } catch (error) {
+        console.error('Test execution failed:', error);
+    }
+
+    // Keep the process running
+    process.on('SIGINT', async () => {
+        console.log('Received SIGINT. Closing browser...');
+        if (testBrowser) {
+            await testBrowser.close();
+        }
+        process.exit();
+    });
+})(); 

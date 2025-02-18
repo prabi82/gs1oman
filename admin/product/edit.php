@@ -979,22 +979,6 @@ else{
 </div>
 
 <div class="form-group">
-<label for="inputName" class="col-form-label">Gln Number<span style="color:red; ">*</span></label>
-<input type="text" class="form-control" name="gln_number" value="<?=$company_row['gln_number'];?>"  placeholder="Enter Gln Number" required="" >
-</div>
-<!-- New Longitude Field -->
-<div class="form-group">
-    <label for="inputLongitude" class="col-form-label">Longitude<span style="color:red; ">*</span></label>
-    <input type="text" class="form-control" name="longitude" value="<?=$company_row['longitude'];?>" placeholder="Enter Longitude" required>
-</div>
-
-<!-- New Latitude Field -->
-<div class="form-group">
-    <label for="inputLatitude" class="col-form-label">Latitude<span style="color:red; ">*</span></label>
-    <input type="text" class="form-control" name="latitude" value="<?=$company_row['latitude'];?>" placeholder="Enter Latitude" required>
-</div>
-
-<div class="form-group">
 <label for="inputSubject" class="col-form-label">Status</label>
 <select name="status" class="form-control">
 <option value="0"<?=($status=='0')?'selected':'';?>>Pending Approval</option>

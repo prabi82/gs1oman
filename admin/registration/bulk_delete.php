@@ -6,51 +6,44 @@ if($_SESSION['email']=="") {
 }
 
 if(isset($_POST['bulk_delete']) && !empty($_POST['delete_ids'])) {
-    $success = true;
-    $deleted = 0;
-    
-    // Start transaction
-    mysqli_begin_transaction($conn);
-    
+    $response = array();
     try {
-        foreach($_POST['delete_ids'] as $id) {
-            $id = intval($id); // Sanitize the ID
+        $ids = $_POST['delete_ids'];
+        
+        // Start transaction
+        mysqli_begin_transaction($conn);
+        
+        try {
+            // Delete from company_contacts_tbl
+            $contacts_query = "DELETE FROM company_contacts_tbl WHERE company_id IN (" . implode(',', array_map('intval', $ids)) . ")";
+            mysqli_query($conn, $contacts_query);
             
-            // First check if the record exists
-            $check_exists = mysqli_query($conn, "SELECT id FROM company_tbl WHERE id = '$id'");
-            if(mysqli_num_rows($check_exists) == 0) {
-                continue; // Skip if record doesn't exist
-            }
+            // Delete from order_tbl
+            $orders_query = "DELETE FROM order_tbl WHERE company_id IN (" . implode(',', array_map('intval', $ids)) . ")";
+            mysqli_query($conn, $orders_query);
             
-            // Delete from company_contacts_tbl first
-            $delete_contacts = mysqli_query($conn, "DELETE FROM company_contacts_tbl WHERE company_id = '$id'");
-            if(!$delete_contacts) {
-                throw new Exception("Error deleting contact records for ID: " . $id);
-            }
+            // Finally delete from company_tbl
+            $company_query = "DELETE FROM company_tbl WHERE id IN (" . implode(',', array_map('intval', $ids)) . ")";
+            mysqli_query($conn, $company_query);
             
-            // Then delete from company_tbl
-            $delete_company = mysqli_query($conn, "DELETE FROM company_tbl WHERE id = '$id'");
-            if(!$delete_company) {
-                throw new Exception("Error deleting company record for ID: " . $id);
-            }
+            // Commit transaction
+            mysqli_commit($conn);
             
-            $deleted++;
+            $response['success'] = true;
+            $response['message'] = 'Records deleted successfully';
+            
+        } catch (Exception $e) {
+            // Rollback transaction on error
+            mysqli_rollback($conn);
+            throw $e;
         }
-        
-        // If we get here, all deletions were successful
-        mysqli_commit($conn);
-        $_SESSION['message'] = "Successfully deleted " . $deleted . " record(s)";
-        
     } catch (Exception $e) {
-        // An error occurred, rollback changes
-        mysqli_rollback($conn);
-        $_SESSION['message'] = "Error: " . $e->getMessage();
-        $success = false;
+        $response['success'] = false;
+        $response['message'] = 'Error deleting records: ' . $e->getMessage();
     }
     
-    // Redirect back
-    header("Location: show.php?page=REV");
-    exit();
+    echo json_encode($response);
+    exit;
 } else {
     $_SESSION['message'] = "No records selected for deletion";
     header("Location: show.php?page=REV");

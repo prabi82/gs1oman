@@ -26,386 +26,97 @@
 	require 'PHPMailer/src/SMTP.php';
 
 
-	if(isset($_POST['submit']))
-	{
+	// At the start of the file, after session checks
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 
-
-	//Package Start
-	$product_id=$_POST['product_id'];
-
-	$product_name=$_POST['product_name'];
-	//$registration_fee=$_POST['registration_fee'];
-	$gtins_annual_fee=$_POST['gtins_annual_fee'];
-	$gln_price=$_POST['gln_price'];
-	$sscc_price=$_POST['sscc_price'];
-	$annual_subscription_fee=$gtins_annual_fee+$gln_price+$sscc_price;
-	$offline_payment=$_POST['offline_payment'];
-	
-	//$annual_total_price=$registration_fee+$gtins_annual_fee+$gln_price+$sscc_price;
-	$annual_total_price=$gtins_annual_fee+$gln_price+$sscc_price;    //remove registration fee in user
-	
-	
-	
-	
-	
-	//Package wrap WRAP
-
-
-	//email Message start 
-	$variable = "<br>";
-	$message= "Once your application is approved, you will get  an activation email with the login details.";
-
-	$email_temp='<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-	   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0;">
-	   <meta name="format-detection" content="telephone=no"/>
-
-	   <!-- Responsive Mobile-First Email Template by Konstantin Savchenko, 2015.
-	   https://github.com/konsav/email-templates/  -->
-
-	   <style>
-
-	/* Reset styles */
-	body {
-	   margin: 0;
-	   padding: 0;
-	   min-width: 100%;
-	   width: 100% !important;
-	   height: 100% !important;
-	}
-
-	body,table,td,div,p,a {
-	   -webkit-font-smoothing: antialiased;
-	   text-size-adjust: 100%;
-	   -ms-text-size-adjust: 100%;
-	   -webkit-text-size-adjust: 100%;
-	   line-height: 100%;
-	}
-
-	table,td {
-	   mso-table-lspace: 0pt;
-	   mso-table-rspace: 0pt;
-	   border-collapse: collapse !important;
-	   border-spacing: 0;
-	}
-
-	img {
-	   border: 0;
-	   line-height: 100%;
-	   outline: none;
-	   text-decoration: none;
-	   -ms-interpolation-mode: bicubic;
-	}
-
-	#outlook a {
-	   padding: 0;
-	}
-
-	.ReadMsgBody {
-	   width: 100%;
-	}
-
-	.ExternalClass {
-	   width: 100%;
-	}
-
-	.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {
-	   line-height: 100%;
-	}
-
-	/* Rounded corners for advanced mail clients only */
-	@media all and (min-width: 560px) {
-	   .container {
-		  border-radius: 8px;
-		  -webkit-border-radius: 8px;
-		  -moz-border-radius: 8px;
-		  -khtml-border-radius: 8px;
-	   }
-	}
-
-	/* Set color for auto links (addresses, dates, etc.) */
-	a,a:hover {
-	   color: #127DB3;
-	}
-
-	.footer a,.footer a:hover {
-	   color: #999999;
-	}
-
-	</style>
-
-	<!-- MESSAGE SUBJECT -->
-	<title>Barcode</title>
-
-	</head>
-	<!-- BODY -->
-	<!-- Set message background color (twice) and text color (twice) -->
-	<body topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" marginwidth="0" marginheight="0" width="100%" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%; height: 100%; -webkit-font-smoothing: antialiased; text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; line-height: 100%;
-	   background-color: #F0F0F0;
-	   color: #000000;"
-	   bgcolor="#F0F0F0"
-	   text="#000000">
-
-	<!-- SECTION / BACKGROUND -->
-	<!-- Set message background color one again -->
-	<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; width: 100%;" class="background"><tr><td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;"
-	   bgcolor="#F0F0F0">
-
-	<!-- WRAPPER -->
-	<!-- Set wrapper width (twice) -->
-	<table border="0" cellpadding="0" cellspacing="0" align="center"
-	   width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit;
-	   max-width: 560px;" class="wrapper">
-
-
-
-	<!-- End of WRAPPER -->
-	</table>
-
-	<!-- WRAPPER / CONTEINER -->
-	<!-- Set conteiner background color -->
-	<table border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#FFFFFF"width="560" style="border-collapse: collapse; border-spacing: 0; padding: 0; width: inherit; max-width: 560px;" class="container">
-
-
-	<tr>
-	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-	padding-top: 20px;" class="hero">
-	<a target="_blank" style="text-decoration: none;"href=""><img border="0" vspace="0" hspace="0" src="https://websutility.in/client-projects/barcode/images/logo.png"  style="width:100%; max-width: 200px;"/></a>
-	</td>
-	</tr>
-
-	<tr>
-	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;  font-size: 20px; font-weight:bold; padding-top:25px;font-family: sans-serif;" class="header">
-
-	Thanks you for joining with us!
-
-	</td>
-	</tr>
-	   
-	<tr>
-	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%; padding-top: 25px; color: #000000;font-family: sans-serif;" class="paragraph">
-
-	Once It will be approved by admin then you can login successfully.
-	</td>
-	</tr>
-
-	   
-
-
-	   
-
-	   <!-- LIST -->
-	<tr>
-	<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;" class="list-item"><table align="center" border="0" cellspacing="0" cellpadding="0" style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
-			 
-
-			 <tr>
-
-				<!-- LIST ITEM IMAGE -->
-				<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
-				<td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
-				   padding-top: 30px;
-				   padding-right: 20px;"><img
-				border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
-				   color: #000000;"
-				   src="https://raw.githubusercontent.com/konsav/email-templates/master/images/list-item.png"
-				   alt="D" title="Designer friendly"
-				   width="50" height="50"></td>
-
-				<!-- LIST ITEM TEXT -->
-				<!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-				<td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-				   padding-top: 25px;
-				   color: #000000;
-				   font-family: sans-serif;" class="paragraph">
-					  <b style="color: #333333;">Product Package Purchase</b><br/>
-					  <li>Product Name: &nbsp; '.$product_name.'</li>
-					  <li>Registration_fee: &nbsp; '.$registration_fee.'</li>
-					  <li>Gtins Annual Fee: &nbsp; '.$gtins_annual_fee.'</li>
-					  <li>Annual Subscription Fee: &nbsp; '.$annual_subscription_fee.'</li>
-					  <li>Annual Total Fee: &nbsp; '.$annual_total_price.'</li>
-				</td>
-
-			 </tr>
-
-		  </table></td>
-	   </tr>
-
-		  
-	   <tr>
-		  <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-			 padding-top: 25px;
-			 padding-bottom: 5px;" class="button"><a
-			 href="#" target="_blank" style="text-decoration: underline;">
-				<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;"><tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
-				   bgcolor="#E9703E"><a target="_blank" style="text-decoration: underline;
-				   color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
-				   href="'.$base_url.'">
-					  GS1 Oman
-				   </a>
-			 </td>
-			 </tr>
-			 </table>
-			 </a>
-		  </td>
-	   </tr>
-
-	   <!-- LINE -->
-	   <!-- Set line color -->
-	   <tr>
-		  <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-			 padding-top: 25px;" class="line"><hr
-			 color="#E0E0E0" align="center" width="100%" size="1" noshade style="margin: 0; padding: 0;" />
-		  </td>
-	   </tr>
-
-	   
-
-	<!-- End of WRAPPER -->
-	</table>
-
-
-
-	<!-- End of SECTION / BACKGROUND -->
-	</td></tr></table>
-
-	</body>
-	</html>';
-
-
-// email Message Wrap
-
-
-
- 
-
-//validation
-$user_sql = "SELECT * FROM  company_tbl WHERE user_email='".$_SESSION['user_email']."'";
-$res=mysqli_query($conn, $user_sql);
-$fetch_row=mysqli_fetch_array($res);
-$user_email=$fetch_row['user_email'];
-$user_id=$fetch_row['id'];
-
-// If Statement Start
-if($user_email!=''){
- 
-    $mail = new PHPMailer(true);
-             
-    $mail->isSMTP(); 
-       #$mail->SMTPDebug = 2;
-       $mail->Host       = 'host33.theukhost.net';                     
-	    $mail->SMTPAuth   = true;                                   
-	    $mail->Username   = 'info@gs1oman.com';                    
-	    $mail->Password   = 'd4.rX%J6H55{';                             
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            
-	    $mail->Port       = 465;                                    
-
-	  
-	    $mail->setFrom('info@gs1oman.com', 'Barcode');
-	    $mail->addAddress($user_email);
-	    $mail->addAddress('info@gs1oman.com');
-                 
-
-
-    $mail->isHTML(true);                                 
-    $mail->Subject = 'Barcode:New Order';
-    $mail->Body    = $email_temp;
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-	/* if($mail->send())
-	{
+	if(isset($_POST['submit'])) {
+		// Log the entire POST data
+		error_log("Form submitted. POST data: " . print_r($_POST, true));
 		
-		$order_id = 'Barcode'.(rand(1,10000));
-		$order_date=date('Y-m-d');
-		  $last_id = $conn->insert_id;
+		// Package Start
+		$product_id = isset($_POST['product_id']) ? $_POST['product_id'] : null;
+		$product_name = isset($_POST['product_name']) ? $_POST['product_name'] : null;
+		$gtins_annual_fee = isset($_POST['gtins_annual_fee']) ? floatval($_POST['gtins_annual_fee']) : 0;
+		$gln_price = isset($_POST['gln_price']) ? floatval($_POST['gln_price']) : 0;
+		$sscc_price = isset($_POST['sscc_price']) ? floatval($_POST['sscc_price']) : 0;
+		
+		// Log captured values
+		error_log("Captured values:");
+		error_log("Product ID: " . $product_id);
+		error_log("GTINS Annual Fee: " . $gtins_annual_fee);
+		error_log("GLN Price: " . $gln_price);
+		error_log("SSCC Price: " . $sscc_price);
 
-		$renewalDateDb=date('Y-m-d', strtotime('+1 year'));
-		$validTillDateDb= date('Y-m-d', strtotime('-1 day', strtotime($renewalDateDb)));
-		$offline_payment=$_POST['offline_payment'];
-		//echo $offline_payment;
-		//die();
+		// Validate user session and get user data
+		if(!isset($_SESSION['user_email']) || empty($_SESSION['user_email'])) {
+			error_log("User session not found");
+			header('location:../login.php');
+			exit;
+		}
 
-		//$sql2 =mysqli_query($conn,"INSERT INTO `order_tbl`(company_id ,order_id,  product_id ,user_email, registration_fee ,gtins_annual_fee, gln_price ,sscc_price,annual_subscription_fee,annual_total_price,order_date,offline_payment,status) VALUES('$user_id','$order_id','$product_id' ,'$user_email' ,'$registration_fee' ,'$gtins_annual_fee' ,'$gln_price','$sscc_price','$annual_subscription_fee','$annual_total_price','$order_date','$offline_payment','0')");
-		$sql2 =mysqli_query($conn,"INSERT INTO `order_tbl`(company_id ,order_id,  product_id ,user_email, registration_fee ,gtins_annual_fee, gln_price ,sscc_price,annual_subscription_fee,annual_total_price,order_date,offline_payment,status) VALUES('$user_id','$order_id','$product_id' ,'$user_email' ,'0' ,'$gtins_annual_fee' ,'$gln_price','$sscc_price','$annual_subscription_fee','$annual_total_price','$order_date','$offline_payment','0')");
-
-		if($sql2)
-		{ 
-			echo "<script>window.location='payment.php?_token=".base64_encode($order_id)."';</script>";
-
-			$_SESSION['message']="New Event Added Successfully";
-
+		// Get user details
+		$user_sql = "SELECT * FROM company_tbl WHERE user_email = '" . mysqli_real_escape_string($conn, $_SESSION['user_email']) . "'";
+		$res = mysqli_query($conn, $user_sql);
+		
+		if(!$res) {
+			error_log("Database error in user query: " . mysqli_error($conn));
+			die("Database error occurred");
 		}
 		
-	}
+		$fetch_row = mysqli_fetch_array($res);
+		if(!$fetch_row) {
+			error_log("User not found in database");
+			die("User not found");
+		}
 
- 
-
-	else {
- 
-			echo "<script>alert('Enter valid email.')</script>";
-
-		} */
-	
-	
-		$order_id = 'Barcode'.(rand(1,10000));
-		$order_date=date('Y-m-d');
-		  $last_id = $conn->insert_id;
-
-		$renewalDateDb=date('Y-m-d', strtotime('+1 year'));
-		$validTillDateDb= date('Y-m-d', strtotime('-1 day', strtotime($renewalDateDb)));
-		$offline_payment=$_POST['offline_payment'];
+		$user_email = $fetch_row['user_email'];
+		$user_id = $fetch_row['id'];
 		
-		$renewal_date=$_POST['renewal_date'];
-		$renewal_datenew=date('Y-m-d', strtotime($renewal_date));
+		// Generate order details
+		$order_id = 'Barcode' . (rand(1,10000));
+		$order_date = date('Y-m-d');
 		
+		// Prepare SQL with proper escaping
+		$sql2 = sprintf(
+			"INSERT INTO `order_tbl` (
+				company_id, order_id, product_id, user_email,
+				registration_fee, gtins_annual_fee, gln_price, sscc_price,
+				annual_subscription_fee, annual_total_price, order_date,
+				offline_payment, status
+			) VALUES (
+				'%s', '%s', '%s', '%s',
+				0, %.2f, %.2f, %.2f,
+				%.2f, %.2f, '%s',
+				'%s', '0'
+			)",
+			mysqli_real_escape_string($conn, $user_id),
+			mysqli_real_escape_string($conn, $order_id),
+			mysqli_real_escape_string($conn, $product_id),
+			mysqli_real_escape_string($conn, $user_email),
+			$gtins_annual_fee,
+			$gln_price,
+			$sscc_price,
+			($gtins_annual_fee + $gln_price + $sscc_price),
+			($gtins_annual_fee + $gln_price + $sscc_price),
+			mysqli_real_escape_string($conn, $order_date),
+			mysqli_real_escape_string($conn, $_POST['offline_payment'])
+		);
 		
+		error_log("SQL Query: " . $sql2);
 		
-	//Reciept upload
-		$pay_rec = $_FILES['payment_receipt']['name'];
-		$pay_rec_tmp_name3 = $_FILES['payment_receipt']['tmp_name'];
-		$ext = pathinfo($pay_rec, PATHINFO_EXTENSION);
-		$pay_rec_path = 'images/pay-receipts/' . $pay_rec; // Use a relative path
-		$absolute_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $pay_rec_path;
-		// Check if the file has been uploaded successfully
-		if (move_uploaded_file($pay_rec_tmp_name3, $absolute_path)) {
-			// File has been successfully uploaded and moved to the desired folder
-			// Now, you can save $doc_path1 in your database
-			// Perform your database insertion here
-			//echo 'File uploaded successfully.';
+		$result = mysqli_query($conn, $sql2);
+		if(!$result) {
+			error_log("Database Error: " . mysqli_error($conn));
+			die("Failed to insert order: " . mysqli_error($conn));
 		} else {
-			// Something went wrong with the file upload
-			//echo 'Error uploading the file.';
+			error_log("Order inserted successfully. Order ID: " . $order_id);
+			echo "<script>window.location='payment.php?_token=" . base64_encode($order_id) . "';</script>";
+			$_SESSION['message'] = "New Event Added Successfully";
 		}
-		 
-		
+	}
 
 	
-		$sql2 =mysqli_query($conn,"INSERT INTO `order_tbl`(company_id ,order_id,  product_id ,user_email, registration_fee ,gtins_annual_fee, gln_price ,sscc_price,annual_subscription_fee,annual_total_price,order_date,offline_payment,status,payment_receipt,renewal_date) VALUES('$user_id','$order_id','$product_id' ,'$user_email' ,'0' ,'$gtins_annual_fee' ,'$gln_price','$sscc_price','$annual_subscription_fee','$annual_total_price','$order_date','$offline_payment','0','$pay_rec_path','$renewal_datenew')");
-		//$sql2 =mysqli_query($conn,"INSERT INTO `order_tbl`(company_id ,order_id,  product_id ,user_email, registration_fee ,gtins_annual_fee, gln_price ,sscc_price,annual_subscription_fee,annual_total_price,order_date,offline_payment,status,payment_receipt) VALUES('$user_id','$order_id','$product_id' ,'$user_email' ,'0' ,'$gtins_annual_fee' ,'$gln_price','$sscc_price','$annual_subscription_fee','$annual_total_price','$order_date','$offline_payment','0','$pay_rec_path')");
-	
-		
-	if($sql2)
-		{ 
-			echo "<script>window.location='payment.php?_token=".base64_encode($order_id)."';</script>";
-
-			$_SESSION['message']="New Event Added Successfully";
-
-		}
-		
-
-
-			echo "<script>window.location='show.php?page=Pack';</script>";
-
-  }
-  if('radio'=='1'){
-	  
-  }
-  
-//if statement end....
-
-}
-// Form Submit Wrap
 
 		if(isset($_POST['action']) && $_POST['action']=='get_product_data'){
 		$product_id = $_POST['product_id'];
@@ -418,127 +129,159 @@ if($user_email!=''){
   
 <div id="one" class="table table-responsive">
 <table class="table table-bordered table-striped">
-<!--<tr>
-<td class="fw-bold">Product / Services </td>
-<td class="fw-bold">Registration Fee <span class="fo-12">One time</span></td>
-<td class="fw-bold">Annual Renewal</td>
-</tr>
-<tr>
-<input type="hidden" name="product_name" value="<?=$productData['product_name']?>">
-<input type="hidden" name="registration_fee" value="<?=$productData['registration_fee']?>">
-<input type="hidden" name="gtins_annual_fee" value="<?=$productData['gtins_annual_fee']?>">
-<td><?=$productData['product_name']?> </td>
-<td><?=$productData['registration_fee']?> </td>
-<td><?=$productData['gtins_annual_fee']?> </td>-->
-</tr>
-<div style="clear: both;"></div>
-<div class="row">
-<h4 class="mt-3"> DDO YOU REQUIRED ADDITIONAL PRODUCTS?</h4>
-<div class="col-md-12">
-<div class="output">
-<div id="one" class="table table-responsive">
-<table class="table table-bordered table-striped">
 <tr>
 <td></td>
-<td class="fw-bold">Product / Services </td>
+            <td class="fw-bold">Product / Services</td>
 <td class="fw-bold">Annual Renewal</td>
 </tr>
 <tr>
-										
-<td><input onclick="add()" type="checkbox"  name="gtins_annual_fee" id="gtins_annual_fee" class="test" value="<?=$productData['gtins_annual_fee']?>"> </td>
-	<td>GTIN: Global Trade Item Numbers ? <span class="text-danger" data-toggle="tooltip" title="GTIN: Definition">!</span></td>
-	<input type="hidden" name="registration_fee" value="<?=$productData['registration_fee']?>">
-	<!--<input type="hidden" name="gtins_annual_fee" value="<?=$productData['gtins_annual_fee']?>">
-	<td><?=$productData['product_name']?> </td>
-	<!--<td><?=$productData['registration_fee']?> </td>-->
-	<input type="hidden" name="product_name" value="<?=$productData['product_name']?>">
-	<td><span id="gtins_annual_fee"><?=$productData['gtins_annual_fee']?></span> </td>
+            <td>
+                <input type="checkbox" name="gtins_annual_fee_checkbox" id="gtins_annual_fee" class="product-checkbox" value="<?=$productData['gtins_annual_fee']?>" data-target="gtins_annual_fee_input">
+                <input type="hidden" name="gtins_annual_fee" id="gtins_annual_fee_input" value="0">
+            </td>
+            <td>
+                GTIN: Global Trade Item Numbers ? 
+                <span class="text-danger" data-toggle="tooltip" title="GTIN: Definition">!</span>
+            </td>
+            <td>
+                <span id="gtins_annual_fee_display"><?=$productData['gtins_annual_fee']?></span>
+            </td>
 </tr>
 <tr>
 <td>
-<input onclick="add()" type="checkbox"  name="gln_price" id="gln_price" value="<?=$productData['gln_annual_fee']?>"> </td>
-<td>Do you require GLN? <span class="text-danger" data-toggle="tooltip" title="GTIN: Definition">!</span></td>
-<td><span id="gln_price_span"><?=$productData['gln_annual_fee']?></span></td>
+                <input type="checkbox" name="gln_price_checkbox" id="gln_price" class="product-checkbox" value="<?=$productData['gln_annual_fee']?>" data-target="gln_price_input">
+                <input type="hidden" name="gln_price" id="gln_price_input" value="0">
+            </td>
+            <td>
+                Do you require GLN? 
+                <span class="text-danger" data-toggle="tooltip" title="GLN: Definition">!</span>
+            </td>
+            <td>
+                <span id="gln_price_display"><?=$productData['gln_annual_fee']?></span>
+            </td>
 </tr>
-
-<?php
-if($productData['sscc_annual_fee']==0){
-
-}
-else{
-   echo"<tr><td><input onclick='add()' type='checkbox' name='sscc_price' id='sscc_price' value='".$productData['sscc_annual_fee']."'> 
+        <?php if($productData['sscc_annual_fee'] > 0): ?>
+        <tr>
+            <td>
+                <input type="checkbox" name="sscc_price_checkbox" id="sscc_price" class="product-checkbox" value="<?=$productData['sscc_annual_fee']?>" data-target="sscc_price_input">
+                <input type="hidden" name="sscc_price" id="sscc_price_input" value="0">
+            </td>
+            <td>
+                Do you require SSCC?
+                <span class="text-danger" data-toggle="tooltip" title="SSCC: Definition">!</span>
+            </td>
+            <td>
+                <span id="sscc_price_display"><?=$productData['sscc_annual_fee']?></span>
 </td>
-<td>Do you require SSCC? <span class='text-danger' data-toggle='tooltip' title='SSCC: Definition'>!</span></td>
-<td><span id='sscc_price_span'>".$productData['sscc_annual_fee']."</span></td>
-</tr>";
-}
-
-
-?>
-
+        </tr>
+        <?php endif; ?>
 </table>
-</div>
-</div>
-                           
-                        </div>
-                     </div>
-                  
                  </div>
                  
                   <div class="row fee_table mt-3">
             <div class="col-md-4">
-                <label class="fw-bold">Registration Fee </label>
+        <label class="fw-bold">Registration Fee</label>
                <div class="input-group mb-3">
-                 <span class="input-group-text" id="basic-addon1">OMR</span>
-                 
-                  <!--registration fee set to 0  --> 
-				  
-                 <!--<input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0"  value="<?=$productData['registration_fee']?>" disabled>-->
-                 <input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0"  value="0" disabled>
-				 
+            <span class="input-group-text">OMR</span>
+            <input type="text" id="registration_fee" name="registration_fee" class="form-control mb-0" value="0" readonly>
                </div>
-			   <?php 
-			   $nextYear =  date('Y');
-			   $addTwoYears =  date('Y', strtotime('+1 year'));
-			   $renewalDate='01 Jan '.$addTwoYears;
-			   $validTillDate= '31 Dec '.$nextYear;
-			   
-			   ?>
-               <span class="fw-bold text-danger">Valid till <?php echo $validTillDate ?> </span>
+        <span class="fw-bold text-danger">Valid till <?php echo date('d M Y', strtotime('last day of december')); ?></span>
             </div>
 
             <div class="col-md-4">
-                <label class="fw-bold">Annual Subscription Fee  </label>
+        <label class="fw-bold">Annual Subscription Fee</label>
                <div class="input-group mb-3">
-                 <span class="input-group-text" id="basic-addon1">OMR</span>
-                 <!--<input type="number" id="total" class="form-control mb-0" >
-                 <div id="total" class="form-control">500</div>-->
-                
+            <span class="input-group-text">OMR</span>
+            <input type="text" class="form-control mb-0" name="annual_total_price" id="annual_total_price" value="0" readonly>
                  <input type="hidden" name="annual_subscription_fee" id="annual_subscription_fee" value="0">
-                 <!--<input type="hidden" name="annual_subscription_fee" id="annual_subscription_fee" value="0" />-->
-				<input type="text" class="form-control mb-0" size="2" name="annual_total_price" id="annual_total_price" value="0" disabled>
                </div>
-               <span class="fw-bold text-danger">Next renewal <?php echo $renewalDate ?> </span>
+        <span class="fw-bold text-danger">Next renewal <?php echo date('d M Y', strtotime('first day of january next year')); ?></span>
             </div>
+
             <div class="col-md-4">
-                <label class="fw-bold">Total Fee  </label>
+        <label class="fw-bold">Total Fee</label>
                <div class="input-group mb-3">
-                 <span class="input-group-text" id="basic-addon1">OMR</span>
-				 
-				 <!--- Total fee amount set to 0--> 
-				 
-                <!--<input name="total_price" id="total_price" type="text" class="form-control mb-0"  value="<?=$productData['registration_fee']+$productData['gtins_annual_fee']?>" disabled>-->
-		
-				<input name="total_price" id="total_price" type="text" class="form-control mb-0"  value="0" disabled>
-                 <!--<input class="form-control mb-0" disabled id="demo">-->
+            <span class="input-group-text">OMR</span>
+            <input type="text" name="total_price" id="total_price" class="form-control mb-0" value="0" readonly>
                </div>
             </div>
          </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to update prices
+    function updatePrices() {
+        console.log('Updating prices...');
+        
+        let total = 0;
+        let annual = 0;
+        
+        // Get all product checkboxes
+        document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+            const value = parseFloat(checkbox.value) || 0;
+            const targetInput = document.getElementById(checkbox.dataset.target);
+            
+            console.log('Processing checkbox:', {
+                id: checkbox.id,
+                checked: checkbox.checked,
+                value: value
+            });
+            
+            if (checkbox.checked) {
+                total += value;
+                annual += value;
+                if (targetInput) targetInput.value = value;
+            } else {
+                if (targetInput) targetInput.value = 0;
+            }
+        });
+        
+        console.log('Calculated values:', {
+            total: total,
+            annual: annual
+        });
+        
+        // Update display fields
+        document.getElementById('total_price').value = total.toFixed(2);
+        document.getElementById('annual_total_price').value = annual.toFixed(2);
+        document.getElementById('annual_subscription_fee').value = annual.toFixed(2);
+    }
+    
+    // Add event listeners to checkboxes
+    document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', updatePrices);
+    });
+    
+    // Form validation
+    document.querySelector('form[name="listForm"]').addEventListener('submit', function(e) {
+        console.log('Form submission started');
+        
+        // Check if at least one product is selected
+        const hasProduct = Array.from(document.querySelectorAll('.product-checkbox'))
+            .some(checkbox => checkbox.checked);
+            
+        if (!hasProduct) {
+            e.preventDefault();
+            alert('Please select at least one product');
+            return false;
+        }
+        
+        // Verify payment method is selected
+        const paymentMethod = document.querySelector('input[name="offline_payment"]:checked');
+        if (!paymentMethod) {
+            e.preventDefault();
+            alert('Please select a payment method');
+            return false;
+        }
+        
+        console.log('Form validation passed');
+        return true;
+    });
+});
+</script>
 
             <div class="row d-none">
 				<div class="col-md-12 text-center mt-3">
-               <!--<a id="calculate_fee" class="btn btn-success">Calculate Membership Fee</a>-->
                <a id="calculate_fee" class="btn btn-success" onclick="add()">Calculate Membership Fee</a>
 				</div>
 			</div>
@@ -605,7 +348,6 @@ else{
 			</div>
 			<div> 
 			</div>
-			
                 
 		 
  <?php   

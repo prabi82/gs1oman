@@ -1889,6 +1889,16 @@
 				});
 			});
 		});
+
+		// Function to update prices when checkboxes are clicked
+		function updatePrices() {
+			console.log("Updating prices...");
+			
+			const registrationFee = parseFloat(document.getElementById("registration_fee").value) || 0;
+			let annualFee = 0;
+			
+			// Calculate GTIN fee
+			const gtinCheckbox = document.getElementById("gtins_annual_fee");
 </script>
 		
 

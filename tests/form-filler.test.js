@@ -11,7 +11,38 @@ function generateRandomString(length) {
     return result;
 }
 
-// ... rest of the helper functions ...
+function generateRandomGLN() {
+    // Generate a random 13-digit GLN number
+    let gln = '6281';  // GS1 prefix for Oman
+    for(let i = 0; i < 8; i++) {
+        gln += Math.floor(Math.random() * 10);
+    }
+    // Add check digit
+    let sum = 0;
+    for(let i = 0; i < 12; i++) {
+        sum += parseInt(gln[i]) * (i % 2 === 0 ? 1 : 3);
+    }
+    const checkDigit = (10 - (sum % 10)) % 10;
+    return gln + checkDigit;
+}
+
+function generateRandomCoordinate(isLongitude = false) {
+    // Generate random coordinates within Oman's boundaries
+    // Oman's approximate boundaries:
+    // Longitude: 52° to 60° E
+    // Latitude: 16° to 27° N
+    const min = isLongitude ? 52 : 16;
+    const max = isLongitude ? 60 : 27;
+    return (Math.random() * (max - min) + min).toFixed(6);
+}
+
+function generateRandomLocation() {
+    const locations = [
+        'Main Office', 'Warehouse', 'Distribution Center', 'Retail Store',
+        'Manufacturing Plant', 'Storage Facility', 'Branch Office', 'Logistics Hub'
+    ];
+    return locations[Math.floor(Math.random() * locations.length)];
+}
 
 async function fillFormWithRandomData(page) {
     // ... existing fillFormWithRandomData function ...
@@ -41,6 +72,38 @@ async function verifyDatabaseEntry(formData) {
     // ... existing verifyDatabaseEntry function ...
 }
 
+async function fillGLNForm(page) {
+    try {
+        // Wait for the form to be loaded
+        await page.waitForSelector('#gln-form', { timeout: 10000 });
+        console.log('GLN form found, starting to fill...');
+
+        // Fill the first GLN form
+        await page.type('input[name="gln_data[0][gln_number]"]', generateRandomGLN());
+        await page.type('input[name="gln_data[0][location_name]"]', generateRandomLocation());
+        await page.type('input[name="gln_data[0][longitude]"]', generateRandomCoordinate(true));
+        await page.type('input[name="gln_data[0][latitude]"]', generateRandomCoordinate(false));
+
+        // Add two more GLN forms
+        for(let i = 0; i < 2; i++) {
+            await page.click('#add-more');
+            await page.waitForTimeout(500); // Wait for the new form to be added
+
+            const index = i + 1;
+            await page.type(`input[name="gln_data[${index}][gln_number]"]`, generateRandomGLN());
+            await page.type(`input[name="gln_data[${index}][location_name]"]`, generateRandomLocation());
+            await page.type(`input[name="gln_data[${index}][longitude]"]`, generateRandomCoordinate(true));
+            await page.type(`input[name="gln_data[${index}][latitude]"]`, generateRandomCoordinate(false));
+        }
+
+        console.log('Form filled successfully');
+        return true;
+    } catch (error) {
+        console.error('Error filling GLN form:', error);
+        return false;
+    }
+}
+
 // Main test function
 async function runTest(testNumber) {
     let browser;
@@ -48,7 +111,7 @@ async function runTest(testNumber) {
     let formData;
     
     try {
-        console.log(`\nStarting Form Fill Test #${testNumber}`);
+        console.log(`\nStarting GLN Form Fill Test #${testNumber}`);
         
         browser = await puppeteer.launch({
             headless: false,
@@ -59,95 +122,49 @@ async function runTest(testNumber) {
         page = await browser.newPage();
         page.on('console', msg => console.log('Browser console:', msg.text()));
 
-        await page.goto('http://localhost/gs1oman.com/index.php', {
+        // First login to admin panel
+        await page.goto('http://localhost/gs1oman.com/admin/login.php', {
             waitUntil: 'networkidle0',
             timeout: 60000
         });
 
-        await page.waitForSelector('form', { timeout: 10000 });
-        console.log('Form found, starting to fill with random data...');
+        // Login with admin credentials
+        await page.type('input[name="email"]', 'admin@gs1oman.com');
+        await page.type('input[name="password"]', 'admin123');
+        await page.click('button[type="submit"]');
 
-        const success = await fillFormWithRandomData(page);
+        // Wait for login and navigation
+        await page.waitForNavigation();
+
+        // Navigate to the GLN generation page
+        // Note: Replace 69 with an actual order ID that exists in your system
+        await page.goto('http://localhost/gs1oman.com/admin/product/generate_multiple_gln.php?id=69&page=PROT', {
+            waitUntil: 'networkidle0',
+            timeout: 60000
+        });
+
+        const success = await fillGLNForm(page);
         
         if (success) {
-            // Store form data for database verification
-            formData = await page.evaluate(() => {
-                return {
-                    name: document.querySelector('input[name="name"]').value,
-                    name_ar: document.querySelector('input[name="name_ar"]').value,
-                    pobox: document.querySelector('input[name="pobox"]').value,
-                    zipcode: document.querySelector('input[name="zipcode"]').value,
-                    address: document.querySelector('input[name="address"]').value,
-                    address_ar: document.querySelector('input[name="address_ar"]').value,
-                    country: document.querySelector('input[name="country"]').value,
-                    city: document.querySelector('input[name="city"]').value,
-                    mobile_number: document.querySelector('input[name="mobile_number"]').value,
-                    phone_number: document.querySelector('input[name="phone_number"]').value,
-                    fax_number: document.querySelector('input[name="fax_number"]').value,
-                    cr_number: document.querySelector('input[name="cr_number"]').value,
-                    cr_legal_type: document.querySelector('input[name="cr_legal_type"]').value,
-                    user_email: document.querySelector('input[name="user_email"]').value,
-                    business_type: document.querySelector('input[name="business_type"]').value,
-                    number_of_employee: document.querySelector('input[name="number_of_employee"]').value,
-                    riyada_certificate: document.querySelector('select[name="riyada_certificate"]').value,
-                    exp_date: document.querySelector('input[name="exp_date"]').value
-                };
-            });
-
-            // Submit the form directly using JavaScript
-            await page.evaluate(() => {
-                // Set any required hidden fields
-                const hiddenFields = {
-                    'submit': '1',
-                    'tnc': 'Yes'
-                };
-
-                for (const [name, value] of Object.entries(hiddenFields)) {
-                    let input = document.querySelector(`input[name="${name}"]`);
-                    if (!input) {
-                        input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = name;
-                        document.querySelector('form').appendChild(input);
-                    }
-                    input.value = value;
-                }
-
-                // Get the form data
-                const form = document.querySelector('form');
-                const formData = new FormData(form);
-
-                // Submit using fetch
-                return fetch(form.action, {
-                    method: 'POST',
-                    body: formData
-                });
-            });
+            // Submit the form
+            await page.click('#generate-btn');
             
-            // Wait briefly for the submission to process
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Wait for the response
+            await page.waitForTimeout(2000);
             
-            // Verify database entry
-            const dbVerified = await verifyDatabaseEntry(formData);
-            if (!dbVerified) {
-                console.log('Database verification failed');
-                console.log(`Form Fill Test #${testNumber}: FAILED`);
-                return { success: false, browser };
-            }
-
-            console.log('Form submitted and database entry verified');
-            console.log(`Form Fill Test #${testNumber}: PASSED`);
-            return { success: true, browser };
+            // Check for success message
+            const alertText = await page.$eval('#alert-container', el => el.textContent);
+            const isSuccess = alertText.includes('successfully');
+            
+            console.log(`Form Fill Test #${testNumber}: ${isSuccess ? 'PASSED' : 'FAILED'}`);
+            return { success: isSuccess, browser };
         } else {
             console.log(`Form Fill Test #${testNumber}: FAILED`);
             return { success: false, browser };
         }
     } catch (error) {
         console.error('Test execution failed:', error);
-        if (browser) {
-            return { success: false, browser };
-        }
-        return { success: false, browser: null };
+        return { success: false, browser: browser || null };
     }
 }
 
@@ -156,18 +173,13 @@ async function runTest(testNumber) {
     let testBrowser;
     try {
         const result = await runTest(1);
-        if (!result) {
-            console.error('Test failed: No result returned');
-            return;
-        }
-        
         testBrowser = result.browser;
         const success = result.success;
         
         // Print summary
         console.log('\nTest Summary:');
         console.log('-------------');
-        console.log(`Form Fill Test #1: ${success ? 'PASSED' : 'FAILED'}`);
+        console.log(`GLN Form Fill Test #1: ${success ? 'PASSED' : 'FAILED'}`);
         console.log('\nBrowser will stay open for inspection. Press Ctrl+C to exit.');
         
     } catch (error) {
